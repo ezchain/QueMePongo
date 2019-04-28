@@ -8,13 +8,14 @@ namespace Datos
     {
         public QueMePongoDbContext(DbContextOptions options) : base(options)
         {
+
         }
 
         public DbSet<Prenda> Prendas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            new PrendaConfiguracion(modelBuilder.Entity<Prenda>());
+            _ = new PrendaConfiguracion(modelBuilder.Entity<Prenda>());
             base.OnModelCreating(modelBuilder);
         }
     }

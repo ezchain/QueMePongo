@@ -15,7 +15,8 @@ namespace Datos.Repositorios
 
         public IList<Prenda> ObtenerPrendas()
         {
-            return _dbContext.Prendas.ToList();
+            var prendas = _dbContext.Prendas.ToList();
+            return prendas;
         }
     }
 }
