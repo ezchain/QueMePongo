@@ -12,7 +12,7 @@ namespace Negocio.Tests
         [Fact]
         public void DebeObtenerPrendas()
         {
-            var repo = new Mock<PrendasRepositorio>();
+            var repo = new Mock<IPrendasRepositorio>();
             repo.Setup(mock => mock.ObtenerPrendas())
                 .Returns(new List<Prenda> { new Prenda { Id = 1, Nombre = "Pantalon"} });
 
