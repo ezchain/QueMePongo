@@ -25,5 +25,22 @@ namespace Negocio.Tests
             Assert.Equal(1, resultado.Single().Id);
             Assert.Equal("Pantalon", resultado.Single().Nombre);
         }
+
+        [Fact]
+        public void DebeObtenerShort()
+        {
+            var repo = new Mock<IPrendasRepositorio>();
+            repo.Setup(mock => mock.ObtenerPrendas())
+                .Returns(new List<Prenda> { new Prenda { Id = 2, Nombre = "Short de banio" } });
+
+            var guardarropa = new Guardarropa(repo.Object);
+
+            var resultado = guardarropa.ObtenerPrendas();
+
+            Assert.NotNull(resultado);
+            Assert.Single(resultado);
+            Assert.Equal(2, resultado.Single().Id);
+            Assert.Equal("Short de banio", resultado.Single().Nombre);
+        }
     }
 }
