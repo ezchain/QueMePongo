@@ -14,7 +14,7 @@ namespace Negocio.Tests
         {
             var repo = new Mock<IPrendasRepositorio>();
             repo.Setup(mock => mock.ObtenerPrendas())
-                .Returns(new List<Prenda> { new Prenda { Id = 1, Nombre = "Pantalon"} });
+                .Returns(new List<Prenda> { new Prenda { Id = 1, Nombre = "Pantalon" } });
 
             var guardarropa = new Guardarropa(repo.Object);
 
@@ -41,6 +41,22 @@ namespace Negocio.Tests
             Assert.Single(resultado);
             Assert.Equal(2, resultado.Single().Id);
             Assert.Equal("Short de banio", resultado.Single().Nombre);
+        }
+        [Fact]
+        public void DebeObtenerRemera()
+        {
+            var repo = new Mock<IPrendasRepositorio>();
+            repo.Setup(mock => mock.ObtenerPrendas())
+                .Returns(new List<Prenda> { new Prenda { Id = 3, Nombre = "Remera" } });
+
+            var guardarropa = new Guardarropa(repo.Object);
+
+            var resultado = guardarropa.ObtenerPrendas();
+
+            Assert.NotNull(resultado);
+            Assert.Single(resultado);
+            Assert.Equal(3, resultado.Single().Id);
+            Assert.Equal("Remera", resultado.Single().Nombre);
         }
     }
 }
