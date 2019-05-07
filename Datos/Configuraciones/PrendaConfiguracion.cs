@@ -11,6 +11,11 @@ namespace Datos.Configuraciones
             typeBuilder.ToTable("Prendas");
             typeBuilder.HasKey(prenda => prenda.Id);
             typeBuilder.Property(prenda => prenda.Nombre);
+            typeBuilder.Property(prenda => prenda.Categoria);
+            typeBuilder.Property(prenda => prenda.Tipo);
+            typeBuilder.Property(prenda => prenda.Tela);
+            typeBuilder.Property(prenda => prenda.ColorPrimario);
+            typeBuilder.Property(prenda => prenda.ColorSecundario);
         }
     }
 }
