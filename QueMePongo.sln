@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueMePongo", "QueMePongo\QueMePongo.csproj", "{0A8A11E3-A959-4CED-BCAF-3052DD53D512}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueMePongo.Api", "QueMePongo.Api\QueMePongo.Api.csproj", "{0A8A11E3-A959-4CED-BCAF-3052DD53D512}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{FC60C33F-4CAC-4323-88AF-4AC51786A38D}"
 EndProject

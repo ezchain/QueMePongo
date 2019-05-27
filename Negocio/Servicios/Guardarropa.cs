@@ -1,5 +1,6 @@
 ﻿using Datos.Entidades;
 using Datos.Repositorios;
+using System;
 using System.Collections.Generic;
 
 namespace Negocio
@@ -17,7 +18,7 @@ namespace Negocio
 
         public IList<Prenda> ObtenerPrendas()
         {
-            return _prendasRepositorio.ObtenerPrendas();
+            throw new NotImplementedException();
         }
 
         //public void AgregarPrenda(Prenda prenda)
