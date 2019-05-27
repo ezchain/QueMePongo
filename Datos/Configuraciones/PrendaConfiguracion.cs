@@ -8,7 +8,7 @@ namespace QueMePongo.AccesoDatos.Configuraciones
     {
         public void Configure(EntityTypeBuilder<Prenda> builder)
         {
-            builder.ToTable("Prendas");
+
         }
     }
 }

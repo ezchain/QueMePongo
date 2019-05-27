@@ -9,7 +9,7 @@ namespace QueMePongo.Dominio.Models
             Prendas = new HashSet<Prenda>();
         }
 
-        public int Id { get; set; }
+        public int GuardarropaId { get; set; }
         public ICollection<Prenda> Prendas { get; set; }
     }
 }

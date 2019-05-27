@@ -29,6 +29,16 @@ namespace QueMePongo.AccesoDatos.Repositorios
         public void EditarGuardarropa(Guardarropa guardarropa)
         {
             _dbContext.Entry(guardarropa).State = EntityState.Modified;
+
+            var prendas = _dbContext.Prendas
+                .Where(p => p.GuardarropaId == guardarropa.GuardarropaId);
+
+            foreach (var prenda in prendas)
+            {
+                if (!guardarropa.Prendas.Any(p => p.PrendaId == prenda.PrendaId))
+                    _dbContext.Entry(prenda).State = EntityState.Deleted;
+            }
+
             _dbContext.SaveChanges();
         }
 

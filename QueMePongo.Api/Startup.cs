@@ -30,7 +30,7 @@ namespace QueMePongo
             );
 
             services.AddScoped<Guardarropa, Guardarropa>();
-            services.AddScoped<IPrendasRepositorio, PrendasRepositorio>();
+            services.AddScoped<IGuardarropaRepositorio, GuardarropaRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
