@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-using Datos.Entidades;
+﻿//using System.Collections.Generic;
+//using Datos.Entidades;
+//using Microsoft.AspNetCore.Mvc;
+//using Negocio;
+
 using Microsoft.AspNetCore.Mvc;
-using Negocio;
 
 namespace QueMePongo.Controllers
 {

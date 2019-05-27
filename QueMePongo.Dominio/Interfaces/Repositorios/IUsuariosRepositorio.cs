@@ -1,9 +1,7 @@
-﻿using Datos.Entidades;
-using System;
+﻿using QueMePongo.Dominio.Models;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Datos.Repositorios
+namespace QueMePongo.Dominio.Interfaces
 {
     public interface IUsuariosRepositorio
     {

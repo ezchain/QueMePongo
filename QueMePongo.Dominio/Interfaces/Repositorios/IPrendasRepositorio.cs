@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Datos.Entidades;
+using QueMePongo.Dominio.Models;
 
-namespace Datos.Repositorios
+namespace QueMePongo.Dominio.Interfaces
 {
     public interface IPrendasRepositorio
     {

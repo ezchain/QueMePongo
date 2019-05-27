@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Datos;
-using Datos.Repositorios;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Negocio;
+using QueMePongo.AccesoDatos.Data;
+using QueMePongo.AccesoDatos.Repositorios;
+using QueMePongo.Dominio.Interfaces;
+using QueMePongo.Dominio.Models;
 
 namespace QueMePongo
 {
@@ -34,7 +29,7 @@ namespace QueMePongo
                op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
             );
 
-            services.AddScoped<IGuardarropa, Guardarropa>();
+            services.AddScoped<Guardarropa, Guardarropa>();
             services.AddScoped<IPrendasRepositorio, PrendasRepositorio>();
         }
 

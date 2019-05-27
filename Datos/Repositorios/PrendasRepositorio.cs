@@ -1,8 +1,10 @@
-﻿using Datos.Entidades;
+﻿using QueMePongo.AccesoDatos.Data;
+using QueMePongo.Dominio.Interfaces;
+using QueMePongo.Dominio.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Datos.Repositorios
+namespace QueMePongo.AccesoDatos.Repositorios
 {
     public class PrendasRepositorio : IPrendasRepositorio
     {

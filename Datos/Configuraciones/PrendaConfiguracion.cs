@@ -1,21 +1,14 @@
-﻿using Datos.Entidades;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using QueMePongo.Dominio.Models;
 
-namespace Datos.Configuraciones
+namespace QueMePongo.AccesoDatos.Configuraciones
 {
-    public class PrendaConfiguracion
+    public class PrendaConfiguracion : IEntityTypeConfiguration<Prenda>
     {
-        public PrendaConfiguracion(EntityTypeBuilder<Prenda> typeBuilder)
+        public void Configure(EntityTypeBuilder<Prenda> builder)
         {
-            typeBuilder.ToTable("Prendas");
-            typeBuilder.HasKey(prenda => prenda.Id);
-            typeBuilder.Property(prenda => prenda.Nombre);
-            typeBuilder.Property(prenda => prenda.Categoria);
-            typeBuilder.Property(prenda => prenda.Tipo);
-            typeBuilder.Property(prenda => prenda.Tela);
-            typeBuilder.Property(prenda => prenda.ColorPrimario);
-            typeBuilder.Property(prenda => prenda.ColorSecundario);
+            builder.ToTable("Prendas");
         }
     }
 }

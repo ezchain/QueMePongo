@@ -1,10 +1,10 @@
-﻿using Datos.Entidades;
-using System;
+﻿using QueMePongo.AccesoDatos.Data;
+using QueMePongo.Dominio.Interfaces;
+using QueMePongo.Dominio.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Datos.Repositorios
+namespace QueMePongo.AccesoDatos.Repositorios
 {
     public class UsuariosRepositorio
     {
@@ -18,7 +18,7 @@ namespace Datos.Repositorios
         public IList<Guardarropa> ObtenerGuardarropas()
         {
             var guardarropas = _dbContext.Guardarropas.ToList();
-         
+
             return guardarropas;
         }
 
