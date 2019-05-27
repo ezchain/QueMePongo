@@ -1,6 +1,7 @@
 ﻿using Combinatorics.Collections;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
+using QueMePongo.Dominio.Interfaces.Managers;
 using QueMePongo.Dominio.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 
 namespace QueMePongo.Negocio.Managers
 {
-    public class AtuendosManager
+    public class AtuendosManager : IAtuendosManager
     {
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
 
@@ -21,6 +22,7 @@ namespace QueMePongo.Negocio.Managers
         {
             var guardarropa = _guardarropaRepositorio.ObtenerGuardarropaPorId(guardarropaId);
             var combinatoria = new Combinations<Prenda>(guardarropa.Prendas.ToList(), 5);
+
             foreach (var prendas in combinatoria)
             {
                 ValidarPrendas(prendas);

@@ -10,7 +10,7 @@ namespace QueMePongo.Dominio.Models
             Guardarropas = new HashSet<Guardarropa>();
         }
 
-        public int Id { get; set; }
+        public int UsuarioId { get; set; }
 
         [Required]
         public string Username { get; set; }

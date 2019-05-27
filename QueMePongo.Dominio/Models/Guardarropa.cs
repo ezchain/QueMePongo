@@ -10,6 +10,7 @@ namespace QueMePongo.Dominio.Models
         }
 
         public int GuardarropaId { get; set; }
+        public int UsuarioId { get; set; }
         public ICollection<Prenda> Prendas { get; set; }
     }
 }
