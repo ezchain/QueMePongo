@@ -45,7 +45,7 @@ namespace QueMePongo.Negocio.Servicios
             return _guardarropaRepositorio.ObtenerGuardarropaPorId(id);
         }
 
-        public IList<Guardarropa> ObtenerGuardarropas()
+        public IEnumerable<Guardarropa> ObtenerGuardarropas()
         {
             return _guardarropaRepositorio.ObtenerGuardarropas();
         }

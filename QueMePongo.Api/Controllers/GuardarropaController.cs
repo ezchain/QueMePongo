@@ -1,25 +1,81 @@
-﻿//using System.Collections.Generic;
-//using Datos.Entidades;
-//using Microsoft.AspNetCore.Mvc;
-//using Negocio;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using QueMePongo.Dominio.Interfaces.Servicios;
+using QueMePongo.Dominio.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QueMePongo.Controllers
 {
     [Route("api/[controller]")]
     public class GuardarropaController : ControllerBase
     {
-        // readonly IGuardarropa _guardarropa;
+        readonly IGuardarropasService _guardarropasService;
 
-        // public GuardarropaController(IGuardarropa guardarropa)
-        // {
-        //     _guardarropa = guardarropa;
-        // }
+        public GuardarropaController(IGuardarropasService guardarropasService)
+        {
+            _guardarropasService = guardarropasService;
+        }
 
-        // [HttpGet("prendas")]
-        // public IList<Prenda> ObtenerPrendas()
-        // {
-        //     return _guardarropa.ObtenerPrendas();
-        // }
+        // GET: api/guardarropa
+        [HttpGet]
+        public ActionResult<IEnumerable<Guardarropa>> GetGuardarropaItems()
+        {
+            return _guardarropasService.ObtenerGuardarropas().ToList();
+        }
+
+        // GET: api/guardarropa/2
+        [HttpGet("{id}")]
+        public ActionResult<Guardarropa> GetGuardarropaItem(int id)
+        {
+            var guardarropa = _guardarropasService.ObtenerGuardarropaPorId(id);
+
+            if (guardarropa == null)
+            {
+                return NotFound();
+            }
+
+            return guardarropa;
+        }
+
+        // POST: api/guardarropa
+        [HttpPost]
+        public ActionResult<Guardarropa> PostGuardarropa(Guardarropa guardarropa)
+        {
+            _guardarropasService.CrearGuardarropa(guardarropa);
+
+            return CreatedAtAction(
+                nameof(GetGuardarropaItem),
+                new { id = guardarropa.GuardarropaId }, guardarropa);
+        }
+
+        // PUT: api/guardarropa/2
+        [HttpPut("{id}")]
+        public IActionResult PutGuardarropa(int id, Guardarropa guardarropa)
+        {
+            if (id != guardarropa.GuardarropaId)
+            {
+                return BadRequest();
+            }
+
+            _guardarropasService.EditarGuardarropa(guardarropa);
+
+            return NoContent();
+        }
+
+        // DELETE: api/guardarropa/2
+        [HttpDelete("{id}")]
+        public IActionResult DeleteGuardarropa(int id)
+        {
+            try
+            {
+                _guardarropasService.EliminarGuardarropa(id);
+
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
     }
 }

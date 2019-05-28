@@ -63,9 +63,9 @@ namespace QueMePongo.AccesoDatos.Repositorios
             return guardarropa;
         }
 
-        public IList<Guardarropa> ObtenerGuardarropas()
+        public IEnumerable<Guardarropa> ObtenerGuardarropas()
         {
-            return _dbContext.Guardarropas.ToList();
+            return _dbContext.Guardarropas;
         }
 
         #endregion

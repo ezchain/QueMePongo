@@ -5,7 +5,7 @@ namespace QueMePongo.Dominio.Interfaces
 {
     public interface IGuardarropaRepositorio
     {
-        IList<Guardarropa> ObtenerGuardarropas();
+        IEnumerable<Guardarropa> ObtenerGuardarropas();
         Guardarropa ObtenerGuardarropaPorId(int id);
         Guardarropa CrearGuardarropa(Guardarropa guardarropa);
         void EditarGuardarropa(Guardarropa guardarropa);
