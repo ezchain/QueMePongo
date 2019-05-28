@@ -2,13 +2,13 @@
 using QueMePongo.Dominio.Models;
 using System.Collections.Generic;
 
-namespace QueMePongo.Negocio.Managers
+namespace QueMePongo.Negocio.Servicios
 {
-    public class GuardarropasManager
+    public class GuardarropasService
     {
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
 
-        public GuardarropasManager(IGuardarropaRepositorio guardarropaRepositorio)
+        public GuardarropasService(IGuardarropaRepositorio guardarropaRepositorio)
         {
             _guardarropaRepositorio = guardarropaRepositorio;
         }

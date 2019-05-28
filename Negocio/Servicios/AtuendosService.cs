@@ -1,27 +1,43 @@
 ﻿using Combinatorics.Collections;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.Interfaces.Managers;
+using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace QueMePongo.Negocio.Managers
+namespace QueMePongo.Negocio.Servicios
 {
-    public class AtuendosManager : IAtuendosManager
+    public class AtuendosService : IAtuendosService
     {
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
+        readonly IUsuarioRepositorio _usuarioRepositorio;
 
-        public AtuendosManager(IGuardarropaRepositorio guardarropaRepositorio)
+        public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio, IUsuarioRepositorio usuarioRepositorio)
         {
             _guardarropaRepositorio = guardarropaRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
         public IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId)
         {
             var guardarropa = _guardarropaRepositorio.ObtenerGuardarropaPorId(guardarropaId);
             var combinatoria = new Combinations<Prenda>(guardarropa.Prendas.ToList(), 5);
+
+            foreach (var prendas in combinatoria)
+            {
+                ValidarPrendas(prendas);
+                yield return new Atuendo { Prendas = prendas };
+            }
+        }
+
+        public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
+        {
+            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
+
+            var combinatoria = new Combinations<Prenda>(
+                usuario.Guardarropas.SelectMany(gr => gr.Prendas).ToList(), 5);
 
             foreach (var prendas in combinatoria)
             {

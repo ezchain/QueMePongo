@@ -2,7 +2,6 @@
 //using Datos.Entidades;
 //using Microsoft.AspNetCore.Mvc;
 //using Negocio;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace QueMePongo.Controllers

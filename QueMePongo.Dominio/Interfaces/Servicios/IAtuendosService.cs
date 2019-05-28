@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using QueMePongo.Dominio.DTOs;
 
-namespace QueMePongo.Dominio.Interfaces.Managers
+namespace QueMePongo.Dominio.Interfaces.Servicios
 {
-    public interface IAtuendosManager
+    public interface IAtuendosService
     {
         IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId);
     }

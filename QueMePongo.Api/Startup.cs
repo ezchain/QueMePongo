@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Grace.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QueMePongo.AccesoDatos.Data;
-using QueMePongo.AccesoDatos.Repositorios;
-using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.Models;
+using QueMePongo.Api.IoC;
 
 namespace QueMePongo
 {
@@ -28,9 +27,6 @@ namespace QueMePongo
             services.AddDbContext<QueMePongoDbContext>(op =>
                op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
             );
-
-            services.AddScoped<Guardarropa, Guardarropa>();
-            services.AddScoped<IGuardarropaRepositorio, GuardarropaRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +38,11 @@ namespace QueMePongo
             }
 
             app.UseMvc();
+        }
+
+        public void ConfigureContainer(IInjectionScope scope)
+        {
+            Modulo.ConfigurarServicios(scope);
         }
     }
 }
