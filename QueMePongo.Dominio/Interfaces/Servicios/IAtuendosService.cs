@@ -6,5 +6,6 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
     public interface IAtuendosService
     {
         IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId);
+        IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId);
     }
 }

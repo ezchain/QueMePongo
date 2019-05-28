@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,27 +40,41 @@ namespace QueMePongo.Controllers
 
         // POST: api/guardarropa
         [HttpPost]
-        public ActionResult<Guardarropa> PostGuardarropa(Guardarropa guardarropa)
+        public ActionResult<Guardarropa> PostGuardarropaItem([FromBody]Guardarropa guardarropa)
         {
-            _guardarropasService.CrearGuardarropa(guardarropa);
+            try
+            {
+                _guardarropasService.CrearGuardarropa(guardarropa);
 
-            return CreatedAtAction(
-                nameof(GetGuardarropaItem),
-                new { id = guardarropa.GuardarropaId }, guardarropa);
+                return CreatedAtAction(
+                    nameof(GetGuardarropaItem),
+                    new { id = guardarropa.GuardarropaId }, guardarropa);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/guardarropa/2
         [HttpPut("{id}")]
-        public IActionResult PutGuardarropa(int id, Guardarropa guardarropa)
+        public IActionResult PutGuardarropaItem(int id, [FromBody]Guardarropa guardarropa)
         {
-            if (id != guardarropa.GuardarropaId)
+            try
             {
-                return BadRequest();
+                if (id != guardarropa.GuardarropaId)
+                {
+                    return BadRequest();
+                }
+
+                _guardarropasService.EditarGuardarropa(guardarropa);
+
+                return NoContent();
             }
-
-            _guardarropasService.EditarGuardarropa(guardarropa);
-
-            return NoContent();
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE: api/guardarropa/2

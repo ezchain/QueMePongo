@@ -31,7 +31,6 @@ namespace QueMePongo.AccesoDatos.Configuraciones
                 .HasConversion(converterColor);
 
             builder.Property(b => b.ColorSecundario)
-                .IsRequired()
                 .HasConversion(converterColor);
         }
     }

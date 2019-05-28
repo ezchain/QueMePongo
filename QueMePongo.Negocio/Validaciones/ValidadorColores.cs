@@ -16,7 +16,7 @@ namespace QueMePongo.Negocio.Validaciones
         public void Validar()
         {
             if (_colores.colorPrim == _colores.colorSec)
-                throw new Exception("Los colores primarios y secundarios no pueden ser iguales.");
+                throw new InvalidOperationException("Los colores primarios y secundarios no pueden ser iguales.");
         }
     }
 }

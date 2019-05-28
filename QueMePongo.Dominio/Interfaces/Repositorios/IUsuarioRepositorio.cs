@@ -9,6 +9,6 @@ namespace QueMePongo.Dominio.Interfaces
         void EditarUsuario(Usuario Usuario);
         void EliminarUsuario(int id);
         Usuario ObtenerUsuarioPorId(int id);
-        IList<Usuario> ObtenerUsuarios();
+        IEnumerable<Usuario> ObtenerUsuarios();
     }
 }

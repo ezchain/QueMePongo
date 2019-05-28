@@ -55,17 +55,14 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public Usuario ObtenerUsuarioPorId(int id)
         {
-            var Usuario = _dbContext.Usuarios.Find(id);
-
-            if (Usuario == null)
-                throw new KeyNotFoundException();
-
-            return Usuario;
+            return _dbContext.Usuarios
+                .Include(u => u.Guardarropas)
+                .FirstOrDefault(u => u.UsuarioId == id);
         }
 
-        public IList<Usuario> ObtenerUsuarios()
+        public IEnumerable<Usuario> ObtenerUsuarios()
         {
-            return _dbContext.Usuarios.ToList();
+            return _dbContext.Usuarios.Include(u => u.Guardarropas);
         }
 
         #endregion

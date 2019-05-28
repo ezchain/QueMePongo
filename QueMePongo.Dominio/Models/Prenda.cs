@@ -4,7 +4,6 @@
     {
         public int PrendaId { get; set; }
         public int GuardarropaId { get; set; }
-        public Guardarropa Guardarropa { get; set; }
         public Categoria Categoria { get; set; }
         public Tipo Tipo { get; set; }
         public Tela Tela { get; set; }

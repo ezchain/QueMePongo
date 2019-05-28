@@ -55,17 +55,14 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public Guardarropa ObtenerGuardarropaPorId(int id)
         {
-            var guardarropa = _dbContext.Guardarropas.Find(id);
-
-            if (guardarropa == null)
-                throw new KeyNotFoundException();
-
-            return guardarropa;
+            return _dbContext.Guardarropas
+                .Include(gr => gr.Prendas)
+                .FirstOrDefault(gr => gr.GuardarropaId == id);
         }
 
         public IEnumerable<Guardarropa> ObtenerGuardarropas()
         {
-            return _dbContext.Guardarropas;
+            return _dbContext.Guardarropas.Include(gr => gr.Prendas);
         }
 
         #endregion
