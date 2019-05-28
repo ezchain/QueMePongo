@@ -13,7 +13,7 @@ namespace QueMePongo
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseGrace();
+                .UseGrace()
+                .UseStartup<Startup>();
     }
 }

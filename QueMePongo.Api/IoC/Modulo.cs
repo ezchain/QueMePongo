@@ -14,13 +14,13 @@ namespace QueMePongo.Api.IoC
         {
             scope.Configure(s =>
             {
-                s.Export<IGuardarropaRepositorio>().As<GuardarropaRepositorio>();
-                s.Export<IUsuarioRepositorio>().As<UsuarioRepositorio>();
+                s.Export<GuardarropaRepositorio>().As<IGuardarropaRepositorio>();
+                s.Export<UsuarioRepositorio>().As<IUsuarioRepositorio>();
 
-                s.Export<IAtuendosService>().As<AtuendosService>();
-                s.Export<IGuardarropasService>().As<GuardarropasService>();
+                s.Export<AtuendosService>().As<IAtuendosService>();
+                s.Export<GuardarropasService>().As<IGuardarropasService>();
 
-                s.Export<IEstrategiaValidacion>().As<EstrategiaValidacion>();
+                s.Export<EstrategiaValidacion>().As<IEstrategiaValidacion>();
             });
         }
     }
