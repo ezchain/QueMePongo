@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Datos\QueMePongo.AccesoDatos.csproj" />
+    <ProjectReference Include="..\QueMePongo.AccesoDatos\QueMePongo.AccesoDatos.csproj" />
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Negocio\QueMePongo.Negocio.csproj" />
+    <ProjectReference Include="..\QueMePongo.Negocio\QueMePongo.Negocio.csproj" />
   </ItemGroup>
 
 </Project>
