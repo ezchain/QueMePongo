@@ -2,8 +2,9 @@
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
+using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Dominio.Models;
-using System;
+using QueMePongo.Negocio.Validaciones;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,46 +14,41 @@ namespace QueMePongo.Negocio.Servicios
     {
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
         readonly IUsuarioRepositorio _usuarioRepositorio;
+        readonly IEstrategiaValidacion _estrategiaValidacion;
 
-        public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio, IUsuarioRepositorio usuarioRepositorio)
+        public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio,
+            IUsuarioRepositorio usuarioRepositorio,
+            IEstrategiaValidacion estrategiaValidacion)
         {
             _guardarropaRepositorio = guardarropaRepositorio;
             _usuarioRepositorio = usuarioRepositorio;
+            _estrategiaValidacion = estrategiaValidacion;
         }
 
         public IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId)
         {
             var guardarropa = _guardarropaRepositorio.ObtenerGuardarropaPorId(guardarropaId);
-            var combinatoria = new Combinations<Prenda>(guardarropa.Prendas.ToList(), 5);
+            var combinaciones = new Combinations<Prenda>(guardarropa.Prendas.ToList(), 5);
 
-            foreach (var prendas in combinatoria)
-            {
-                ValidarPrendas(prendas);
-                yield return new Atuendo { Prendas = prendas };
-            }
+            return CrearAtuendos(combinaciones);
         }
 
         public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
         {
             var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
 
-            var combinatoria = new Combinations<Prenda>(
+            var combinaciones = new Combinations<Prenda>(
                 usuario.Guardarropas.SelectMany(gr => gr.Prendas).ToList(), 5);
 
-            foreach (var prendas in combinatoria)
-            {
-                ValidarPrendas(prendas);
-                yield return new Atuendo { Prendas = prendas };
-            }
+            return CrearAtuendos(combinaciones);
         }
 
-        private void ValidarPrendas(IList<Prenda> prendas)
+        private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones)
         {
-            var prendaValida = prendas
-                .GroupBy(p => p.Categoria).Count() == 5;
+            _estrategiaValidacion.SetEstrategia(new ValidadorAtuendo(combinaciones));
+            _estrategiaValidacion.ReaalizarValidacion();
 
-            if (!prendaValida)
-                throw new Exception("Combinacion de prendas no validas");
+            return combinaciones.Select(c => new Atuendo { Prendas = c });
         }
     }
 }

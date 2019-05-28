@@ -2,7 +2,9 @@
 using QueMePongo.AccesoDatos.Repositorios;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
+using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Negocio.Servicios;
+using QueMePongo.Negocio.Validaciones;
 
 namespace QueMePongo.Api.IoC
 {
@@ -17,6 +19,8 @@ namespace QueMePongo.Api.IoC
 
                 s.Export<IAtuendosService>().As<AtuendosService>();
                 s.Export<IGuardarropasService>().As<GuardarropasService>();
+
+                s.Export<IEstrategiaValidacion>().As<EstrategiaValidacion>();
             });
         }
     }
