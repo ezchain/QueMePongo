@@ -14,11 +14,25 @@ namespace QueMePongo.AccesoDatos.Configuraciones
             var converterTela = new EnumToNumberConverter<Tela, int>();
             var converterTipo = new EnumToNumberConverter<Tipo, int>();
 
-            builder.Property(b => b.Tipo).HasConversion(converterTipo);
-            builder.Property(b => b.Tela).HasConversion(converterTela);
-            builder.Property(b => b.Categoria).HasConversion(converterCategoria);
-            builder.Property(b => b.ColorPrimario).HasConversion(converterColor);
-            builder.Property(b => b.ColorSecundario).HasConversion(converterColor);
+            builder.Property(b => b.Tipo)
+                .IsRequired()
+                .HasConversion(converterTipo);
+
+            builder.Property(b => b.Tela)
+                .IsRequired()
+                .HasConversion(converterTela);
+
+            builder.Property(b => b.Categoria)
+                .IsRequired()
+                .HasConversion(converterCategoria);
+
+            builder.Property(b => b.ColorPrimario)
+                .IsRequired()
+                .HasConversion(converterColor);
+
+            builder.Property(b => b.ColorSecundario)
+                .IsRequired()
+                .HasConversion(converterColor);
         }
     }
 }
