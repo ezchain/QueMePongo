@@ -11,7 +11,7 @@ namespace QueMePongo.Negocio.Validaciones
             _validador = validador;
         }
 
-        public void ReaalizarValidacion()
+        public void RealizarValidacion()
         {
             _validador.Validar();
         }

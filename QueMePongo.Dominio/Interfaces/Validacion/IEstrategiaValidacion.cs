@@ -4,7 +4,7 @@ namespace QueMePongo.Dominio.Interfaces.Validacion
 {
     public interface IEstrategiaValidacion
     {
-        void ReaalizarValidacion();
+        void RealizarValidacion();
         void SetEstrategia(IValidador validador);
     }
 }

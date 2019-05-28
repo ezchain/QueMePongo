@@ -46,7 +46,7 @@ namespace QueMePongo.Negocio.Servicios
         private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones)
         {
             _estrategiaValidacion.SetEstrategia(new ValidadorAtuendo(combinaciones));
-            _estrategiaValidacion.ReaalizarValidacion();
+            _estrategiaValidacion.RealizarValidacion();
 
             return combinaciones.Select(c => new Atuendo { Prendas = c });
         }

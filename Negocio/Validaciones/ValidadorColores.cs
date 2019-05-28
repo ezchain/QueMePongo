@@ -6,9 +6,9 @@ namespace QueMePongo.Negocio.Validaciones
 {
     public class ValidadorColores : IValidador
     {
-        private readonly (Color colorPrim, Color colorSec) _colores;
+        private readonly (Color colorPrim, Color? colorSec) _colores;
 
-        public ValidadorColores((Color colorPrim, Color colorSec) colores)
+        public ValidadorColores((Color colorPrim, Color? colorSec) colores)
         {
             _colores = colores;
         }

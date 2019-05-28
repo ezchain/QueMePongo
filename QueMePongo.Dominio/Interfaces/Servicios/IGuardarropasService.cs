@@ -6,6 +6,9 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
     public interface IGuardarropasService
     {
         IList<Guardarropa> ObtenerGuardarropas();
-        IList<Guardarropa> ObtenerGuardarropaPorId();
+        Guardarropa ObtenerGuardarropaPorId(int id);
+        Guardarropa CrearGuardarropa(Guardarropa guardarropa);
+        void EditarGuardarropa(Guardarropa guardarropa);
+        void EliminarGuardarropa(int id);
     }
 }
