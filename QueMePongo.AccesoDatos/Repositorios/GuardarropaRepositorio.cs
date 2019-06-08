@@ -65,6 +65,11 @@ namespace QueMePongo.AccesoDatos.Repositorios
             return _dbContext.Guardarropas.Include(gr => gr.Prendas);
         }
 
+        public void AgregarPrenda(int idGuardarropa,Prenda prenda)
+        {
+
+        }
+
         #endregion
     }
 }

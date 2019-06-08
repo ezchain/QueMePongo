@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Models;
+using QueMePongo.Negocio.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,10 +13,12 @@ namespace QueMePongo.Api.Controllers
     public class UsuarioController : ControllerBase
     {
         readonly IUsuarioRepositorio _usuarioRepositorio;
+        private UsuarioService usuarioService;
 
         public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
         {
-            _usuarioRepositorio = usuarioRepositorio;
+               _usuarioRepositorio = usuarioRepositorio;
+            this.usuarioService = new UsuarioService();
         }
 
         // GET: api/Usuario
@@ -76,6 +80,20 @@ namespace QueMePongo.Api.Controllers
             catch (KeyNotFoundException)
             {
                 return NotFound();
+            }
+        }
+        [HttpPost]
+        [Route("api/Usuario/AgregarGuardarropa")]
+        public IActionResult AgregarGuardarropa(int idUsuario,int idGuardarropa)
+        {
+            try
+            {
+                this.usuarioService.AgregarGuardarropa(idUsuario, idGuardarropa);
+                return Ok("Operacion Realizada correctamente");
+            }
+            catch (Exception e)
+            {
+            return  BadRequest(e.Message);
             }
         }
     }

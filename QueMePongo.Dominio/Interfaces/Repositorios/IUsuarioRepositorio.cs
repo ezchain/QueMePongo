@@ -10,5 +10,6 @@ namespace QueMePongo.Dominio.Interfaces
         void EliminarUsuario(int id);
         Usuario ObtenerUsuarioPorId(int id);
         IEnumerable<Usuario> ObtenerUsuarios();
+        void AgregarGuardarropa(int idUsuario, int idGuardarropa);
     }
 }
