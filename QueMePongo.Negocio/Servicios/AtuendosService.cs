@@ -36,11 +36,12 @@ namespace QueMePongo.Negocio.Servicios
         public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
         {
             var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
-
-            var combinaciones = new Combinations<Prenda>(
-                usuario.Guardarropas.SelectMany(gr => gr.Prendas).ToList(), 5);
-
-            return CrearAtuendos(combinaciones);
+            IEnumerable<Atuendo> prendas = new List<Atuendo>();
+            foreach (var guardarropa in usuario.Guardarropas)
+            {
+                prendas.Concat(GenerarAtuendosPorGuardarropa(guardarropa.GuardarropaId));
+            }
+            return prendas;
         }
 
         private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones)
