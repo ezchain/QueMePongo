@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.Interfaces;
+using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using QueMePongo.Negocio.Servicios;
 using System;
@@ -96,5 +97,13 @@ namespace QueMePongo.Api.Controllers
             return  BadRequest(e.Message);
             }
         }
+
+        //[HttpPost]
+        //public IActionResult TestClima()
+        //{
+        //    IClimaService service = new ClimaService();
+        //    service.ObtenerClimaDarkAPI();
+        //    return Ok("piola");
+        //}
     }
 }
