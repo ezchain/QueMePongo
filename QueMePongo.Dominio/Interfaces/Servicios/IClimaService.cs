@@ -8,7 +8,6 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
 {
    public interface IClimaService
     {
-        //Clima ObtenerClima();
-        Task<Clima> ObtenerClimaDarkAPI();
+        Task<Clima> ObtenerClima();
     }
 }

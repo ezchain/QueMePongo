@@ -6,6 +6,7 @@ using QueMePongo.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace QueMePongo.Api.Controllers
 {
@@ -15,11 +16,13 @@ namespace QueMePongo.Api.Controllers
     {
         readonly IUsuarioRepositorio _usuarioRepositorio;
         private UsuarioService usuarioService;
+        private IClimaService ClimaSVC; 
 
         public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
         {
                _usuarioRepositorio = usuarioRepositorio;
             this.usuarioService = new UsuarioService();
+            ClimaSVC = new ClimaService();
         }
 
         // GET: api/Usuario
@@ -84,7 +87,7 @@ namespace QueMePongo.Api.Controllers
             }
         }
         [HttpPost]
-        [Route("api/Usuario/AgregarGuardarropa")]
+        [Route("AgregarGuardarropa")]
         public IActionResult AgregarGuardarropa(int idUsuario,int idGuardarropa)
         {
             try
@@ -98,12 +101,11 @@ namespace QueMePongo.Api.Controllers
             }
         }
 
-        //[HttpPost]
-        //public IActionResult TestClima()
-        //{
-        //    IClimaService service = new ClimaService();
-        //    service.ObtenerClimaDarkAPI();
-        //    return Ok("piola");
-        //}
+        [HttpGet("Clima")]
+        public  IActionResult TestClima()
+        {
+            var response = ClimaSVC.ObtenerClima();
+            return Ok(response.Result);
+        }
     }
 }

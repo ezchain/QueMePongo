@@ -1,4 +1,5 @@
-﻿using QueMePongo.Dominio.DTOs;
+﻿using QueMePongo.Api.Controllers;
+using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Negocio.Servicios;
 using System;
@@ -13,9 +14,10 @@ namespace Negocio.Tests
       [Fact]
       public void ObtenerClima()
         {
-            IClimaService clima = new ClimaService();
-          var climaObt =  clima.ObtenerClima();
-            var clima2 = clima.ObtenerClimaDarkAPI();
+            //IClimaService clima = new ClimaService();
+            //var climaObt =  clima.ObtenerClima();
+            //var clima2 = clima.ObtenerClimaDarkAPI();
+            //UsuarioController us = new UsuarioController(null);
         }
     }
 }
