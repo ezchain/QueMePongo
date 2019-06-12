@@ -10,4 +10,10 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
     {
         Task<Clima> ObtenerClima();
     }
+
+    public interface IApiClima
+    {
+        Task<Clima> ObtenerClima();
+
+    }
 }
