@@ -50,7 +50,7 @@ namespace Negocio.Tests
             };
             var combinaciones = new Combinations<Prenda>(prendas,5);
              AtuendosService service = new AtuendosService();
-            var atuendos = service.CrearAtuendos(combinaciones);
+          //  var atuendos = service.CrearAtuendos(combinaciones);
 
 
         }
