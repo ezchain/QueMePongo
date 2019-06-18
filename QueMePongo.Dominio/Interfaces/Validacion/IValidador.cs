@@ -2,6 +2,6 @@
 {
     public interface IValidador
     {
-        void Validar();
+        bool Validar();
     }
 }

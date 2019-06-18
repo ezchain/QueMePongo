@@ -16,6 +16,10 @@ namespace QueMePongo.Negocio.Servicios
         readonly IUsuarioRepositorio _usuarioRepositorio;
         readonly IEstrategiaValidacion _estrategiaValidacion;
 
+        public AtuendosService()
+        {
+
+        }
         public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio,
             IUsuarioRepositorio usuarioRepositorio,
             IEstrategiaValidacion estrategiaValidacion)
@@ -48,12 +52,22 @@ namespace QueMePongo.Negocio.Servicios
         {
             var combinacionesCorrectas = new List<List<Prenda>>();
 
-            _estrategiaValidacion.SetEstrategia(
-                new ValidadorAtuendo(combinaciones, combinacionesCorrectas));
+            //_estrategiaValidacion.SetEstrategia(
+            //    new ValidadorAtuendo(combinaciones, combinacionesCorrectas));
 
-            _estrategiaValidacion.RealizarValidacion();
+         
+            //    _estrategiaValidacion.RealizarValidacion(combinacion);
 
+            foreach(var combinacion in combinaciones)
+            {
+                var combinacionList = combinacion.ToList(); 
+                if (ValidadorAtuendo.Validar(combinacionList))
+                {
+                    combinacionesCorrectas.Add(combinacionList);
+                }
+            }
             return combinacionesCorrectas.Select(c => new Atuendo { Prendas = c });
         }
+
     }
 }
