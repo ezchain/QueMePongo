@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QueMePongo.Dominio.DTOs
 {
-    public class ClimaAPIXU : Clima
+    public class ClimaApiXU : Clima
     {
         [JsonProperty(PropertyName = "current")]
         public Current current { get; set; }
 
+        protected override double? Temperatura => current.Temperature;
     }
+
     public class Current
     {
         [JsonProperty(PropertyName = "temp_c")]
@@ -19,11 +18,11 @@ namespace QueMePongo.Dominio.DTOs
         [JsonProperty(PropertyName = "condition")]
         public Condition condition { get; set; }
     }
+
     public class Condition
     {
         [JsonProperty(PropertyName = "text")]
         public string Summary { get; set; }
 
     }
-
 }

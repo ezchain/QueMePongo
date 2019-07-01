@@ -15,7 +15,7 @@ namespace QueMePongo.AccesoDatos.Tests.Helpers
                     Prendas = new List<Prenda>
                     {
                         new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = Tipo.Pantalon },
-                        new Prenda { Categoria = Categoria.TorsoRemera, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = Tipo.Camisa }
+                        new Prenda { Categoria = Categoria.Torso, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = Tipo.Camisa }
                     }
                 },
                 new Guardarropa

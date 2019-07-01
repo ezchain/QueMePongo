@@ -1,11 +1,10 @@
 ﻿using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Dominio.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace QueMePongo.Negocio.Validaciones
 {
-    public static class ValidadorAtuendo 
+    public class ValidadorAtuendo : IValidador
     {
         private readonly IList<Prenda> _combinacion;
 
@@ -16,7 +15,18 @@ namespace QueMePongo.Negocio.Validaciones
 
         public bool Validar()
         {
-            return _combinacion.GroupBy(p => p.Categoria).Count() == 5;
+            var categorias = new List<Categoria>();
+
+            foreach (var prenda in _combinacion)
+            {
+                if (categorias.Contains(prenda.Categoria))
+                {
+                    return false;
+                }
+                categorias.Add(prenda.Categoria);
+            }
+
+            return true;
         }
     }
 }

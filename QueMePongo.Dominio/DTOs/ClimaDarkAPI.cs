@@ -1,8 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QueMePongo.Dominio.DTOs
 {
@@ -17,7 +13,9 @@ namespace QueMePongo.Dominio.DTOs
         [JsonProperty(PropertyName = "hourly")]
         public DataBlock Hourly { get; set; }
 
+        protected override double? Temperatura => Currently.Temperature;
     }
+
     public class DataBlock
     {
         [JsonProperty(PropertyName = "summary")]
@@ -26,5 +24,4 @@ namespace QueMePongo.Dominio.DTOs
         [JsonProperty(PropertyName = "apparentTemperature")]
         public double? Temperature { get; set; }
     }
-    
 }

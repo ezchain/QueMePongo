@@ -2,11 +2,9 @@
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
-using QueMePongo.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QueMePongo.Api.Controllers
 {
@@ -14,15 +12,16 @@ namespace QueMePongo.Api.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        readonly IUsuarioRepositorio _usuarioRepositorio;
-        private UsuarioService usuarioService;
-        private IClimaService ClimaSVC; 
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IUsuarioService _usuarioService;
+        private readonly IClimaService _climaSVC;
 
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
+            IUsuarioService usuarioService, IClimaService climaSVC)
         {
-               _usuarioRepositorio = usuarioRepositorio;
-            this.usuarioService = new UsuarioService();
-            ClimaSVC = new ClimaService();
+            _usuarioRepositorio = usuarioRepositorio;
+            _usuarioService = usuarioService;
+            _climaSVC = climaSVC;
         }
 
         // GET: api/Usuario
@@ -86,25 +85,26 @@ namespace QueMePongo.Api.Controllers
                 return NotFound();
             }
         }
+
         [HttpPost]
         [Route("AgregarGuardarropa")]
-        public IActionResult AgregarGuardarropa(int idUsuario,int idGuardarropa)
+        public IActionResult AgregarGuardarropa(int idUsuario, int idGuardarropa)
         {
             try
             {
-                this.usuarioService.AgregarGuardarropa(idUsuario, idGuardarropa);
+                _usuarioService.AgregarGuardarropa(idUsuario, idGuardarropa);
                 return Ok("Operacion Realizada correctamente");
             }
             catch (Exception e)
             {
-            return  BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
         }
 
         [HttpGet("Clima")]
-        public  IActionResult TestClima()
+        public IActionResult TestClima()
         {
-            var response = ClimaSVC.ObtenerClima();
+            var response = _climaSVC.ObtenerClima("");
             return Ok(response.Result);
         }
     }

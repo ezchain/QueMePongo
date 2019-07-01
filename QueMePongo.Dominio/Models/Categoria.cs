@@ -3,14 +3,9 @@
     public enum Categoria
     {
         Cabeza = 0,
-        TorsoCamiseta = 1,
-        TorsoRemera = 2,
-        TorsoCamisa = 3,
-        TorsoSueter = 4,
-        TorsoBuzo = 5,
-        TorsoCampera = 6,
-        Piernas = 7,
-        Pies = 8,
-        Accesorio = 9
+        Torso = 1,
+        Piernas = 2,
+        Pies = 3,
+        Accesorio = 4
     }
 }

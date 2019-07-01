@@ -18,7 +18,7 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
                 Prendas = new List<Prenda>
                     {
                         new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = Tipo.Pantalon },
-                        new Prenda { Categoria = Categoria.TorsoCamisa, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = Tipo.Camisa }
+                        new Prenda { Categoria = Categoria.Torso, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = Tipo.Camisa }
                     }
             };
             var repo = new GuardarropaRepositorio(_dbContext);

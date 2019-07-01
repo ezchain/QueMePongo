@@ -2,7 +2,7 @@
 
 namespace QueMePongo.Negocio.Validaciones
 {
-    public class EstrategiaValidacion : IContextoValidacion
+    public class ContextoValidacion : IContextoValidacion
     {
         private IValidador _validador;
 

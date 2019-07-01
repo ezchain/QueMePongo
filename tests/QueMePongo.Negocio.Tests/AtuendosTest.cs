@@ -1,42 +1,39 @@
 ﻿using Combinatorics.Collections;
 using QueMePongo.Dominio.Models;
-using QueMePongo.Negocio.Servicios;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using Enum = QueMePongo.Dominio.Models.Categoria;
 
 namespace Negocio.Tests
 {
-   public class AtuendosTest
+    public class AtuendosTest
     {
         [Fact]
         public void GenerarAtuendo()
         {
             Prenda Remera = new Prenda
             {
-                Categoria = Enum.TorsoRemera
+                Categoria = Categoria.Torso,
+                Tipo = Tipo.Remera
             };
             Prenda Camisa = new Prenda
             {
-                Categoria = Enum.TorsoCamisa
-            };
-            Prenda Camiseta = new Prenda
-            {
-                Categoria = Enum.TorsoCamiseta
+                Categoria = Categoria.Torso,
+                Tipo = Tipo.Camisa
             };
             Prenda Campera = new Prenda
             {
-                Categoria = Enum.TorsoCampera
+                Categoria = Categoria.Torso,
+                Tipo = Tipo.Campera
             };
             Prenda Sueter = new Prenda
             {
-                Categoria = Enum.TorsoSueter
+                Categoria = Categoria.Torso,
+                Tipo = Tipo.Sueter
             };
             Prenda OtroSueter = new Prenda
             {
-                Categoria = Enum.TorsoSueter
+                Categoria = Categoria.Torso,
+                Tipo = Tipo.Sueter
             };
             IList<Prenda> prendas = new List<Prenda>
             {
@@ -45,14 +42,9 @@ namespace Negocio.Tests
                 Sueter,
                 Camisa,
                 Campera,
-                Camiseta,
                 OtroSueter
             };
-            var combinaciones = new Combinations<Prenda>(prendas,5);
-             AtuendosService service = new AtuendosService();
-          //  var atuendos = service.CrearAtuendos(combinaciones);
-
-
+            var combinaciones = new Combinations<Prenda>(prendas, 5);
         }
     }
 }
