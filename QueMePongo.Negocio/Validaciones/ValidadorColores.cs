@@ -1,6 +1,5 @@
 ﻿using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Dominio.Models;
-using System;
 
 namespace QueMePongo.Negocio.Validaciones
 {
@@ -15,9 +14,7 @@ namespace QueMePongo.Negocio.Validaciones
 
         public bool Validar()
         {
-            if (_colores.colorPrim == _colores.colorSec)
-                throw new InvalidOperationException("Los colores primarios y secundarios no pueden ser iguales.");
-            return true;
+            return _colores.colorPrim == _colores.colorSec;
         }
     }
 }

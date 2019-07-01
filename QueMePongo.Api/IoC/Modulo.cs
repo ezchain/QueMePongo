@@ -20,7 +20,7 @@ namespace QueMePongo.Api.IoC
                 s.Export<AtuendosService>().As<IAtuendosService>();
                 s.Export<GuardarropasService>().As<IGuardarropasService>();
 
-                s.Export<EstrategiaValidacion>().As<IEstrategiaValidacion>();
+                s.Export<EstrategiaValidacion>().As<IContextoValidacion>();
             });
         }
     }

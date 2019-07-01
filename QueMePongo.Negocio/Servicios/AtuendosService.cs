@@ -14,7 +14,7 @@ namespace QueMePongo.Negocio.Servicios
     {
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
         readonly IUsuarioRepositorio _usuarioRepositorio;
-        readonly IEstrategiaValidacion _estrategiaValidacion;
+        readonly IContextoValidacion _contextoValidacion;
 
         public AtuendosService()
         {
@@ -22,11 +22,11 @@ namespace QueMePongo.Negocio.Servicios
         }
         public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio,
             IUsuarioRepositorio usuarioRepositorio,
-            IEstrategiaValidacion estrategiaValidacion)
+            IContextoValidacion estrategiaValidacion)
         {
             _guardarropaRepositorio = guardarropaRepositorio;
             _usuarioRepositorio = usuarioRepositorio;
-            _estrategiaValidacion = estrategiaValidacion;
+            _contextoValidacion = estrategiaValidacion;
         }
 
         public IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId)
@@ -51,12 +51,6 @@ namespace QueMePongo.Negocio.Servicios
         private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones)
         {
             var combinacionesCorrectas = new List<List<Prenda>>();
-
-            //_estrategiaValidacion.SetEstrategia(
-            //    new ValidadorAtuendo(combinaciones, combinacionesCorrectas));
-
-         
-            //    _estrategiaValidacion.RealizarValidacion(combinacion);
 
             foreach(var combinacion in combinaciones)
             {
