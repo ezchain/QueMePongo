@@ -9,5 +9,6 @@
         public Tela Tela { get; set; }
         public Color ColorPrimario { get; set; }
         public Color? ColorSecundario { get; set; }
+        
     }
 }

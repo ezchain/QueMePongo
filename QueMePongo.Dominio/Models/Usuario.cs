@@ -12,6 +12,7 @@ namespace QueMePongo.Dominio.Models
         public int UsuarioId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public TipoUsuario TipoUsuario { get; set; }
         public ICollection<Guardarropa> Guardarropas { get; set; }
     }
 }

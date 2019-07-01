@@ -16,6 +16,10 @@ namespace QueMePongo.Negocio.Servicios
         readonly IUsuarioRepositorio _usuarioRepositorio;
         readonly IContextoValidacion _contextoValidacion;
 
+        public AtuendosService()
+        {
+
+        }
         public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio,
             IUsuarioRepositorio usuarioRepositorio,
             IContextoValidacion estrategiaValidacion)
@@ -35,17 +39,11 @@ namespace QueMePongo.Negocio.Servicios
 
         public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
         {
-            //var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
-
-            //var combinaciones = new Combinations<Prenda>(
-            //    usuario.Guardarropas.SelectMany(gr => gr.Prendas).ToList(), 5);
-
-            //return CrearAtuendos(combinaciones);
             var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
             IEnumerable<Atuendo> prendas = new List<Atuendo>();
-            foreach(var guardarropa in usuario.Guardarropas)
+            foreach (var guardarropa in usuario.Guardarropas)
             {
-               prendas.Concat(GenerarAtuendosPorGuardarropa(guardarropa.GuardarropaId));
+                prendas.Concat(GenerarAtuendosPorGuardarropa(guardarropa.GuardarropaId));
             }
             return prendas;
         }
@@ -54,17 +52,16 @@ namespace QueMePongo.Negocio.Servicios
         {
             var combinacionesCorrectas = new List<List<Prenda>>();
 
-            foreach (var combinacion in combinaciones)
+            foreach(var combinacion in combinaciones)
             {
-                _contextoValidacion.SetEstrategia(
-                    new ValidadorAtuendo(combinacion));
-
-                if(_contextoValidacion.RealizarValidacion())
-                    combinacionesCorrectas.Add(combinacion.ToList());
-
+                var combinacionList = combinacion.ToList(); 
+                if (ValidadorAtuendo.Validar(combinacionList))
+                {
+                    combinacionesCorrectas.Add(combinacionList);
+                }
             }
-
             return combinacionesCorrectas.Select(c => new Atuendo { Prendas = c });
         }
+
     }
 }

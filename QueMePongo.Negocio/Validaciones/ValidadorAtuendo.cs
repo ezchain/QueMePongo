@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace QueMePongo.Negocio.Validaciones
 {
-    public class ValidadorAtuendo : IValidador
+    public static class ValidadorAtuendo 
     {
         private readonly IList<Prenda> _combinacion;
 

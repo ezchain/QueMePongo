@@ -65,6 +65,11 @@ namespace QueMePongo.AccesoDatos.Repositorios
             return _dbContext.Usuarios.Include(u => u.Guardarropas);
         }
 
+        public void AgregarGuardarropa(int idUsuario, int idGuardarropa)
+        {
+
+        }
+
         #endregion
     }
 }
