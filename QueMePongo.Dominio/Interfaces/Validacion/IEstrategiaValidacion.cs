@@ -1,10 +1,8 @@
-﻿using QueMePongo.Dominio.Interfaces;
-
-namespace QueMePongo.Dominio.Interfaces.Validacion
+﻿namespace QueMePongo.Dominio.Interfaces.Validacion
 {
-    public interface IEstrategiaValidacion
+    public interface IContextoValidacion
     {
-        void RealizarValidacion();
+        bool RealizarValidacion();
         void SetEstrategia(IValidador validador);
     }
 }
