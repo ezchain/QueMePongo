@@ -62,8 +62,7 @@ namespace QueMePongo.Negocio.Servicios
 
             foreach (var guardarropa in usuario.Guardarropas)
             {
-                var prendasFiltradas = FiltrarPrendas(
-                    guardarropa.Prendas, temperatura, tipoDeEvento);
+                var prendasFiltradas = FiltrarPrendas(guardarropa.Prendas, tipoDeEvento);
 
                 if (temperatura < 10)
                     capas = 2;
@@ -75,7 +74,7 @@ namespace QueMePongo.Negocio.Servicios
                             Enum.GetNames(typeof(Categoria)).Length + capas
                         );
 
-                return CrearAtuendos(combinaciones, capas);
+                return CrearAtuendos(combinaciones, temperatura, capas);
             }
 
             return atuendos;
@@ -83,14 +82,14 @@ namespace QueMePongo.Negocio.Servicios
 
         #region Métodos Privados
 
-        private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones, int capas = 0)
+        private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones, decimal? temperatura = 0, int capas = 0)
         {
             var combinacionesCorrectas = new List<List<Prenda>>();
 
             foreach (var combinacion in combinaciones)
             {
                 _contextoValidacion.SetEstrategia(
-                    new ValidadorAtuendo(combinacion, capas));
+                    new ValidadorAtuendo(combinacion, capas, temperatura));
 
                 if (_contextoValidacion.RealizarValidacion())
                 {
@@ -109,8 +108,7 @@ namespace QueMePongo.Negocio.Servicios
                 .Sum(x => ((Capas)x[0]).Cantidad);
         }
 
-        private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas,
-            decimal? temperatura, TipoDeEvento tipoDeEvento)
+        private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas, TipoDeEvento tipoDeEvento)
         {
             return prendas
                 .Where(p =>
@@ -120,8 +118,8 @@ namespace QueMePongo.Negocio.Servicios
                     if (props == null)
                         return true;
 
-                    return props.Temperatura >= (double)temperatura &&
-                           props.Formalidad >= props.Formalidad;
+                    return props.Formalidad >=
+                           tipoDeEvento.GetAttribute<NivelDeFormalidad>().Nivel;
                 })
                 .ToList();
         }

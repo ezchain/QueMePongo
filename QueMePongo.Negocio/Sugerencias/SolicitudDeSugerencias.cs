@@ -27,11 +27,14 @@ namespace QueMePongo.Negocio.Sugerencias
 
         public async Task<IEnumerable<Atuendo>> Ejecutar()
         {
-            var atuendos = _atuendosService
-                .GenerarAtuendosPorUsuario(_usuarioId);
-
             var clima = await _climaService.ObtenerClima(
                 $"{_ubicacion.Latitud},{_ubicacion.Longitud}");
+
+            var atuendos = _atuendosService.GenerarAtuendosPorEvento(
+                    _usuarioId,
+                    (decimal)clima.Temperatura,
+                    _tipoDeEvento
+                );
 
             return atuendos;
         }

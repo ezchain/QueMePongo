@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces.Servicios;
+using QueMePongo.Dominio.Models;
+using QueMePongo.Negocio.Sugerencias;
 
 namespace QueMePongo.Api.Controllers
 {
@@ -11,11 +14,16 @@ namespace QueMePongo.Api.Controllers
     [ApiController]
     public class AtuendoController : ControllerBase
     {
-        readonly IAtuendosService _atuendosService;
+        private readonly IAtuendosService _atuendosService;
+        private readonly ISugerenciasManager _sugerenciasManager;
+        private readonly IClimaService _climaService;
 
-        public AtuendoController(IAtuendosService atuendosService)
+        public AtuendoController(IAtuendosService atuendosService,
+            ISugerenciasManager sugerenciasManager, IClimaService climaService)
         {
             _atuendosService = atuendosService;
+            _sugerenciasManager = sugerenciasManager;
+            _climaService = climaService;
         }
 
         [HttpGet("guardarropa/{guardarropaId}")]
@@ -31,6 +39,25 @@ namespace QueMePongo.Api.Controllers
             return ObtenerAtuendos(() =>
                 _atuendosService.GenerarAtuendosPorUsuario(usuarioId));
         }
+
+        [HttpGet("usuario/{usuarioId}/{tipoDeEvento}/{ubicacion}")]
+        public async Task<ActionResult<IEnumerable<Atuendo>>> GetAtuendosPorEventos(int usuarioId,
+            TipoDeEvento tipoDeEvento, Ubicacion ubicacion)
+        {
+            var solicitud = new SolicitudDeSugerencias(
+                    usuarioId,
+                    tipoDeEvento,
+                    ubicacion,
+                    _atuendosService,
+                    _climaService
+                );
+
+            _sugerenciasManager.AgregarSolicitud(solicitud);
+
+            return Ok(await _sugerenciasManager.Procesar());
+        }
+
+        #region Métodos Privados
 
         private ActionResult<IEnumerable<Atuendo>> ObtenerAtuendos(Func<IEnumerable<Atuendo>> func)
         {
@@ -50,5 +77,7 @@ namespace QueMePongo.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        #endregion
     }
 }

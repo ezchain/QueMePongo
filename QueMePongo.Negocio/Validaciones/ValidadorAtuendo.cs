@@ -9,11 +9,13 @@ namespace QueMePongo.Negocio.Validaciones
     {
         private readonly IList<Prenda> _combinacion;
         private readonly int _capas;
+        private readonly decimal? _temperatura;
 
-        public ValidadorAtuendo(IList<Prenda> combinacion, int capas)
+        public ValidadorAtuendo(IList<Prenda> combinacion, int capas, decimal? temperatura)
         {
             _combinacion = combinacion;
             _capas = capas;
+            _temperatura = temperatura;
         }
 
         public bool Validar()
@@ -22,10 +24,21 @@ namespace QueMePongo.Negocio.Validaciones
             var tipos = new List<TipoDePrenda>();
             var capasAcumuladas = 0;
             var niveles = new List<int>();
+            double temperatura = 0;
 
             foreach (var prenda in _combinacion)
             {
-                if (tipos.Contains(prenda.Tipo))
+                var propsPrenda = prenda.Tipo.GetAttribute<PropiedadesTipoPrenda>();
+
+                if (tipos.Contains(prenda.Tipo)
+                    || (prenda.Categoria != Categoria.Torso
+                        && propsPrenda != null
+                        && propsPrenda.Temperatura < (double)_temperatura))
+                    return false;
+
+                if (prenda.Categoria == Categoria.Torso
+                    && propsPrenda.Temperatura < (double)_temperatura
+                    && _capas == 0)
                     return false;
 
                 if (categorias.Contains(prenda.Categoria))
@@ -33,6 +46,7 @@ namespace QueMePongo.Negocio.Validaciones
                     if (prenda.Categoria == Categoria.Torso && _capas > 0)
                     {
                         capasAcumuladas++;
+                        temperatura += propsPrenda.Temperatura;
 
                         if (capasAcumuladas > _capas || niveles.Contains(GetNivel(prenda)))
                             return false;
@@ -46,6 +60,9 @@ namespace QueMePongo.Negocio.Validaciones
                 categorias.Add(prenda.Categoria);
                 tipos.Add(prenda.Tipo);
             }
+
+            if (temperatura < (double)_temperatura && _capas > 0)
+                return false;
 
             return true;
         }

@@ -4,13 +4,13 @@ namespace QueMePongo.Dominio.Models
 {
     public enum TipoDeEvento
     {
-        [NivelDeFormalidad(5)]
+        [NivelDeFormalidad(1)]
         SalirConAmigos = 1,
 
-        [NivelDeFormalidad(10)]
+        [NivelDeFormalidad(2)]
         SalirConFamilia = 2,
 
-        [NivelDeFormalidad(15)]
+        [NivelDeFormalidad(3)]
         IrATrabajar = 3
     }
 

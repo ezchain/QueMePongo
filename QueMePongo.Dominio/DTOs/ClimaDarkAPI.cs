@@ -13,7 +13,7 @@ namespace QueMePongo.Dominio.DTOs
         [JsonProperty(PropertyName = "hourly")]
         public DataBlock Hourly { get; set; }
 
-        protected override double? Temperatura => Currently.Temperature;
+        public override double? Temperatura => Currently.Temperature;
     }
 
     public class DataBlock

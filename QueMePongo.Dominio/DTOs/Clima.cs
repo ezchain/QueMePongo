@@ -2,6 +2,6 @@
 {
     public abstract class Clima
     {
-        protected abstract double? Temperatura { get; }
+        public abstract double? Temperatura { get; }
     }
 }

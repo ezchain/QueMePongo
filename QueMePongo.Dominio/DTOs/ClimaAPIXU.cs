@@ -7,7 +7,7 @@ namespace QueMePongo.Dominio.DTOs
         [JsonProperty(PropertyName = "current")]
         public Current current { get; set; }
 
-        protected override double? Temperatura => current.Temperature;
+        public override double? Temperatura => current.Temperature;
     }
 
     public class Current
@@ -23,6 +23,5 @@ namespace QueMePongo.Dominio.DTOs
     {
         [JsonProperty(PropertyName = "text")]
         public string Summary { get; set; }
-
     }
 }
