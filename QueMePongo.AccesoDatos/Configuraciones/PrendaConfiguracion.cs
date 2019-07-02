@@ -12,11 +12,6 @@ namespace QueMePongo.AccesoDatos.Configuraciones
             var converterColor = new EnumToNumberConverter<Color, int>();
             var converterCategoria = new EnumToNumberConverter<Categoria, int>();
             var converterTela = new EnumToNumberConverter<Tela, int>();
-            var converterTipo = new EnumToNumberConverter<Tipo, int>();
-
-            builder.Property(b => b.Tipo)
-                .IsRequired()
-                .HasConversion(converterTipo);
 
             builder.Property(b => b.Tela)
                 .IsRequired()

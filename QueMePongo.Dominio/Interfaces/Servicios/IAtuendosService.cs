@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using QueMePongo.Dominio.DTOs;
-using QueMePongo.Dominio.Models;
 
 namespace QueMePongo.Dominio.Interfaces.Servicios
 {
@@ -8,7 +7,5 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
     {
         IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId);
         IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId);
-      
-
     }
 }

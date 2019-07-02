@@ -1,24 +1,24 @@
 ﻿using QueMePongo.Dominio.DTOs;
+using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace QueMePongo.Negocio.EventosDeUsuario
+namespace QueMePongo.Negocio.Sugerencias
 {
-    public class Evento
+    public class SolicitudDeSugerencias : ISolicitud
     {
-        private readonly Usuario _usuario;
+        private readonly int _usuarioId;
         private readonly TipoDeEvento _tipoDeEvento;
         private readonly Ubicacion _ubicacion;
         private readonly IAtuendosService _atuendosService;
         private readonly IClimaService _climaService;
 
-        public Evento(Usuario usuario, TipoDeEvento tipoDeEvento, Ubicacion ubicacion,
-            IAtuendosService atuendosService, IClimaService climaService)
+        public SolicitudDeSugerencias(int usuarioId, TipoDeEvento tipoDeEvento,
+            Ubicacion ubicacion, IAtuendosService atuendosService, IClimaService climaService)
         {
-            _usuario = usuario;
+            _usuarioId = usuarioId;
             _tipoDeEvento = tipoDeEvento;
             _ubicacion = ubicacion;
             _atuendosService = atuendosService;
@@ -28,12 +28,12 @@ namespace QueMePongo.Negocio.EventosDeUsuario
         public async Task<IEnumerable<Atuendo>> Ejecutar()
         {
             var atuendos = _atuendosService
-                .GenerarAtuendosPorUsuario(_usuario.UsuarioId);
+                .GenerarAtuendosPorUsuario(_usuarioId);
 
             var clima = await _climaService.ObtenerClima(
                 $"{_ubicacion.Latitud},{_ubicacion.Longitud}");
 
-            return null;
+            return atuendos;
         }
     }
 }

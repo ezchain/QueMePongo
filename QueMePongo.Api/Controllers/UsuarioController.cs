@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
@@ -15,6 +16,7 @@ namespace QueMePongo.Api.Controllers
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly IUsuarioService _usuarioService;
         private readonly IClimaService _climaSVC;
+        //private readonly ISugerenciasManager
 
         public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
             IUsuarioService usuarioService, IClimaService climaSVC)
@@ -106,6 +108,14 @@ namespace QueMePongo.Api.Controllers
         {
             var response = _climaSVC.ObtenerClima("");
             return Ok(response.Result);
+        }
+
+        // GET: api/Usuario
+        [HttpGet]
+        public ActionResult<IEnumerable<Atuendo>> ObtenerSugerencias(int idUsuario,
+            Ubicacion ubicacion, TipoDeEvento tipoDeEvento)
+        {
+            return null;
         }
     }
 }

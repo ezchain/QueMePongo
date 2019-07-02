@@ -4,7 +4,9 @@ using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Dominio.Models;
+using QueMePongo.Negocio.Helpers;
 using QueMePongo.Negocio.Validaciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,7 +30,10 @@ namespace QueMePongo.Negocio.Servicios
         public IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId)
         {
             var guardarropa = _guardarropaRepositorio.ObtenerGuardarropaPorId(guardarropaId);
-            var combinaciones = new Combinations<Prenda>(guardarropa.Prendas.ToList(), 5);
+
+            var combinaciones = new Combinations<Prenda>(
+                    guardarropa.Prendas.ToList(),
+                    CantidadCategorias());
 
             return CrearAtuendos(combinaciones);
         }
@@ -36,22 +41,56 @@ namespace QueMePongo.Negocio.Servicios
         public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
         {
             var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
-            IEnumerable<Atuendo> prendas = new List<Atuendo>();
+            var atuendos = new List<Atuendo>();
+
             foreach (var guardarropa in usuario.Guardarropas)
             {
-                prendas.Concat(GenerarAtuendosPorGuardarropa(guardarropa.GuardarropaId));
+                atuendos.Concat(
+                    GenerarAtuendosPorGuardarropa(
+                        guardarropa.GuardarropaId));
             }
-            return prendas;
+
+            return atuendos;
         }
 
-        private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones)
+        public IEnumerable<Atuendo> GenerarAtuendosPorEvento(int usuarioId,
+            decimal? temperatura, TipoDeEvento tipoDeEvento)
+        {
+            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
+            var atuendos = new List<Atuendo>();
+            var capas = 0;
+
+            foreach (var guardarropa in usuario.Guardarropas)
+            {
+                var prendasFiltradas = FiltrarPrendas(
+                    guardarropa.Prendas, temperatura, tipoDeEvento);
+
+                if (temperatura < 10)
+                    capas = 2;
+                else if (temperatura >= 10 && temperatura < 20)
+                    capas = 1;
+
+                var combinaciones = new Combinations<Prenda>(
+                            prendasFiltradas,
+                            Enum.GetNames(typeof(Categoria)).Length + capas
+                        );
+
+                return CrearAtuendos(combinaciones, capas);
+            }
+
+            return atuendos;
+        }
+
+        #region Métodos Privados
+
+        private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones, int capas = 0)
         {
             var combinacionesCorrectas = new List<List<Prenda>>();
 
             foreach (var combinacion in combinaciones)
             {
                 _contextoValidacion.SetEstrategia(
-                    new ValidadorAtuendo(combinacion));
+                    new ValidadorAtuendo(combinacion, capas));
 
                 if (_contextoValidacion.RealizarValidacion())
                 {
@@ -61,5 +100,32 @@ namespace QueMePongo.Negocio.Servicios
             return combinacionesCorrectas.Select(c => new Atuendo { Prendas = c });
         }
 
+        private int CantidadCategorias()
+        {
+            return typeof(Categoria)
+                .GetFields()
+                .Select(p => p.GetCustomAttributes(typeof(Capas), false))
+                .Skip(1)
+                .Sum(x => ((Capas)x[0]).Cantidad);
+        }
+
+        private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas,
+            decimal? temperatura, TipoDeEvento tipoDeEvento)
+        {
+            return prendas
+                .Where(p =>
+                {
+                    var props = p.Tipo.GetAttribute<PropiedadesTipoPrenda>();
+
+                    if (props == null)
+                        return true;
+
+                    return props.Temperatura >= (double)temperatura &&
+                           props.Formalidad >= props.Formalidad;
+                })
+                .ToList();
+        }
+
+        #endregion
     }
 }
