@@ -24,4 +24,5 @@ namespace QueMePongo.Dominio.Models
             Nivel = nivel;
         }
     }
+   
 }
