@@ -42,21 +42,8 @@ namespace QueMePongo.Negocio.Servicios
                 var guardarropa = _guardarropaRepositorio
                     .ObtenerGuardarropaPorId(idGuardarropa);
 
-                if (usuario.TipoUsuario.Equals(TipoUsuario.Gratuito))
-                {
-                    if (guardarropa.Prendas.Count < guardarropa.PrendasMaximas)
-                    {
-                        _guardarropaRepositorio.AgregarPrenda(idGuardarropa, prenda);
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("El guardarropa esta lleno");
-                    }
-                }
-                else
-                {
-                    _guardarropaRepositorio.AgregarPrenda(idGuardarropa, prenda);
-                }
+                usuario.TipoUsuario.AgregarPrenda(idGuardarropa, guardarropa, prenda, _guardarropaRepositorio);
+
             }
             else
             {
