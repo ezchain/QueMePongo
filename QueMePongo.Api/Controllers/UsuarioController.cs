@@ -3,6 +3,7 @@ using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
+using QueMePongo.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace QueMePongo.Api.Controllers
         {
             _usuarioRepositorio = usuarioRepositorio;
             _usuarioService = usuarioService;
-            _climaSVC = climaSVC;
+            _climaSVC = new ClimaService();
         }
 
         // GET: api/Usuario
