@@ -80,6 +80,8 @@ namespace QueMePongo.Negocio.Servicios
             return atuendos;
         }
 
+
+
         #region Métodos Privados
 
         private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones, decimal? temperatura = 0, int capas = 0)

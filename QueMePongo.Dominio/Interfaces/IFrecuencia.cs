@@ -6,5 +6,6 @@ namespace QueMePongo.Dominio.Interfaces
 {
     public interface IFrecuencia
     {
+        bool TiempoTranscurrido();
     }
 }

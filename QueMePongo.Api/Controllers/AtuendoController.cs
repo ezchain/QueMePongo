@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.DTOs;
+using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using QueMePongo.Negocio.Sugerencias;
@@ -17,13 +18,15 @@ namespace QueMePongo.Api.Controllers
         private readonly IAtuendosService _atuendosService;
         private readonly ISugerenciasManager _sugerenciasManager;
         private readonly IClimaService _climaService;
+        private readonly INotificador _notificador;
 
         public AtuendoController(IAtuendosService atuendosService,
-            ISugerenciasManager sugerenciasManager, IClimaService climaService)
+            ISugerenciasManager sugerenciasManager, IClimaService climaService, INotificador notificador)
         {
             _atuendosService = atuendosService;
             _sugerenciasManager = sugerenciasManager;
             _climaService = climaService;
+            _notificador = notificador;
         }
 
         [HttpGet("guardarropa/{guardarropaId}")]
@@ -53,7 +56,7 @@ namespace QueMePongo.Api.Controllers
                 );
 
             _sugerenciasManager.AgregarSolicitud(solicitud);
-
+          //  _notificador.NotificarSugerencias(usuarioId, tipoDeEvento);
             return Ok(await _sugerenciasManager.Procesar());
         }
 
