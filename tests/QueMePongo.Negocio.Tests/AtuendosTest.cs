@@ -46,7 +46,7 @@ namespace Negocio.Tests
 
             //Act
             var result = atuendosService
-                .GenerarAtuendosPorEvento(1, TEMPERATURA, TipoDeEvento.IrATrabajar);
+                .GenerarAtuendosPorEvento(1, TEMPERATURA, new Evento("Ir a trabajar",10,FrecuenciaEvento.Diaria));
 
             //Assert
             Assert.Single(result);
@@ -81,7 +81,7 @@ namespace Negocio.Tests
 
             //Act
             var result = atuendosService
-                .GenerarAtuendosPorEvento(1, TEMPERATURA, TipoDeEvento.SalirConAmigos);
+                .GenerarAtuendosPorEvento(1, TEMPERATURA, new Evento("Salir con amigos", 10, FrecuenciaEvento.Diaria));
 
             //Assert
             Assert.Equal(4, result.Count());

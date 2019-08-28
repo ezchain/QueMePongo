@@ -16,17 +16,19 @@ namespace QueMePongo.Api.Controllers
     public class AtuendoController : ControllerBase
     {
         private readonly IAtuendosService _atuendosService;
+        private readonly IUsuarioService _usuarioService;
         private readonly ISugerenciasManager _sugerenciasManager;
         private readonly IClimaService _climaService;
         private readonly INotificador _notificador;
 
         public AtuendoController(IAtuendosService atuendosService,
-            ISugerenciasManager sugerenciasManager, IClimaService climaService, INotificador notificador)
+            ISugerenciasManager sugerenciasManager, IClimaService climaService, INotificador notificador,IUsuarioService usuarioService)
         {
             _atuendosService = atuendosService;
             _sugerenciasManager = sugerenciasManager;
             _climaService = climaService;
             _notificador = notificador;
+            _usuarioService = usuarioService;
         }
 
         [HttpGet("guardarropa/{guardarropaId}")]
@@ -45,19 +47,27 @@ namespace QueMePongo.Api.Controllers
 
         [HttpGet("usuario/{usuarioId}/{tipoDeEvento}/{ubicacion}")]
         public async Task<ActionResult<IEnumerable<Atuendo>>> GetAtuendosPorEventos(int usuarioId,
-            TipoDeEvento tipoDeEvento, Ubicacion ubicacion)
+            Evento evento, Ubicacion ubicacion)
         {
             var solicitud = new SolicitudDeSugerencias(
                     usuarioId,
-                    tipoDeEvento,
+                    evento,
                     ubicacion,
                     _atuendosService,
                     _climaService
                 );
-
-            _sugerenciasManager.AgregarSolicitud(solicitud);
-          //  _notificador.NotificarSugerencias(usuarioId, tipoDeEvento);
-            return Ok(await _sugerenciasManager.Procesar());
+            var Usuario = _usuarioService.GetUsuario(usuarioId);
+            try {
+                
+                _sugerenciasManager.AgregarSolicitud(solicitud);
+                var result = await _sugerenciasManager.Procesar();
+                _notificador.NotificarSugerencias(Usuario, evento);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }  
         }
 
         #region Métodos Privados

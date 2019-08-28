@@ -6,5 +6,6 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
     {
         void AgregarGuardarropa(int idUsuario, int idGuardarropa);
         void AgregarPrenda(int idUsuario, int idGuardarropa, Prenda prenda);
+        Usuario GetUsuario(int idUsuario);
     }
 }

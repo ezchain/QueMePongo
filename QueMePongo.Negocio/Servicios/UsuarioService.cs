@@ -51,6 +51,11 @@ namespace QueMePongo.Negocio.Servicios
             }
         }
 
+        public Usuario GetUsuario(int idUsuario)
+        {
+            return _usuarioRepositorio.ObtenerUsuarioPorId(idUsuario);
+        }
+
         #endregion
 
         #region Metodos Privados
@@ -60,11 +65,6 @@ namespace QueMePongo.Negocio.Servicios
             return usuario.Guardarropas
                 .Select(gr => gr.GuardarropaId)
                 .Contains(idGuardarropa);
-        }
-
-        private Usuario GetUsuario(int idUsuario)
-        {
-            return _usuarioRepositorio.ObtenerUsuarioPorId(idUsuario);
         }
 
         #endregion

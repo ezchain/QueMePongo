@@ -54,30 +54,31 @@ namespace QueMePongo.Negocio.Servicios
         }
 
         public IEnumerable<Atuendo> GenerarAtuendosPorEvento(int usuarioId,
-            decimal? temperatura, TipoDeEvento tipoDeEvento)
+            decimal? temperatura, Evento evento)
         {
-            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
-            var atuendos = new List<Atuendo>();
-            var capas = 0;
 
-            foreach (var guardarropa in usuario.Guardarropas)
-            {
-                var prendasFiltradas = FiltrarPrendas(guardarropa.Prendas, tipoDeEvento);
+                var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
+                var atuendos = new List<Atuendo>();
+                var capas = 0;
 
-                if (temperatura < 10)
-                    capas = 2;
-                else if (temperatura >= 10 && temperatura < 20)
-                    capas = 1;
+                foreach (var guardarropa in usuario.Guardarropas)
+                {
+                    var prendasFiltradas = FiltrarPrendas(guardarropa.Prendas, evento);
 
-                var combinaciones = new Combinations<Prenda>(
-                            prendasFiltradas,
-                            Enum.GetNames(typeof(Categoria)).Length + capas
-                        );
+                    if (temperatura < 10)
+                        capas = 2;
+                    else if (temperatura >= 10 && temperatura < 20)
+                        capas = 1;
 
-                return CrearAtuendos(combinaciones, temperatura, capas);
-            }
+                    var combinaciones = new Combinations<Prenda>(
+                                prendasFiltradas,
+                                Enum.GetNames(typeof(Categoria)).Length + capas
+                            );
 
-            return atuendos;
+                    return CrearAtuendos(combinaciones, temperatura, capas);
+                }
+
+                return atuendos;
         }
 
 
@@ -110,7 +111,22 @@ namespace QueMePongo.Negocio.Servicios
                 .Sum(x => ((Capas)x[0]).Cantidad);
         }
 
-        private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas, TipoDeEvento tipoDeEvento)
+        //private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas, TipoDeEvento tipoDeEvento)
+        //{
+        //    return prendas
+        //        .Where(p =>
+        //        {
+        //            var props = p.Tipo.GetAttribute<PropiedadesTipoPrenda>();
+
+        //            if (props == null)
+        //                return true;
+
+        //            return props.Formalidad >=
+        //                   tipoDeEvento.GetAttribute<NivelDeFormalidad>().Nivel;
+        //        })
+        //        .ToList();
+        //}
+        private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas, Evento evento)
         {
             return prendas
                 .Where(p =>
@@ -120,8 +136,7 @@ namespace QueMePongo.Negocio.Servicios
                     if (props == null)
                         return true;
 
-                    return props.Formalidad >=
-                           tipoDeEvento.GetAttribute<NivelDeFormalidad>().Nivel;
+                    return props.Formalidad >= evento.Formalidad;
                 })
                 .ToList();
         }

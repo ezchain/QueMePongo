@@ -7,7 +7,7 @@ namespace QueMePongo.Dominio.Interfaces
 {
   public interface INotificador
     {
-        void NotificarSugerencias(int idUsuario, Evento evento);
+        void NotificarSugerencias(Usuario usuario, Evento evento);
 
         void NotificarAlertaMeterologica(int idUsuario, string alerta);
 

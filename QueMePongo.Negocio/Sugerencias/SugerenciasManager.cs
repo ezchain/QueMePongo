@@ -1,6 +1,7 @@
 ﻿using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,9 +23,15 @@ namespace QueMePongo.Negocio.Sugerencias
 
         public async Task<IEnumerable<Atuendo>> Procesar()
         {
-            var evento = _colaDeSolicitudes.Dequeue();
-
-            return await evento.Ejecutar();
+            try
+            {
+                var evento = _colaDeSolicitudes.Dequeue();
+                return await evento.Ejecutar();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Grace.AspNetCore.Hosting" Version="7.0.1" />
     <PackageReference Include="Grace.DependencyInjection.Extensions" Version="7.0.1" />
+    <PackageReference Include="MailKit" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
