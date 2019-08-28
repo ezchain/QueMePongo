@@ -46,7 +46,7 @@ namespace QueMePongo.Api.Controllers
         }
 
         [HttpGet("usuario/{usuarioId}/{tipoDeEvento}/{ubicacion}")]
-        public async Task<ActionResult<IEnumerable<Atuendo>>> GetAtuendosPorEventos(int usuarioId,
+        public async Task<ActionResult<Sugerencia>> GetAtuendosPorEventos(int usuarioId,
             Evento evento, Ubicacion ubicacion)
         {
             var solicitud = new SolicitudDeSugerencias(
@@ -62,12 +62,29 @@ namespace QueMePongo.Api.Controllers
                 _sugerenciasManager.AgregarSolicitud(solicitud);
                 var result = await _sugerenciasManager.Procesar();
                 _notificador.NotificarSugerencias(Usuario, evento);
-                return Ok(result);
+                Sugerencia sugerencia = new Sugerencia(result);
+                if (_sugerenciasManager.SugerenciaAceptada(sugerencia))
+                {
+                    throw new Exception("No existen sugerencias disponibles");
+                }
+                return Ok(sugerencia);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }  
+        }
+
+        public ActionResult AceptarSugerencia(Sugerencia sugerencia, int IDUsuario)
+        {
+            try
+            {
+                _sugerenciasManager.AceptarSugerencia(sugerencia, IDUsuario);
+                return Ok();
+            }catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         #region Métodos Privados

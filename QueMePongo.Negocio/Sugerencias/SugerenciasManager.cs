@@ -1,6 +1,7 @@
 ﻿using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
+using QueMePongo.Dominio.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,7 +19,9 @@ namespace QueMePongo.Negocio.Sugerencias
 
         public void AgregarSolicitud(ISolicitud solicitud)
         {
-            _colaDeSolicitudes.Enqueue(solicitud);
+                _colaDeSolicitudes.Enqueue(solicitud);
+            
+            
         }
 
         public async Task<IEnumerable<Atuendo>> Procesar()
@@ -32,6 +35,24 @@ namespace QueMePongo.Negocio.Sugerencias
                 throw ex;
             }
             
+        }
+
+        public void AceptarSugerencia(Sugerencia sugerencia,int IDUsuario)
+        {
+            sugerencia.Aceptada = true;
+            sugerencia.IDUsuario = IDUsuario;
+            //GUARDAR EN DB
+        }
+
+        public void ObtenerSugerencias()
+        {
+            //LEVANTAR SUGERENCIAS DB
+        }
+
+        public bool SugerenciaAceptada(Sugerencia solicitud)
+        {
+            //Verificar que  exista en la DB
+            return false;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace QueMePongo.Negocio.Sugerencias
                         (decimal)clima.Temperatura,
                         _evento
                     );
-
+                
                 return atuendos;
             }
             throw new Exception("El evento " + _evento.Nombre + " no esta disponible");
