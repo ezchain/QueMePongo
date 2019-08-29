@@ -80,7 +80,14 @@ namespace QueMePongo.Negocio.Servicios
 
                 return atuendos;
         }
+        
+        public bool ValidarSugerencia(Atuendo atuendo)
+        {
+            IList<Sugerencia> SugerenciasActivas = new List<Sugerencia>();//traeria las sugerencias de la base
+             return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada);
+        }
 
+    
 
 
         #region Métodos Privados

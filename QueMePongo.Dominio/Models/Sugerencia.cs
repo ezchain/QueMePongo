@@ -8,14 +8,9 @@ namespace QueMePongo.Dominio.Models
   public class Sugerencia
     {
         public int IDSugerencia { get; set; }
-        public IEnumerable<Atuendo> Atuendos { get; set; }
+        public Atuendo Atuendo { get; set; }
         public bool Aceptada { get; set; }
         public int IDUsuario { get; set; }
 
-
-        public Sugerencia(IEnumerable<Atuendo> atuendos)
-        {
-            Atuendos = atuendos;
-        }
     }
 }

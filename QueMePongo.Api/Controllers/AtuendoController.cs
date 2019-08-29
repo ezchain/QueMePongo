@@ -46,7 +46,7 @@ namespace QueMePongo.Api.Controllers
         }
 
         [HttpGet("usuario/{usuarioId}/{tipoDeEvento}/{ubicacion}")]
-        public async Task<ActionResult<Sugerencia>> GetAtuendosPorEventos(int usuarioId,
+        public async Task<ActionResult<Sugerencia>> GenerarSugerencia(int usuarioId,
             Evento evento, Ubicacion ubicacion)
         {
             var solicitud = new SolicitudDeSugerencias(
@@ -61,12 +61,16 @@ namespace QueMePongo.Api.Controllers
                 
                 _sugerenciasManager.AgregarSolicitud(solicitud);
                 var result = await _sugerenciasManager.Procesar();
-                _notificador.NotificarSugerencias(Usuario, evento);
-                Sugerencia sugerencia = new Sugerencia(result);
-                if (_sugerenciasManager.SugerenciaAceptada(sugerencia))
+                Sugerencia sugerencia = new Sugerencia();
+                foreach(var combinacion in result)
                 {
-                    throw new Exception("No existen sugerencias disponibles");
+                   if(_atuendosService.ValidarSugerencia(combinacion))
+                    {
+                        sugerencia.Atuendo = combinacion;
+                        break;
+                    }
                 }
+                _notificador.NotificarSugerencias(Usuario, evento);
                 return Ok(sugerencia);
             }
             catch (Exception ex)
