@@ -11,12 +11,14 @@ namespace QueMePongo.Dominio.Models
         public string Nombre { get; set; }
         public int Formalidad { get; set; }
         public IFrecuencia Frecuencia { get; set; }
+        public Ubicacion Ubicacion { get; set; }
 
-        public Evento (string nombre, int formalidad, FrecuenciaEvento frecuencia)
+        public Evento (string nombre, int formalidad, FrecuenciaEvento frecuencia, Ubicacion ubicacion)
         {
             Nombre = nombre;
             Formalidad = formalidad;
             Frecuencia = new Frecuencia(frecuencia.GetAttribute<IntervaloFrecuencia>().Intervalo);
+            Ubicacion = ubicacion;
             
 
         }

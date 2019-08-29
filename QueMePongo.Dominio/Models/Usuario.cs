@@ -10,6 +10,7 @@ namespace QueMePongo.Dominio.Models
         {
             Guardarropas = new HashSet<Guardarropa>();
             TipoUsuario = new Gratuito();
+            Sensibilidad = new Normal();
         }
 
         public int UsuarioId { get; set; }
@@ -17,6 +18,7 @@ namespace QueMePongo.Dominio.Models
         public string Password { get; set; }
         public string Mail { get; set; }
         public ITipoUsuario TipoUsuario { get; set; }
+        public ISensibilidad Sensibilidad { get; set; }
         public ICollection<Guardarropa> Guardarropas { get; set; }
         
     }

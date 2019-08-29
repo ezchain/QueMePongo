@@ -57,40 +57,52 @@ namespace QueMePongo.Negocio.Servicios
             decimal? temperatura, Evento evento)
         {
 
-                var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
-                var atuendos = new List<Atuendo>();
-                var capas = 0;
-
-                foreach (var guardarropa in usuario.Guardarropas)
-                {
-                    var prendasFiltradas = FiltrarPrendas(guardarropa.Prendas, evento);
-
-                    if (temperatura < 10)
-                        capas = 2;
-                    else if (temperatura >= 10 && temperatura < 20)
-                        capas = 1;
-
-                    var combinaciones = new Combinations<Prenda>(
-                                prendasFiltradas,
-                                Enum.GetNames(typeof(Categoria)).Length + capas
-                            );
-
-                    return CrearAtuendos(combinaciones, temperatura, capas);
-                }
-
-                return atuendos;
+            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
+            int capas = ObtenerCapasPorTemperatura(temperatura);
+            capas = usuario.Sensibilidad.ObtenerSensibilidadGlobal(capas);
+            return GenerarCombinaciones(usuario, evento, temperatura, capas);
         }
-        
-        public bool ValidarSugerencia(Atuendo atuendo)
+
+        /// <summary>
+        /// Valida que una sugerencia no haya sido aceptada por otro usuario
+        /// </summary>
+        /// <param name="atuendo"></param>
+        /// <returns></returns>
+        public bool ValidarSugerencia(Atuendo atuendo,int idUsuario)
         {
             IList<Sugerencia> SugerenciasActivas = new List<Sugerencia>();//traeria las sugerencias de la base
-             return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada);
+             return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada && p.IDUsuario !=idUsuario);
         }
 
+     
     
 
 
         #region Métodos Privados
+
+        private IEnumerable<Atuendo> GenerarCombinaciones(Usuario usuario,Evento evento,decimal? temperatura, int capas)     
+        {
+            IList<Atuendo> atuendos = new List<Atuendo>();
+            
+            foreach (var guardarropa in usuario.Guardarropas)
+            {
+                var prendasFiltradas = FiltrarPrendas(guardarropa.Prendas, evento);
+
+                var combinaciones = new Combinations<Prenda>(
+                            prendasFiltradas,
+                            Enum.GetNames(typeof(Categoria)).Length + capas
+                        );
+                atuendos.Concat(CrearAtuendos(combinaciones, temperatura, capas));
+            }
+            return atuendos;
+        }
+
+        private int ObtenerCapasPorTemperatura(decimal? temperatura)
+        {
+            if (temperatura < 10) return 3;
+            else if (temperatura >= 10 && temperatura < 20) return 2;
+            else return 1;
+        }
 
         private IEnumerable<Atuendo> CrearAtuendos(Combinations<Prenda> combinaciones, decimal? temperatura = 0, int capas = 0)
         {
