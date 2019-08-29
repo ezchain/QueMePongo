@@ -6,7 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QueMePongo.AccesoDatos.Data;
+using QueMePongo.AccesoDatos.Repositorios;
 using QueMePongo.Api.IoC;
+using QueMePongo.Dominio.Interfaces;
+using QueMePongo.Dominio.Interfaces.Repositorios;
+using QueMePongo.Dominio.Interfaces.Servicios;
+using QueMePongo.Negocio.Helpers;
+using QueMePongo.Negocio.Servicios;
 
 namespace QueMePongo
 {
@@ -33,6 +39,10 @@ namespace QueMePongo
             services.AddDbContext<QueMePongoDbContext>(op =>
                op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
             );
+
+            services.AddScoped<IPrendaService, PrendaService>();
+            services.AddScoped<IPrendasRepositorio, PrendasRepositorio>();
+            services.AddScoped<IImagenHelper, ImagenHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

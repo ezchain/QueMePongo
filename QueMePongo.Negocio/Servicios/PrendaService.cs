@@ -1,4 +1,5 @@
-﻿using QueMePongo.Dominio.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces.Repositorios;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
@@ -7,22 +8,25 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
+using QueMePongo.Dominio.Interfaces;
 
 namespace QueMePongo.Negocio.Servicios
 {
     public class PrendaService : IPrendaService
     {
         private readonly IPrendasRepositorio prendasRepositorio;
+        private readonly IImagenHelper imagenHelper;
 
-        public PrendaService(IPrendasRepositorio prendasRepositorio)
+        public PrendaService(IPrendasRepositorio prendasRepositorio, IImagenHelper imagenHelper)
         {
             this.prendasRepositorio = prendasRepositorio;
+            this.imagenHelper = imagenHelper;
         }
 
-        public void AddPrenda(PrendaDTO prendaDTO)
+        public void AddPrenda(PrendaDTO prendaDTO, IFormFile imagen)
         {
-            var prenda = ToModel(prendaDTO);
+            var prenda = ToModel(prendaDTO,imagen);
 
             prendasRepositorio.AddPrenda(prenda);
         }
@@ -51,22 +55,41 @@ namespace QueMePongo.Negocio.Servicios
 
         //private PrendaDTO ToDto(Prenda prenda)
         //{
-        //        return new PrendaDTO()
-        //        {
-        //            PrendaId = prenda.PrendaId,
-        //            Tipo = prenda.Tipo,
-        //            Categoria = prenda.Categoria,
-        //            ColorPrimario = prenda.ColorPrimario,
-        //            ColorSecundario = prenda.ColorSecundario,
-        //            Tela = prenda.Tela,
-        //            GuardarropaId = prenda.GuardarropaId,
+        //    var stream = new MemoryStream(prenda.Imagen);
+        //    var imagen = Image.FromStream(stream);
 
-        //        }
+
+        //    return new PrendaDTO()
+        //    {
+        //        PrendaId = prenda.PrendaId,
+        //        Tipo = prenda.Tipo,
+        //        Categoria = prenda.Categoria,
+        //        ColorPrimario = prenda.ColorPrimario,
+        //        ColorSecundario = prenda.ColorSecundario,
+        //        Tela = prenda.Tela,
+        //        GuardarropaId = prenda.GuardarropaId,
+        //        Imagen = imagen
+
+        //    }
         //}
 
-        private Prenda ToModel(PrendaDTO prendaDTO)
+        private Prenda ToModel(PrendaDTO prendaDTO, IFormFile imagenFile)
         {
 
+            var byteArrayImagen = imagenHelper.ImagenFileToArray(imagenFile);
+     
+            return new Prenda()
+            {
+                PrendaId = prendaDTO.PrendaId,
+                Categoria = prendaDTO.Categoria,
+                ColorPrimario = prendaDTO.ColorPrimario,
+                ColorSecundario = prendaDTO.ColorSecundario,
+                GuardarropaId = prendaDTO.GuardarropaId,
+                Tela = prendaDTO.Tela,
+                Tipo = prendaDTO.Tipo,
+                Imagen = byteArrayImagen
+            };
+  
         }
     }
 }

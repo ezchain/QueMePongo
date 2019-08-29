@@ -36,9 +36,9 @@ namespace QueMePongo.Api.Controllers
 
         // POST: api/Prenda
         [HttpPost]
-        public IActionResult Post([FromBody] PrendaDTO prenda)
+        public IActionResult Post([FromBody] PrendaDTO prenda, IFormFile imagen)
         {
-            prendaService.AddPrenda(prenda);
+            prendaService.AddPrenda(prenda,imagen);
             return Ok();
         }
 
