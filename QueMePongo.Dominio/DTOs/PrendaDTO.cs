@@ -1,6 +1,12 @@
-﻿namespace QueMePongo.Dominio.Models
+﻿using Microsoft.AspNetCore.Http;
+using QueMePongo.Dominio.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace QueMePongo.Dominio.DTOs
 {
-    public class Prenda
+    public class PrendaDTO
     {
         public int PrendaId { get; set; }
         public int GuardarropaId { get; set; }
@@ -9,7 +15,6 @@
         public Tela Tela { get; set; }
         public Color ColorPrimario { get; set; }
         public Color? ColorSecundario { get; set; }
-        public byte[] Imagen { get; set; }
-
+        public IFormFile Imagen { get; set; }
     }
 }
