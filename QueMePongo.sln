@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueMePongo.Negocio", "QueMe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6A9E2E73-95BB-4C9C-9547-7B9020768F50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueMePongo.Negocio.Tests", "tests\QueMePongo.Negocio.Tests\Negocio.Tests.csproj", "{2CC6926F-A63D-4409-8FFA-AC945BDFCF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocio.Tests", "tests\QueMePongo.Negocio.Tests\Negocio.Tests.csproj", "{2CC6926F-A63D-4409-8FFA-AC945BDFCF8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueMePongo.Dominio", "QueMePongo.Dominio\QueMePongo.Dominio.csproj", "{F0B65554-5523-40F3-9FC7-57C0171D7F9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueMePongo.Dominio", "QueMePongo.Dominio\QueMePongo.Dominio.csproj", "{F0B65554-5523-40F3-9FC7-57C0171D7F9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueMePongo.AccesoDatos.Tests", "tests\QueMePongo.AccesoDatos.Tests\QueMePongo.AccesoDatos.Tests.csproj", "{F0ECB829-AF76-4455-B209-3B0B3A11E9B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueMePongo.AccesoDatos.Tests", "tests\QueMePongo.AccesoDatos.Tests\QueMePongo.AccesoDatos.Tests.csproj", "{F0ECB829-AF76-4455-B209-3B0B3A11E9B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

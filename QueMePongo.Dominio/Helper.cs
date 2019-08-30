@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QueMePongo.Dominio.DTOs;
+using QueMePongo.Dominio.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,15 @@ namespace QueMePongo.Dominio
             return enumType.GetField(name).GetCustomAttributes(false)
                 .OfType<TAttribute>()
                 .SingleOrDefault();
+        }
+
+        public static bool AtuendoTienePosicion(Atuendo atuendo,int posicion)
+        {
+            foreach(var prenda in atuendo.Prendas)
+            {
+                return prenda.Tipo.GetAttribute<PropiedadesTipoPrenda>().Posicion == posicion;
+            }
+            return false;
         }
     }
 }

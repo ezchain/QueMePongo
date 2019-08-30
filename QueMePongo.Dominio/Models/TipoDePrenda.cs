@@ -47,12 +47,15 @@ namespace QueMePongo.Dominio.Models
         Ojotas = 14,
 
         [PropiedadesTipoPrenda(10,1,0,4)]
-        Guuantes = 15,
+        Guantes = 15,
 
-        [PropiedadesTipoPrenda(10,1,0,5)]
-        Gorra = 16,
+        [PropiedadesTipoPrenda(10, 1, 0, 5)]
+        Bufanda = 16,
 
-        Cartera = 17,
+        [PropiedadesTipoPrenda(10,1,0,6)]
+        Gorra = 17,
+
+        Cartera = 18,
         Nada = 100
     }
 

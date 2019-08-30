@@ -78,9 +78,23 @@ namespace QueMePongo.Api.Controllers
             }
         }
 
-        public ActionResult CalificarSugerencia(Sugerencia sugerencia,int idUsuario, int calificacion)
+        public ActionResult CalificarSugerencia(Sugerencia sugerencia,int idUsuario, ICalificacion calificacion)
         {
-
+            if(sugerencia.Aceptada && sugerencia.IDUsuario==idUsuario)
+            {
+                try
+                {
+                    var Usuario = _usuarioService.GetUsuario(idUsuario);
+                    Usuario = calificacion.AjustarSensibilidad(Usuario);
+                    _usuarioService.GuardarUsuario(Usuario);
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+            }
+            return BadRequest("La sugerencia no está aceptada por el usuario ingresado");
         }
 
         #region Métodos Privados

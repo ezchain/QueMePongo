@@ -52,7 +52,13 @@ namespace QueMePongo.Negocio.Servicios
 
             return atuendos;
         }
-
+        /// <summary>
+        /// Genera atuendos para un determinado evento
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <param name="temperatura"></param>
+        /// <param name="evento"></param>
+        /// <returns></returns>
         public IEnumerable<Atuendo> GenerarAtuendosPorEvento(int usuarioId,
             decimal? temperatura, Evento evento)
         {
@@ -74,10 +80,6 @@ namespace QueMePongo.Negocio.Servicios
              return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada && p.IDUsuario !=idUsuario);
         }
 
-     
-    
-
-
         #region Métodos Privados
 
         private IEnumerable<Atuendo> GenerarCombinaciones(Usuario usuario,Evento evento,decimal? temperatura, int capas)     
@@ -86,7 +88,7 @@ namespace QueMePongo.Negocio.Servicios
             
             foreach (var guardarropa in usuario.Guardarropas)
             {
-                var prendasFiltradas = FiltrarPrendas(guardarropa.Prendas, evento);
+                var prendasFiltradas = FiltrarPrendasEvento(guardarropa.Prendas, evento);
 
                 var combinaciones = new Combinations<Prenda>(
                             prendasFiltradas,
@@ -94,7 +96,7 @@ namespace QueMePongo.Negocio.Servicios
                         );
                 atuendos.Concat(CrearAtuendos(combinaciones, temperatura, capas));
             }
-            return atuendos;
+            return usuario.Sensibilidad.SensibilidadLocal(atuendos);
         }
 
         private int ObtenerCapasPorTemperatura(decimal? temperatura)
@@ -145,7 +147,7 @@ namespace QueMePongo.Negocio.Servicios
         //        })
         //        .ToList();
         //}
-        private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas, Evento evento)
+        private IList<Prenda> FiltrarPrendasEvento(ICollection<Prenda> prendas, Evento evento)
         {
             return prendas
                 .Where(p =>
