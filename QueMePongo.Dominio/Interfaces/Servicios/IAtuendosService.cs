@@ -9,6 +9,6 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
         IEnumerable<Atuendo> GenerarAtuendosPorGuardarropa(int guardarropaId);
         IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId);
         IEnumerable<Atuendo> GenerarAtuendosPorEvento(int usuarioId, decimal? temperatura, Evento evento);
-        bool ValidarSugerencia(Atuendo atuendo);
+        bool ValidarSugerencia(Atuendo atuendo, int idUsuario);
     }
 }

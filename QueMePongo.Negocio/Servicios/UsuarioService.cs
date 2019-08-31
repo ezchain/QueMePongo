@@ -56,6 +56,11 @@ namespace QueMePongo.Negocio.Servicios
             return _usuarioRepositorio.ObtenerUsuarioPorId(idUsuario);
         }
 
+        public void GuardarUsuario(Usuario usuario)
+        {
+            //GUARDAR EN DB
+        }
+
         #endregion
 
         #region Metodos Privados

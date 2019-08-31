@@ -45,31 +45,17 @@ namespace QueMePongo.Api.Controllers
                 _atuendosService.GenerarAtuendosPorUsuario(usuarioId));
         }
 
-        [HttpGet("usuario/{usuarioId}/{tipoDeEvento}/{ubicacion}")]
-        public async Task<ActionResult<Sugerencia>> GenerarSugerencia(int usuarioId,
-            Evento evento, Ubicacion ubicacion)
+        [HttpGet("usuario/{usuarioId}/{Evento}")]
+        public async Task<ActionResult<Sugerencia>> GenerarSugerencia(int usuarioId, Evento evento)
         {
-            var solicitud = new SolicitudDeSugerencias(
-                    usuarioId,
-                    evento,
-                    ubicacion,
-                    _atuendosService,
-                    _climaService
-                );
+            var solicitud = new SolicitudDeSugerencias(usuarioId, evento,
+                _atuendosService, _climaService );
             var Usuario = _usuarioService.GetUsuario(usuarioId);
-            try {
-                
+
+            try {        
                 _sugerenciasManager.AgregarSolicitud(solicitud);
                 var result = await _sugerenciasManager.Procesar();
-                Sugerencia sugerencia = new Sugerencia();
-                foreach(var combinacion in result)
-                {
-                   if(_atuendosService.ValidarSugerencia(combinacion))
-                    {
-                        sugerencia.Atuendo = combinacion;
-                        break;
-                    }
-                }
+                Sugerencia sugerencia = ObtenerSugerenciaValida(result, usuarioId);
                 _notificador.NotificarSugerencias(Usuario, evento);
                 return Ok(sugerencia);
             }
@@ -78,20 +64,53 @@ namespace QueMePongo.Api.Controllers
                 return BadRequest(ex.Message);
             }  
         }
-
+        [HttpGet("usuario/{usuarioId}/{Sugerencia}")]
         public ActionResult AceptarSugerencia(Sugerencia sugerencia, int IDUsuario)
         {
             try
             {
                 _sugerenciasManager.AceptarSugerencia(sugerencia, IDUsuario);
                 return Ok();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
 
+        public ActionResult CalificarSugerencia(Sugerencia sugerencia,int idUsuario, ICalificacion calificacion)
+        {
+            if(sugerencia.Aceptada && sugerencia.IDUsuario==idUsuario)
+            {
+                try
+                {
+                    var Usuario = _usuarioService.GetUsuario(idUsuario);
+                    Usuario = calificacion.AjustarSensibilidad(Usuario);
+                    _usuarioService.GuardarUsuario(Usuario);
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+            }
+            return BadRequest("La sugerencia no está aceptada por el usuario ingresado");
+        }
+
         #region Métodos Privados
+
+        private Sugerencia ObtenerSugerenciaValida(IEnumerable<Atuendo> atuendos,int idUsuario)
+        {
+            foreach (var combinacion in atuendos)
+            { 
+                if (_atuendosService.ValidarSugerencia(combinacion, idUsuario))
+                {
+                    return new Sugerencia(combinacion);
+                }
+            }
+            throw new Exception("No hay una sugerencia válida");
+
+        }
 
         private ActionResult<IEnumerable<Atuendo>> ObtenerAtuendos(Func<IEnumerable<Atuendo>> func)
         {

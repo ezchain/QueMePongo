@@ -16,12 +16,13 @@ namespace QueMePongo.Negocio.Sugerencias
         private readonly IAtuendosService _atuendosService;
         private readonly IClimaService _climaService;
 
-        public SolicitudDeSugerencias(int usuarioId, Evento evento,
-            Ubicacion ubicacion, IAtuendosService atuendosService, IClimaService climaService)
+
+
+        public SolicitudDeSugerencias(int usuarioId, Evento evento, IAtuendosService atuendosService, IClimaService climaService)
         {
             _usuarioId = usuarioId;
             _evento = evento;
-            _ubicacion = ubicacion;
+            _ubicacion = evento.Ubicacion;
             _atuendosService = atuendosService;
             _climaService = climaService;
         }
