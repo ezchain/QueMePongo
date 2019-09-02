@@ -27,18 +27,25 @@ namespace QueMePongo
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<QueMePongoDbContext>(op =>
-               op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
-            );
+            if (Environment.IsDevelopment())
+                services.AddDbContext<QueMePongoDbContext>(op =>
+                    op.UseInMemoryDatabase("DevelopmentDb")
+                );
+            else
+                services.AddDbContext<QueMePongoDbContext>(op =>
+                   op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
+                );
 
             services.AddScoped<IPrendaService, PrendaService>();
             services.AddScoped<IPrendasRepositorio, PrendasRepositorio>();
