@@ -15,6 +15,7 @@ namespace QueMePongo.AccesoDatos.Data
         public DbSet<Prenda> Prendas { get; set; }
         public DbSet<Guardarropa> Guardarropas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Evento> Eventos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

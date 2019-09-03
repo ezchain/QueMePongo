@@ -1,27 +1,36 @@
 ﻿using QueMePongo.Dominio.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Timers;
 
 namespace QueMePongo.Dominio.Models
 {
     public class Frecuencia : IFrecuencia
     {
-        Timer timer;
-        public Frecuencia(double dias)
+        private Timer _timer;
+        private Action<Evento> _getSugerencia;
+        private Evento _evento;
+
+        public Frecuencia(double dias, Action<Evento> getSugerencia, Evento evento)
         {
-            timer = new Timer(Helper.DiasEnMilisegundos(dias));
-            timer.AutoReset = false;
-            timer.Start();
+            _evento = evento;
+
+            _timer = new Timer(Helper.DiasEnMilisegundos(dias));
+            _timer.AutoReset = false;
+            _timer.Elapsed += OnTimedEvent;
+            _timer.Start();
         }
+
         public bool TiempoTranscurrido()
         {
-            bool finalizo = !timer.Enabled;
-            if (finalizo) timer.Start();
+            bool finalizo = !_timer.Enabled;
+            if (finalizo) _timer.Start();
             return finalizo;
         }
 
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            _getSugerencia(_evento);
+        }
     }
 
     public enum FrecuenciaEvento
@@ -43,7 +52,7 @@ namespace QueMePongo.Dominio.Models
     [AttributeUsage(AttributeTargets.Field)]
     public class IntervaloFrecuencia : Attribute
     {
-        public double Intervalo  { get; set; }
+        public double Intervalo { get; set; }
 
         public IntervaloFrecuencia(double intervalo)
         {

@@ -12,7 +12,7 @@ namespace QueMePongo.Dominio.DTOs
             double Calor = 0;
             foreach (var prenda in Prendas)
             {
-                Calor += prenda.Tipo.GetAttribute<PropiedadesTipoPrenda>().Temperatura;
+                Calor += prenda.Tipo.Temperatura;
             }
             return Calor;
         }

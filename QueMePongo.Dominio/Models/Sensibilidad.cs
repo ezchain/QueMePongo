@@ -10,7 +10,7 @@ namespace QueMePongo.Dominio.Models
     #region Sensibilidad
     public class Normal : ISensibilidad
     {
-        readonly IList<ISensibilidadLocal> _SensibilidadLocal; 
+        readonly IList<ISensibilidadLocal> _SensibilidadLocal;
 
         public Normal()
         {
@@ -31,7 +31,7 @@ namespace QueMePongo.Dominio.Models
             IEnumerable<Atuendo> Atuendos = new List<Atuendo>();
             foreach (var sensibilidad in _SensibilidadLocal)
             {
-               atuendos = sensibilidad.AplicarSensibilidadLocal(atuendos);
+                atuendos = sensibilidad.AplicarSensibilidadLocal(atuendos);
                 Atuendos = atuendos;
             }
             return Atuendos;
@@ -167,7 +167,7 @@ namespace QueMePongo.Dominio.Models
         }
         public IEnumerable<Atuendo> AplicarSensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
-          return atuendos.Where(p => !Helper.AtuendoTienePosicion(p, Posicion.GetAttribute<Posicion>().PosicionPrenda));
+            return atuendos.Where(p => !Helper.AtuendoTienePosicion(p, Posicion.GetAttribute<Posicion>().PosicionPrenda));
         }
 
     }
@@ -194,7 +194,7 @@ namespace QueMePongo.Dominio.Models
     }
     #endregion
 }
-    
-  
+
+
 
 

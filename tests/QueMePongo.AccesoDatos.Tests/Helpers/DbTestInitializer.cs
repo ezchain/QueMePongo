@@ -14,16 +14,16 @@ namespace QueMePongo.AccesoDatos.Tests.Helpers
                 {
                     Prendas = new List<Prenda>
                     {
-                        new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = TipoDePrenda.Pantalon },
-                        new Prenda { Categoria = Categoria.Torso, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = TipoDePrenda.Camisa }
+                        new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = new TipoDePrenda() },
+                        new Prenda { Categoria = Categoria.Torso, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = new TipoDePrenda()  }
                     }
                 },
                 new Guardarropa
                 {
                     Prendas = new List<Prenda>
                     {
-                        new Prenda { Categoria = Categoria.Cabeza, ColorPrimario = Color.Rojo, Tela = Tela.Jena, Tipo = TipoDePrenda.Short },
-                        new Prenda { Categoria = Categoria.Pies, ColorPrimario = Color.Negro, Tela = Tela.Cuero, Tipo = TipoDePrenda.ZapatoHombre }
+                        new Prenda { Categoria = Categoria.Cabeza, ColorPrimario = Color.Rojo, Tela = Tela.Jena, Tipo = new TipoDePrenda()  },
+                        new Prenda { Categoria = Categoria.Pies, ColorPrimario = Color.Negro, Tela = Tela.Cuero, Tipo = new TipoDePrenda()  }
                     }
                 }
             };

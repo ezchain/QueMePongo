@@ -1,13 +1,10 @@
 ﻿using QueMePongo.Dominio.DTOs;
-using QueMePongo.Dominio.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace QueMePongo.Dominio
 {
-   public static class Helper
+    public static class Helper
     {
         public static double DiasEnMilisegundos(double dias)
         {
@@ -24,11 +21,11 @@ namespace QueMePongo.Dominio
                 .SingleOrDefault();
         }
 
-        public static bool AtuendoTienePosicion(Atuendo atuendo,int posicion)
+        public static bool AtuendoTienePosicion(Atuendo atuendo, int posicion)
         {
-            foreach(var prenda in atuendo.Prendas)
+            foreach (var prenda in atuendo.Prendas)
             {
-                return prenda.Tipo.GetAttribute<PropiedadesTipoPrenda>().Posicion == posicion;
+                return prenda.Tipo.Posicion == posicion;
             }
             return false;
         }

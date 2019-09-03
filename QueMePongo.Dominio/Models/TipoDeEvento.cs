@@ -2,27 +2,9 @@
 
 namespace QueMePongo.Dominio.Models
 {
-    public enum TipoDeEvento
+    public class TipoDeEvento
     {
-        [NivelDeFormalidad(1)]
-        SalirConAmigos = 1,
-
-        [NivelDeFormalidad(2)]
-        SalirConFamilia = 2,
-
-        [NivelDeFormalidad(3)]
-        IrATrabajar = 3
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
-
-    [AttributeUsage(AttributeTargets.Field)]
-    public class NivelDeFormalidad : Attribute
-    {
-        public int Nivel { get; set; }
-
-        public NivelDeFormalidad(int nivel)
-        {
-            Nivel = nivel;
-        }
-    }
-   
 }

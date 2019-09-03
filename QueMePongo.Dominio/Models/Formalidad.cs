@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QueMePongo.Dominio.Models
+﻿namespace QueMePongo.Dominio.Models
 {
-   public enum Formalidad
+    public enum Formalidad
     {
         Formal = 1,
         Normal = 2,

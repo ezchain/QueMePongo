@@ -1,6 +1,5 @@
 ﻿using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Dominio.Models;
-using QueMePongo.Negocio.Helpers;
 using System.Collections.Generic;
 
 namespace QueMePongo.Negocio.Validaciones
@@ -28,16 +27,13 @@ namespace QueMePongo.Negocio.Validaciones
 
             foreach (var prenda in _combinacion)
             {
-                var propsPrenda = prenda.Tipo.GetAttribute<PropiedadesTipoPrenda>();
-
                 if (tipos.Contains(prenda.Tipo)
                     || (prenda.Categoria != Categoria.Torso
-                        && propsPrenda != null
-                        && propsPrenda.Temperatura < (double)_temperatura))
+                        && prenda.Tipo.Temperatura < (double)_temperatura))
                     return false;
 
                 if (prenda.Categoria == Categoria.Torso
-                    && propsPrenda.Temperatura < (double)_temperatura
+                    && prenda.Tipo.Temperatura < (double)_temperatura
                     && _capas == 0)
                     return false;
 
@@ -46,7 +42,7 @@ namespace QueMePongo.Negocio.Validaciones
                     if (prenda.Categoria == Categoria.Torso && _capas > 0)
                     {
                         capasAcumuladas++;
-                        temperatura += propsPrenda.Temperatura;
+                        temperatura += prenda.Tipo.Temperatura;
 
                         if (capasAcumuladas > _capas || niveles.Contains(GetNivel(prenda)))
                             return false;
@@ -69,7 +65,7 @@ namespace QueMePongo.Negocio.Validaciones
 
         private int GetNivel(Prenda prenda)
         {
-            return prenda.Tipo.GetAttribute<PropiedadesTipoPrenda>().Nivel;
+            return prenda.Tipo.Nivel;
         }
     }
 }

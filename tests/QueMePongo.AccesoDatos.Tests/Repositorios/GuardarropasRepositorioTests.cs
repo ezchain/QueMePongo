@@ -17,8 +17,8 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
             {
                 Prendas = new List<Prenda>
                     {
-                        new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = TipoDePrenda.Pantalon },
-                        new Prenda { Categoria = Categoria.Torso, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = TipoDePrenda.Camisa }
+                        new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = new TipoDePrenda()  },
+                        new Prenda { Categoria = Categoria.Torso, ColorPrimario = Color.Blanco, Tela = Tela.Seda, Tipo = new TipoDePrenda()  }
                     }
             };
             var repo = new GuardarropaRepositorio(_dbContext);
@@ -59,7 +59,7 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
 
             var guardarropa = _dbContext.Guardarropas.First();
 
-            guardarropa.Prendas.Add(new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = TipoDePrenda.Pantalon });
+            guardarropa.Prendas.Add(new Prenda { Categoria = Categoria.Piernas, ColorPrimario = Color.Negro, Tela = Tela.Algodon, Tipo = new TipoDePrenda() });
 
             var repo = new GuardarropaRepositorio(_dbContext);
 

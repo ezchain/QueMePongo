@@ -52,6 +52,7 @@ namespace QueMePongo.Negocio.Servicios
 
             return atuendos;
         }
+
         /// <summary>
         /// Genera atuendos para un determinado evento
         /// </summary>
@@ -59,11 +60,10 @@ namespace QueMePongo.Negocio.Servicios
         /// <param name="temperatura"></param>
         /// <param name="evento"></param>
         /// <returns></returns>
-        public IEnumerable<Atuendo> GenerarAtuendosPorEvento(int usuarioId,
-            decimal? temperatura, Evento evento)
+        public IEnumerable<Atuendo> GenerarAtuendosPorEvento(decimal? temperatura, Evento evento)
         {
 
-            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
+            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(evento.UsuarioId);
             int capas = ObtenerCapasPorTemperatura(temperatura);
             capas = usuario.Sensibilidad.ObtenerSensibilidadGlobal(capas);
             return GenerarCombinaciones(usuario, evento, temperatura, capas);
@@ -74,18 +74,18 @@ namespace QueMePongo.Negocio.Servicios
         /// </summary>
         /// <param name="atuendo"></param>
         /// <returns></returns>
-        public bool ValidarSugerencia(Atuendo atuendo,int idUsuario)
+        public bool ValidarSugerencia(Atuendo atuendo, int idUsuario)
         {
             IList<Sugerencia> SugerenciasActivas = new List<Sugerencia>();//traeria las sugerencias de la base
-             return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada && p.IDUsuario !=idUsuario);
+            return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada && p.UsuarioId != idUsuario);
         }
 
         #region Métodos Privados
 
-        private IEnumerable<Atuendo> GenerarCombinaciones(Usuario usuario,Evento evento,decimal? temperatura, int capas)     
+        private IEnumerable<Atuendo> GenerarCombinaciones(Usuario usuario, Evento evento, decimal? temperatura, int capas)
         {
             IList<Atuendo> atuendos = new List<Atuendo>();
-            
+
             foreach (var guardarropa in usuario.Guardarropas)
             {
                 var prendasFiltradas = FiltrarPrendasEvento(guardarropa.Prendas, evento);
@@ -94,8 +94,11 @@ namespace QueMePongo.Negocio.Servicios
                             prendasFiltradas,
                             Enum.GetNames(typeof(Categoria)).Length + capas
                         );
-                atuendos.Concat(CrearAtuendos(combinaciones, temperatura, capas));
+
+                atuendos.Concat(
+                    CrearAtuendos(combinaciones, temperatura, capas));
             }
+
             return usuario.Sensibilidad.SensibilidadLocal(atuendos);
         }
 
@@ -132,33 +135,11 @@ namespace QueMePongo.Negocio.Servicios
                 .Sum(x => ((Capas)x[0]).Cantidad);
         }
 
-        //private IList<Prenda> FiltrarPrendas(ICollection<Prenda> prendas, TipoDeEvento tipoDeEvento)
-        //{
-        //    return prendas
-        //        .Where(p =>
-        //        {
-        //            var props = p.Tipo.GetAttribute<PropiedadesTipoPrenda>();
-
-        //            if (props == null)
-        //                return true;
-
-        //            return props.Formalidad >=
-        //                   tipoDeEvento.GetAttribute<NivelDeFormalidad>().Nivel;
-        //        })
-        //        .ToList();
-        //}
+        //Deberia filtrar las prendas que son lo suficientemente formales para el evento en cuestion
         private IList<Prenda> FiltrarPrendasEvento(ICollection<Prenda> prendas, Evento evento)
         {
             return prendas
-                .Where(p =>
-                {
-                    var props = p.Tipo.GetAttribute<PropiedadesTipoPrenda>();
-
-                    if (props == null)
-                        return true;
-
-                    return props.Formalidad >= evento.Formalidad;
-                })
+                .Where(p => p.Tipo.Formalidad == evento.Formalidad)
                 .ToList();
         }
 

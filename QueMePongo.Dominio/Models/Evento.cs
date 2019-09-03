@@ -1,26 +1,23 @@
-﻿using QueMePongo.Dominio.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace QueMePongo.Dominio.Models
 {
-   public class Evento
+    public class Evento
     {
-        public int IdEvento { get; set; }
+        public int EventoId { get; set; }
         public string Nombre { get; set; }
-        public int Formalidad { get; set; }
-        public IFrecuencia Frecuencia { get; set; }
+        public int UsuarioId { get; set; }
         public Ubicacion Ubicacion { get; set; }
+        public Formalidad Formalidad { get; set; }
+        public Frecuencia Frecuencia { get; set; }
+        public DateTime FechaInicio { get; set; }
 
-        public Evento (string nombre, int formalidad, FrecuenciaEvento frecuencia, Ubicacion ubicacion)
+        public Evento(FrecuenciaEvento frecuencia, Action<Evento> getSugerencias)
         {
-            Nombre = nombre;
-            Formalidad = formalidad;
-            Frecuencia = new Frecuencia(frecuencia.GetAttribute<IntervaloFrecuencia>().Intervalo);
-            Ubicacion = ubicacion;
-            
-
+            Frecuencia = new Frecuencia(
+                frecuencia.GetAttribute<IntervaloFrecuencia>().Intervalo,
+                getSugerencias,
+                this);
         }
 
         public bool Disponible()
