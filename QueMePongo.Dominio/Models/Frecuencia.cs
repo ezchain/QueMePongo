@@ -13,6 +13,7 @@ namespace QueMePongo.Dominio.Models
         public Frecuencia(double dias, Action<Evento> getSugerencia, Evento evento)
         {
             _evento = evento;
+            _getSugerencia = getSugerencia;
 
             _timer = new Timer(Helper.DiasEnMilisegundos(dias));
             _timer.AutoReset = false;
