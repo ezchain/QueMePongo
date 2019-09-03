@@ -31,7 +31,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
             _dbContext.Entry(Usuario).State = EntityState.Modified;
 
             var guardarropas = _dbContext.Guardarropas
-                .Where(p => p.UsuarioId == Usuario.UsuarioId);
+                .Where(p => p.Usuarios.Contains(Usuario.UsuarioId));
 
             foreach (var guardarropa in guardarropas)
             {

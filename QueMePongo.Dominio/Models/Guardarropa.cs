@@ -7,10 +7,11 @@ namespace QueMePongo.Dominio.Models
         public Guardarropa()
         {
             Prendas = new HashSet<Prenda>();
+            Usuarios = new List<int>();
         }
 
         public int GuardarropaId { get; set; }
-        public int UsuarioId { get; set; }
+        public IList<int> Usuarios { get; set; }
         public ICollection<Prenda> Prendas { get; set; }
         public int PrendasMaximas { get; set; }
     }
