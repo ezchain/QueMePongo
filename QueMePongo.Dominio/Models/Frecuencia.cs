@@ -34,31 +34,7 @@ namespace QueMePongo.Dominio.Models
         }
     }
 
-    public enum FrecuenciaEvento
-    {
-        [IntervaloFrecuencia(1)]
-        Diaria = 1,
-
-        [IntervaloFrecuencia(7)]
-        Semanal = 2,
-
-        [IntervaloFrecuencia(30)]
-        Mensual = 3,
-
-        [IntervaloFrecuencia(365)]
-        Anual = 4
-
-    }
-
-    [AttributeUsage(AttributeTargets.Field)]
-    public class IntervaloFrecuencia : Attribute
-    {
-        public double Intervalo { get; set; }
-
-        public IntervaloFrecuencia(double intervalo)
-        {
-            Intervalo = intervalo;
-        }
+    
     }
     //public class Diaria : IFrecuencia
     //{
@@ -130,5 +106,3 @@ namespace QueMePongo.Dominio.Models
     //    }
 
     //}
-
-}

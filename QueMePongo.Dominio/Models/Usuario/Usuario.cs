@@ -1,5 +1,4 @@
 ﻿using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.TipoUsuario;
 using System.Collections.Generic;
 
 namespace QueMePongo.Dominio.Models
@@ -18,8 +17,8 @@ namespace QueMePongo.Dominio.Models
         public Usuario()
         {
             Guardarropas = new HashSet<Guardarropa>();
-            TipoUsuario = new Gratuito();
-            Sensibilidad = new Normal();
+            TipoUsuario = new UsuarioGratuito();
+            Sensibilidad = new SensibilidadNormal();
         }
 
         

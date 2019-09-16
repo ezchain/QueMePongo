@@ -20,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QueMePongo.AccesoDatos\QueMePongo.AccesoDatos.csproj" />
+    <ProjectReference Include="..\QueMePongo.Dominio\QueMePongo.Dominio.csproj" />
     <ProjectReference Include="..\QueMePongo.Negocio\QueMePongo.Negocio.csproj" />
   </ItemGroup>
 
