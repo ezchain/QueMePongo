@@ -1,10 +1,9 @@
 ﻿using QueMePongo.AccesoDatos.Data;
-using QueMePongo.Dominio.Interfaces.Repositorios;
-using QueMePongo.Dominio.Models;
+using QueMePongo.AccesoDatos.Entities;
+using QueMePongo.AccesoDatos.Repositorios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace QueMePongo.AccesoDatos.Repositorios
 {
@@ -17,7 +16,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
             this.dbContext = dbContext;
         }
 
-        public void AddPrenda(Prenda prenda)
+        public void AddPrenda(PrendaEntity prenda)
         {
             dbContext.Add(prenda);
             dbContext.SaveChanges();
@@ -26,7 +25,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
         public void DeletePrenda(int id)
         {
             var prenda = dbContext.Prendas.Find(id);
-            if(prenda == null)
+            if (prenda == null)
             {
                 throw new ArgumentException("La prenda no existe");
             }
@@ -36,17 +35,17 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         }
 
-        public Prenda GetPrenda(int id)
+        public PrendaEntity GetPrenda(int id)
         {
             return dbContext.Prendas.FirstOrDefault(pr => pr.PrendaId == id);
         }
 
-        public IEnumerable<Prenda> GetPrendas()
+        public IEnumerable<PrendaEntity> GetPrendas()
         {
             return dbContext.Prendas.ToList();
         }
 
-        public void UpdatePrenda(Prenda prenda)
+        public void UpdatePrenda(PrendaEntity prenda)
         {
             dbContext.Update(prenda);
             dbContext.SaveChanges();

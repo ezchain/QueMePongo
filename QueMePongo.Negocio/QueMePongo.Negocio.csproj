@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QueMePongo.AccesoDatos\QueMePongo.AccesoDatos.csproj" />
+    <ProjectReference Include="..\QueMePongo.Dominio\QueMePongo.Dominio.csproj" />
   </ItemGroup>
 
   <ItemGroup>

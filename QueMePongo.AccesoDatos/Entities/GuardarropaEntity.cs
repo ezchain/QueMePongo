@@ -1,9 +1,6 @@
-﻿using QueMePongo.Dominio.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace QueMePongo.AccesoDatos.Entities
 {
@@ -18,7 +15,7 @@ namespace QueMePongo.AccesoDatos.Entities
         public IList<int> Usuarios { get; set; }
 
         [NotMapped]
-        public ICollection<Prenda> Prendas { get; set; }
-        
+        public ICollection<PrendaEntity> Prendas { get; set; }
+
     }
 }

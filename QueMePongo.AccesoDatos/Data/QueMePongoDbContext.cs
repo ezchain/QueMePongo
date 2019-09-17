@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using QueMePongo.AccesoDatos.Configuraciones;
 using QueMePongo.AccesoDatos.Entities;
-using QueMePongo.Dominio.Models;
 
 namespace QueMePongo.AccesoDatos.Data
 {
@@ -27,9 +25,9 @@ namespace QueMePongo.AccesoDatos.Data
         public DbSet<TipoUsuarioEntity> TiposDeUsuarios { get; set; }
         public DbSet<UbicacionEntity> Ubicaciones { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new PrendaConfiguracion());
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.ApplyConfiguration(new PrendaConfiguracion());
+        //}
     }
 }

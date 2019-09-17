@@ -12,8 +12,4 @@
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\QueMePongo.Dominio\QueMePongo.Dominio.csproj" />
-  </ItemGroup>
-
 </Project>

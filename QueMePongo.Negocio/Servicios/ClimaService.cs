@@ -1,6 +1,4 @@
-﻿using QueMePongo.Dominio.DTOs;
-using QueMePongo.Dominio.Interfaces.Servicios;
-using QueMePongo.Negocio.ProveedoresDeClima;
+﻿using QueMePongo.Negocio.ProveedoresDeClima;
 using System;
 using System.Collections.Generic;
 using System.Linq;

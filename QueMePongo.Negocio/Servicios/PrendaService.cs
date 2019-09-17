@@ -1,15 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using QueMePongo.Dominio.DTOs;
-using QueMePongo.Dominio.Interfaces.Repositorios;
-using QueMePongo.Dominio.Interfaces.Servicios;
-using QueMePongo.Dominio.Models;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Drawing;
-using QueMePongo.Dominio.Interfaces;
 
 namespace QueMePongo.Negocio.Servicios
 {
@@ -26,7 +17,7 @@ namespace QueMePongo.Negocio.Servicios
 
         public void AddPrenda(PrendaDTO prendaDTO, IFormFile imagen)
         {
-            var prenda = ToModel(prendaDTO,imagen);
+            var prenda = ToModel(prendaDTO, imagen);
 
             prendasRepositorio.AddPrenda(prenda);
         }
@@ -39,7 +30,7 @@ namespace QueMePongo.Negocio.Servicios
         public Prenda GetPrenda(int id)
         {
             return prendasRepositorio.GetPrenda(id);
-            
+
         }
 
         public IEnumerable<Prenda> GetPrendas()
@@ -77,7 +68,7 @@ namespace QueMePongo.Negocio.Servicios
         {
 
             var byteArrayImagen = imagenHelper.ImagenFileToArray(imagenFile);
-     
+
             return new Prenda()
             {
                 PrendaId = prendaDTO.PrendaId,
@@ -89,7 +80,7 @@ namespace QueMePongo.Negocio.Servicios
                 Tipo = prendaDTO.Tipo,
                 Imagen = byteArrayImagen
             };
-  
+
         }
     }
 }

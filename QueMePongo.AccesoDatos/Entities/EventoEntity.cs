@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace QueMePongo.AccesoDatos.Entities
 {
@@ -29,7 +27,7 @@ namespace QueMePongo.AccesoDatos.Entities
         [ForeignKey("FrecuenciaEventoEntity")]
         [Column("Frecuencia")]
         public int FrecuenciaEventoId { get; set; }
-        public FrecuenciaEventoEntity FrecuenciaEvento{ get; set; }
+        public FrecuenciaEventoEntity FrecuenciaEvento { get; set; }
 
         public DateTime FechaInicio { get; set; }
     }

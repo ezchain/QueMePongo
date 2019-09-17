@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QueMePongo.Dominio.DTOs;
-using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using QueMePongo.Negocio.Servicios;

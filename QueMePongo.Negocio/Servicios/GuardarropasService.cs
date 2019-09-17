@@ -1,8 +1,4 @@
-﻿using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.Interfaces.Servicios;
-using QueMePongo.Dominio.Interfaces.Validacion;
-using QueMePongo.Dominio.Models;
-using QueMePongo.Negocio.Validaciones;
+﻿using QueMePongo.Negocio.Validaciones;
 using System;
 using System.Collections.Generic;
 
@@ -10,8 +6,8 @@ namespace QueMePongo.Negocio.Servicios
 {
     public class GuardarropasService : IGuardarropasService
     {
-        readonly IGuardarropaRepositorio _guardarropaRepositorio;
-        readonly IContextoValidacion _contextoValidacion;
+        private readonly IGuardarropaRepositorio _guardarropaRepositorio;
+        private readonly IContextoValidacion _contextoValidacion;
 
         public GuardarropasService(IGuardarropaRepositorio guardarropaRepositorio,
             IContextoValidacion estrategiaValidacion)
@@ -65,7 +61,9 @@ namespace QueMePongo.Negocio.Servicios
                         );
 
                 if (_contextoValidacion.RealizarValidacion())
+                {
                     throw new InvalidOperationException("Combinacion de colores invalida");
+                }
             }
         }
 

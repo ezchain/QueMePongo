@@ -1,15 +1,12 @@
-﻿using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.Interfaces.Servicios;
-using QueMePongo.Dominio.Models;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace QueMePongo.Negocio.Servicios
 {
     public class UsuarioService : IUsuarioService
     {
-        readonly IGuardarropaRepositorio _guardarropaRepositorio;
-        readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IGuardarropaRepositorio _guardarropaRepositorio;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
 
         public UsuarioService(IGuardarropaRepositorio guardarropaRepositorio,
             IUsuarioRepositorio usuarioRepositorio)

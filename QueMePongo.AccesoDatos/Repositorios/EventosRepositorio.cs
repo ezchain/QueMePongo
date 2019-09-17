@@ -1,21 +1,19 @@
 ﻿using QueMePongo.AccesoDatos.Data;
-using QueMePongo.Dominio.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using QueMePongo.AccesoDatos.Entities;
+using QueMePongo.AccesoDatos.Repositorios.Interfaces;
 
 namespace QueMePongo.AccesoDatos.Repositorios
 {
-    public class EventosRepositorio
+    public class EventosRepositorio : IEventosRepositorio
     {
-        readonly QueMePongoDbContext _dbContext;
+        private readonly QueMePongoDbContext _dbContext;
 
         public EventosRepositorio(QueMePongoDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public Evento CrearEvento(Evento evento)
+        public EventoEntity CrearEvento(EventoEntity evento)
         {
             _dbContext.Eventos.Add(evento);
             _dbContext.SaveChanges();

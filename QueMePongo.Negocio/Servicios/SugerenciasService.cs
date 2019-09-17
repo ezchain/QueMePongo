@@ -1,8 +1,4 @@
-﻿using QueMePongo.Dominio.DTOs;
-using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.Interfaces.Servicios;
-using QueMePongo.Dominio.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

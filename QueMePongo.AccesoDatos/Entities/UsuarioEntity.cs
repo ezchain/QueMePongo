@@ -1,10 +1,6 @@
-﻿using QueMePongo.Dominio.Interfaces;
-using QueMePongo.Dominio.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace QueMePongo.AccesoDatos.Entities
 {
@@ -22,11 +18,11 @@ namespace QueMePongo.AccesoDatos.Entities
         public int TipoUsuarioId { get; set; }
         public TipoUsuarioEntity TipoUsuario { get; set; }
 
-        [ForeignKey("SensibilidadEntity")]
-        public int SensibilidadId { get; set; }
-        public SensibilidadEntity Sensibilidad {get;set;}
+        //[ForeignKey("SensibilidadEntity")]
+        //public int SensibilidadId { get; set; }
+        //public SensibilidadEntity Sensibilidad { get; set; }
 
         [NotMapped]
-        public ICollection<Guardarropa> Guardarropas { get; set; }
+        public ICollection<GuardarropaEntity> Guardarropas { get; set; }
     }
 }

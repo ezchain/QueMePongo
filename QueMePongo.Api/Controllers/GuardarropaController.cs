@@ -10,7 +10,7 @@ namespace QueMePongo.Controllers
     [Route("api/[controller]")]
     public class GuardarropaController : ControllerBase
     {
-        readonly IGuardarropasService _guardarropasService;
+        private readonly IGuardarropasService _guardarropasService;
 
         public GuardarropaController(IGuardarropasService guardarropasService)
         {

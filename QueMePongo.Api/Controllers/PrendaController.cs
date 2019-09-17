@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QueMePongo.Api.Controllers
 {
@@ -38,7 +36,7 @@ namespace QueMePongo.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] PrendaDTO prenda, IFormFile imagen)
         {
-            prendaService.AddPrenda(prenda,imagen);
+            prendaService.AddPrenda(prenda, imagen);
             return Ok();
         }
 

@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueMePongo.AccesoDatos", "QueMePongo.AccesoDatos\QueMePongo.AccesoDatos.csproj", "{FC60C33F-4CAC-4323-88AF-4AC51786A38D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueMePongo.Negocio", "QueMePongo.Negocio\QueMePongo.Negocio.csproj", "{49491922-534F-41FA-A3BB-D9EE98F7BEFA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0B65554-5523-40F3-9FC7-57C0171D7F9E} = {F0B65554-5523-40F3-9FC7-57C0171D7F9E}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6A9E2E73-95BB-4C9C-9547-7B9020768F50}"
 EndProject

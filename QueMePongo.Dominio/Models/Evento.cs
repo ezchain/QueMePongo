@@ -8,7 +8,7 @@ namespace QueMePongo.Dominio.Models
         public string Nombre { get; set; }
         public int UsuarioId { get; set; }
         public Ubicacion Ubicacion { get; set; }
-        public Formalidad Formalidad { get; set; }
+        public int Formalidad { get; set; }
         public Frecuencia Frecuencia { get; set; }
         public DateTime FechaInicio { get; set; }
 

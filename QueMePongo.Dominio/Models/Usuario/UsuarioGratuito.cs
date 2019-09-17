@@ -1,7 +1,6 @@
-﻿using QueMePongo.Dominio.Interfaces;
+﻿using QueMePongo.AccesoDatos.Repositorios.Interfaces;
+using QueMePongo.Dominio.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QueMePongo.Dominio.Models
 {
