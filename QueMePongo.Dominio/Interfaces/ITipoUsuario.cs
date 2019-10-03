@@ -7,6 +7,7 @@ namespace QueMePongo.Dominio.Interfaces
 {
   public interface ITipoUsuario
     {
+        string GetTipo();
         void AgregarPrenda(int idGuardarropa, Guardarropa guardarropa, Prenda prenda, IGuardarropaRepositorio guardarropaRepo);
     }
 }

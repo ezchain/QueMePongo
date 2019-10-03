@@ -29,5 +29,13 @@ namespace QueMePongo.Dominio
             }
             return false;
         }
+        public static string Frecuencia(double dias)
+        {
+            if (dias == 365) return "Anual";
+            if (dias == 7) return "Semanal";
+            if (dias == 1) return "Diario";
+            if (dias == 30 || dias == 31) return "Mensual";
+            return String.Empty;
+        }
     }
 }

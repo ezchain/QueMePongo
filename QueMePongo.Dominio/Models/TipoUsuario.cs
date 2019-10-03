@@ -9,6 +9,10 @@ namespace QueMePongo.Dominio.TipoUsuario
 
     public class Gratuito : ITipoUsuario
     {
+        public string GetTipo()
+        {
+            return "Gratuito";
+        }
 
         public void AgregarPrenda(int idGuardarropa, Guardarropa guardarropa, Prenda prenda, IGuardarropaRepositorio guardarropaRepo)
         {
@@ -27,6 +31,10 @@ namespace QueMePongo.Dominio.TipoUsuario
 
     public class Premium : ITipoUsuario
     {
+        public string GetTipo()
+        {
+            return "Premium";
+        }
         public void AgregarPrenda(int idGuardarropa, Guardarropa guardarropa, Prenda prenda, IGuardarropaRepositorio guardarropaRepo)
         {
             guardarropaRepo.AgregarPrenda(idGuardarropa, prenda);

@@ -11,6 +11,7 @@ namespace QueMePongo.Dominio.Models
     public class Normal : ISensibilidad
     {
         readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        readonly string Nombre = "Normal";
 
         public Normal()
         {
@@ -21,7 +22,11 @@ namespace QueMePongo.Dominio.Models
         {
             _SensibilidadLocal = sensibilidadLocal;
         }
-
+        public string GetNombre()
+        {
+            return Nombre;
+        }
+       
         public int ObtenerSensibilidadGlobal(int capas)
         {
             return capas;
@@ -41,6 +46,7 @@ namespace QueMePongo.Dominio.Models
     public class Friolento : ISensibilidad
     {
         readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        readonly string Nombre = "Friolento";
 
         public Friolento()
         {
@@ -50,6 +56,11 @@ namespace QueMePongo.Dominio.Models
         public Friolento(IList<ISensibilidadLocal> sensibilidadLocal)
         {
             _SensibilidadLocal = sensibilidadLocal;
+        }
+
+        public string GetNombre()
+        {
+            return Nombre;
         }
         public int ObtenerSensibilidadGlobal(int capas)
         {
@@ -69,6 +80,7 @@ namespace QueMePongo.Dominio.Models
     public class Acalorado : ISensibilidad
     {
         readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        readonly string Nombre = "Acalorado";
 
         public Acalorado()
         {
@@ -79,6 +91,12 @@ namespace QueMePongo.Dominio.Models
         {
             _SensibilidadLocal = sensibilidadLocal;
         }
+
+        public string GetNombre()
+        {
+            return Nombre;
+        }
+
         public int ObtenerSensibilidadGlobal(int capas)
         {
             if (capas > 1) return capas - 1;
@@ -99,6 +117,7 @@ namespace QueMePongo.Dominio.Models
     public class MuyFriolento : ISensibilidad
     {
         readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        readonly string Nombre = "MuyFriolento";
 
         public MuyFriolento()
         {
@@ -109,6 +128,12 @@ namespace QueMePongo.Dominio.Models
         {
             _SensibilidadLocal = sensibilidadLocal;
         }
+
+        public string GetNombre()
+        {
+            return Nombre;
+        }
+
         public int ObtenerSensibilidadGlobal(int capas)
         {
             return 3;
@@ -129,6 +154,7 @@ namespace QueMePongo.Dominio.Models
     public class MuyAcalorado : ISensibilidad
     {
         readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        readonly string Nombre  = "MuyAcalorado";
 
         public MuyAcalorado()
         {
@@ -139,6 +165,12 @@ namespace QueMePongo.Dominio.Models
         {
             _SensibilidadLocal = sensibilidadLocal;
         }
+
+        public string GetNombre()
+        {
+            return Nombre;
+        }
+
         public int ObtenerSensibilidadGlobal(int capas)
         {
             return 1;
