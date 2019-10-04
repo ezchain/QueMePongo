@@ -12,6 +12,11 @@ namespace QueMePongo.Dominio.Models
         public Frecuencia Frecuencia { get; set; }
         public DateTime FechaInicio { get; set; }
 
+        public Evento()
+        {
+
+        }
+
         public Evento(FrecuenciaEvento frecuencia, Action<Evento> getSugerencias)
         {
             Frecuencia = new Frecuencia(

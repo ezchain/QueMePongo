@@ -31,13 +31,15 @@ namespace QueMePongo.AccesoDatos.Mapper
             Atuendo atuendo = new Atuendo();
             foreach(var x in entidad.Atuendo)
             {
-               atuendo.Prendas.Add
+                atuendo.Prendas.Add(PrendaMapper.MapModel(x));
             }
             return new Sugerencia(atuendo)
             {
                 SugerenciaId = entidad.SugerenciaId,
                 Aceptada = entidad.Aceptada,
-                UsuarioId = entidad.UsuarioId
+                UsuarioId = entidad.UsuarioId,
+                Atuendo = atuendo,
+                CalorTotal = entidad.CalorTotal
             };
         }
     }

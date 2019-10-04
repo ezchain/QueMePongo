@@ -11,6 +11,14 @@ namespace QueMePongo.Dominio.Models
         private Evento _evento;
         public string Nombre { get; set; }
 
+        public Frecuencia(double dias)
+        {
+             Nombre = Helper.Frecuencia(dias);
+            _timer = new Timer(Helper.DiasEnMilisegundos(dias));
+            _timer.AutoReset = false;
+            _timer.Elapsed += OnTimedEvent;
+            _timer.Start();
+        }
         public Frecuencia(double dias, Action<Evento> getSugerencia, Evento evento)
         {
             _evento = evento;

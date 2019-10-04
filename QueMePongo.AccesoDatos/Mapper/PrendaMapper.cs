@@ -17,7 +17,10 @@ namespace QueMePongo.AccesoDatos.Mapper
                 ColorPrimario = ObtenerColor(prenda.ColorPrimario),
                 ColorSecundario = ObtenerColor(prenda.ColorSecundario),
                 Tela = ObtenerTela(prenda.Tela),
-                Tipo = prenda.Tipo,
+                Formalidad = ObtenerFormalidad(prenda.Tipo.Formalidad),
+                Nivel = prenda.Tipo.Nivel,
+                Posicion = prenda.Tipo.Posicion,
+                Temperatura = prenda.Tipo.Temperatura,
                 GuardarropaId = prenda.GuardarropaId,
                 Imagen = prenda.Imagen
 
@@ -27,6 +30,14 @@ namespace QueMePongo.AccesoDatos.Mapper
 
         public static Prenda MapModel(PrendaEntity entidad)
         {
+            TipoDePrenda tipo = new TipoDePrenda()
+            {
+                Nivel = entidad.Nivel,
+                Posicion = entidad.Posicion,
+                Temperatura = entidad.Temperatura,
+                Formalidad = ObtenerFormalidadEnum(entidad.Formalidad)
+            };
+
             return new Prenda()
             {
                 PrendaId = entidad.PrendaId,
@@ -36,10 +47,7 @@ namespace QueMePongo.AccesoDatos.Mapper
                 ColorPrimario = ObtenerEnumColor(entidad.ColorPrimario),
                 ColorSecundario = ObtenerEnumColorSecundario(entidad.ColorSecundario),
                 Tela = ObtenerEnumTela(entidad.Tela),
-                Tipo
-                
-
-
+                Tipo = tipo
             };
         }
 
@@ -115,6 +123,21 @@ namespace QueMePongo.AccesoDatos.Mapper
             if (tela.Equals("Lona")) return Tela.Lona;
              return Tela.Seda;
            
+        }
+        private static string ObtenerFormalidad(Formalidad formalidad)
+        {
+            if (formalidad == Formalidad.Normal) return "Normal";
+            if (formalidad == Formalidad.Formal) return "Formal";
+            if (formalidad == Formalidad.Distendido) return "Distendido";
+            return String.Empty;
+        }
+
+        private static Formalidad ObtenerFormalidadEnum(string formalidad)
+        {
+            if (formalidad.Equals("Normal")) return Formalidad.Normal;
+            if (formalidad.Equals("Formal")) return Formalidad.Formal;
+            return Formalidad.Distendido;
+
         }
     }
 }

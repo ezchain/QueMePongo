@@ -7,6 +7,7 @@ namespace QueMePongo.Dominio.Interfaces
 {
   public interface ISensibilidadLocal
     {
+        string SensibilidadLocalPosicion();
         IEnumerable<Atuendo> AplicarSensibilidadLocal(IEnumerable<Atuendo> atuendos);
 
     }

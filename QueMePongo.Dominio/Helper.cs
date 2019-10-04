@@ -1,4 +1,5 @@
 ﻿using QueMePongo.Dominio.DTOs;
+using QueMePongo.Dominio.Models;
 using System;
 using System.Linq;
 
@@ -36,6 +37,12 @@ namespace QueMePongo.Dominio
             if (dias == 1) return "Diario";
             if (dias == 30 || dias == 31) return "Mensual";
             return String.Empty;
+        }
+        public static string PosicionString(PosicionPrenda posicion)
+        {
+            if (posicion == PosicionPrenda.Cabeza) return "Cabeza";
+            if (posicion == PosicionPrenda.Manos) return "Manos";
+            return "Cuello";
         }
     }
 }

@@ -193,9 +193,16 @@ namespace QueMePongo.Dominio.Models
     public class AcaloradoLocal : ISensibilidadLocal
     {
         PosicionPrenda Posicion { get; set; }
+       
         public AcaloradoLocal(PosicionPrenda posicion)
         {
             Posicion = posicion;
+        }
+
+        public string SensibilidadLocalPosicion()
+        {
+            
+            return "Acalorado " + Helper.PosicionString(this.Posicion);
         }
         public IEnumerable<Atuendo> AplicarSensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
@@ -210,6 +217,12 @@ namespace QueMePongo.Dominio.Models
         {
             Posicion = posicion;
         }
+
+        public string SensibilidadLocalPosicion()
+        {
+
+            return "Friolento " + Helper.PosicionString(this.Posicion);
+        }
         public IEnumerable<Atuendo> AplicarSensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
             return atuendos.Where(p => Helper.AtuendoTienePosicion(p, Posicion.GetAttribute<Posicion>().PosicionPrenda));
@@ -219,6 +232,11 @@ namespace QueMePongo.Dominio.Models
 
     public class NormalLocal : ISensibilidadLocal
     {
+        public string SensibilidadLocalPosicion()
+        {
+
+            return "Normal";
+        }
         public IEnumerable<Atuendo> AplicarSensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
             return atuendos;
