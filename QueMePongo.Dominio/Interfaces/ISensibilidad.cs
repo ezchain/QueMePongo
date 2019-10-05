@@ -9,6 +9,7 @@ namespace QueMePongo.Dominio.Interfaces
     {
         string GetNombre();
         int ObtenerSensibilidadGlobal(int capas);
+        void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal);
         IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos);
 
     }

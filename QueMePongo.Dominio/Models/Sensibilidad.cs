@@ -10,7 +10,7 @@ namespace QueMePongo.Dominio.Models
     #region Sensibilidad
     public class Normal : ISensibilidad
     {
-        readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        IList<ISensibilidadLocal> _SensibilidadLocal;
         readonly string Nombre = "Normal";
 
         public Normal()
@@ -31,6 +31,11 @@ namespace QueMePongo.Dominio.Models
         {
             return capas;
         }
+        public void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal)
+        {
+            _SensibilidadLocal = sensibilidadLocal;
+        }
+
         public IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
             IEnumerable<Atuendo> Atuendos = new List<Atuendo>();
@@ -45,7 +50,7 @@ namespace QueMePongo.Dominio.Models
     }
     public class Friolento : ISensibilidad
     {
-        readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        IList<ISensibilidadLocal> _SensibilidadLocal;
         readonly string Nombre = "Friolento";
 
         public Friolento()
@@ -66,6 +71,10 @@ namespace QueMePongo.Dominio.Models
         {
             return 2;
         }
+        public void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal)
+        {
+            _SensibilidadLocal = sensibilidadLocal;
+        }
         public IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
             IEnumerable<Atuendo> Atuendos = new List<Atuendo>();
@@ -79,7 +88,7 @@ namespace QueMePongo.Dominio.Models
     }
     public class Acalorado : ISensibilidad
     {
-        readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        IList<ISensibilidadLocal> _SensibilidadLocal;
         readonly string Nombre = "Acalorado";
 
         public Acalorado()
@@ -102,6 +111,10 @@ namespace QueMePongo.Dominio.Models
             if (capas > 1) return capas - 1;
             else return capas;
         }
+        public void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal)
+        {
+            _SensibilidadLocal = sensibilidadLocal;
+        }
         public IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
             IEnumerable<Atuendo> Atuendos = new List<Atuendo>();
@@ -116,7 +129,7 @@ namespace QueMePongo.Dominio.Models
 
     public class MuyFriolento : ISensibilidad
     {
-        readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        IList<ISensibilidadLocal> _SensibilidadLocal;
         readonly string Nombre = "MuyFriolento";
 
         public MuyFriolento()
@@ -138,6 +151,10 @@ namespace QueMePongo.Dominio.Models
         {
             return 3;
         }
+        public void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal)
+        {
+            _SensibilidadLocal = sensibilidadLocal;
+        }
         public IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {
             IEnumerable<Atuendo> Atuendos = new List<Atuendo>();
@@ -153,7 +170,7 @@ namespace QueMePongo.Dominio.Models
 
     public class MuyAcalorado : ISensibilidad
     {
-        readonly IList<ISensibilidadLocal> _SensibilidadLocal;
+        IList<ISensibilidadLocal> _SensibilidadLocal;
         readonly string Nombre  = "MuyAcalorado";
 
         public MuyAcalorado()
@@ -174,6 +191,10 @@ namespace QueMePongo.Dominio.Models
         public int ObtenerSensibilidadGlobal(int capas)
         {
             return 1;
+        }
+        public void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal)
+        {
+            _SensibilidadLocal = sensibilidadLocal;
         }
         public IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos)
         {

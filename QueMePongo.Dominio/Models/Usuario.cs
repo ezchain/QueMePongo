@@ -22,6 +22,11 @@ namespace QueMePongo.Dominio.Models
             Sensibilidad = new Normal();
         }
 
+        public void CambiarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidad)
+        {
+            Sensibilidad.AgregarSensibilidadLocal(sensibilidad);
+        }
+
         
     }
 }
