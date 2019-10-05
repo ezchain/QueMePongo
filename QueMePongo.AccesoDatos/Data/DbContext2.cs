@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QueMePongo.AccesoDatos.Entidades;
+using QueMePongo.AccesoDatos.Entities;
 using QueMePongo.Dominio.Models;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,29 @@ namespace QueMePongo.AccesoDatos.Data
         {
 
         }
-        public DbSet<PrendaEntity> Prendas { get; set; }
+        public DbContext2(DbContextOptions<DbContext2> options)
+    : base(options)
+        {
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.ApplyConfiguration(new PrendaConfiguracion());
-        //}
+
+        }
+        public DbSet<PrendaEntity> Prendas { get; set; }
+        public DbSet<GuardarropaEntity> Guardarropas { get; set; }
+        public DbSet<UsuarioEntity> Usuarios { get; set; }
+        public DbSet<EventoEntity> Eventos { get; set; }
+        public DbSet<SugerenciaEntity> Sugerencias { get; set; }
+        public DbSet<SensibilidadLocalEntity> SensibilidadLocal { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UsuarioEntity>()
+              .ToTable("Usuarios");
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(BFNB13019)\\BFNB13019;Database=QueMePongo;Trusted_Connection=True;");
-            
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=QueMePongo;Trusted_Connection=True;");
+
 
         }
     }

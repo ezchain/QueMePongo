@@ -46,6 +46,16 @@ namespace QueMePongo.Dominio.Models
             }
             return Atuendos;
         }
+        public IEnumerable<string> ObtenerSensibilidadesLocales()
+        {
+            IList<string> sensibilidades = new List<string>();
+
+            foreach (var x in _SensibilidadLocal)
+            {
+                sensibilidades.Add(x.SensibilidadLocalPosicion());
+            }
+            return sensibilidades;
+        }
 
     }
     public class Friolento : ISensibilidad
@@ -84,6 +94,16 @@ namespace QueMePongo.Dominio.Models
                 Atuendos = atuendos;
             }
             return Atuendos;
+        }
+        public IEnumerable<string> ObtenerSensibilidadesLocales()
+        {
+            IList<string> sensibilidades = new List<string>();
+
+            foreach (var x in _SensibilidadLocal)
+            {
+                sensibilidades.Add(x.SensibilidadLocalPosicion());
+            }
+            return sensibilidades;
         }
     }
     public class Acalorado : ISensibilidad
@@ -125,6 +145,16 @@ namespace QueMePongo.Dominio.Models
             }
             return Atuendos;
         }
+        public IEnumerable<string> ObtenerSensibilidadesLocales()
+        {
+            IList<string> sensibilidades = new List<string>();
+
+            foreach (var x in _SensibilidadLocal)
+            {
+                sensibilidades.Add(x.SensibilidadLocalPosicion());
+            }
+            return sensibilidades;
+        }
     }
 
     public class MuyFriolento : ISensibilidad
@@ -164,6 +194,16 @@ namespace QueMePongo.Dominio.Models
                 Atuendos = atuendos;
             }
             return Atuendos;
+        }
+        public IEnumerable<string> ObtenerSensibilidadesLocales()
+        {
+            IList<string> sensibilidades = new List<string>();
+
+            foreach (var x in _SensibilidadLocal)
+            {
+                sensibilidades.Add(x.SensibilidadLocalPosicion());
+            }
+            return sensibilidades;
         }
 
     }
@@ -205,6 +245,16 @@ namespace QueMePongo.Dominio.Models
                 Atuendos = atuendos;
             }
             return Atuendos;
+        }
+        public IEnumerable<string> ObtenerSensibilidadesLocales()
+        {
+            IList<string> sensibilidades = new List<string>();
+
+            foreach (var x in _SensibilidadLocal)
+            {
+                sensibilidades.Add(x.SensibilidadLocalPosicion());
+            }
+            return sensibilidades;
         }
     }
     #endregion

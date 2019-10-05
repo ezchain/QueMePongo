@@ -38,18 +38,23 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public Prenda GetPrenda(int id)
         {
-            return dbContext.Prendas.FirstOrDefault(pr => pr.PrendaId == id);
-        }
+            //    return dbContext.Prendas.FirstOrDefault(pr => pr.PrendaId == id);
+            //}
 
-        public IEnumerable<Prenda> GetPrendas()
-        {
-            return dbContext.Prendas.ToList();
+            //public IEnumerable<Prenda> GetPrendas()
+            //{
+            //    return dbContext.Prendas.ToList();
+            return null;
         }
 
         public void UpdatePrenda(Prenda prenda)
         {
             dbContext.Update(prenda);
             dbContext.SaveChanges();
+        }
+        public IEnumerable<Prenda> GetPrendas()
+        {
+            return null;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace QueMePongo.Negocio.Servicios
 
         public Usuario GetUsuario(int idUsuario)
         {
-            return _usuarioRepositorio.ObtenerUsuarioPorId(idUsuario);
+            return _usuarioRepositorio.ObtenerUsuario(idUsuario);
         }
 
         public void GuardarUsuario(Usuario usuario)

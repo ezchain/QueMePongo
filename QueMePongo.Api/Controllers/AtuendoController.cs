@@ -75,25 +75,25 @@ namespace QueMePongo.Api.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        public ActionResult CalificarSugerencia(Sugerencia sugerencia, int idUsuario, ICalificacion calificacion)
-        {
-            if (sugerencia.Aceptada && sugerencia.UsuarioId == idUsuario)
-            {
-                try
-                {
-                    var Usuario = _usuarioService.GetUsuario(idUsuario);
-                    Usuario = calificacion.AjustarSensibilidad(Usuario);
-                    _usuarioService.GuardarUsuario(Usuario);
-                    return Ok();
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-            }
-            return BadRequest("La sugerencia no está aceptada por el usuario ingresado");
-        }
+        //ARREGLAR
+        //public ActionResult CalificarSugerencia(Sugerencia sugerencia, int idUsuario, ICalificacion calificacion)
+        //{
+        //    if (sugerencia.Aceptada && sugerencia.UsuarioId == idUsuario)
+        //    {
+        //        try
+        //        {
+        //            var Usuario = _usuarioService.GetUsuario(idUsuario);
+        //            Usuario = calificacion.AjustarSensibilidad(Usuario);
+        //            _usuarioService.GuardarUsuario(Usuario);
+        //            return Ok();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return BadRequest(e.Message);
+        //        }
+        //    }
+        //    return BadRequest("La sugerencia no está aceptada por el usuario ingresado");
+        //}
 
         #region Métodos Privados
 

@@ -40,7 +40,7 @@ namespace QueMePongo.Negocio.Servicios
 
         public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
         {
-            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(usuarioId);
+            var usuario = _usuarioRepositorio.ObtenerUsuario(usuarioId);
             var atuendos = new List<Atuendo>();
 
             foreach (var guardarropa in usuario.Guardarropas)
@@ -63,7 +63,7 @@ namespace QueMePongo.Negocio.Servicios
         public IEnumerable<Atuendo> GenerarAtuendosPorEvento(decimal? temperatura, Evento evento)
         {
 
-            var usuario = _usuarioRepositorio.ObtenerUsuarioPorId(evento.UsuarioId);
+            var usuario = _usuarioRepositorio.ObtenerUsuario(evento.UsuarioId);
             int capas = ObtenerCapasPorTemperatura(temperatura);
             capas = usuario.Sensibilidad.ObtenerSensibilidadGlobal(capas);
             return GenerarCombinaciones(usuario, evento, temperatura, capas);

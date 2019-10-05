@@ -80,13 +80,14 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
             using (var context = new DbContext2())
             {
 
-                var std = new PrendaEntity()
+                var std = new UsuarioEntity()
                 {
-                    PrendaId = 2,
+                    UsuarioId = 2,
+                    Username = "alfredo"
                     
                 };
 
-                context.Prendas.Add(std);
+                context.Usuarios.Add(std);
                 context.SaveChanges();
             }
         }

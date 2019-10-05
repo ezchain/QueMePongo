@@ -37,7 +37,7 @@ namespace QueMePongo.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<Usuario> GetUsuarioItem(int id)
         {
-            var Usuario = _usuarioRepositorio.ObtenerUsuarioPorId(id);
+            var Usuario = _usuarioRepositorio.ObtenerUsuario(id);
 
             if (Usuario == null)
             {
@@ -67,7 +67,7 @@ namespace QueMePongo.Api.Controllers
                 return BadRequest();
             }
 
-            _usuarioRepositorio.EditarUsuario(Usuario);
+            _usuarioRepositorio.UpdateUsuario(Usuario);
 
             return NoContent();
         }

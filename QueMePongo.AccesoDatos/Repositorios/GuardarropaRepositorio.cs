@@ -20,8 +20,8 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public Guardarropa CrearGuardarropa(Guardarropa guardarropa)
         {
-            _dbContext.Guardarropas.Add(guardarropa);
-            _dbContext.SaveChanges();
+            //_dbContext.Guardarropas.Add(guardarropa);
+            //_dbContext.SaveChanges();
 
             return guardarropa;
         }
@@ -55,14 +55,16 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public Guardarropa ObtenerGuardarropaPorId(int id)
         {
-            return _dbContext.Guardarropas
-                .Include(gr => gr.Prendas)
-                .FirstOrDefault(gr => gr.GuardarropaId == id);
+            //return _dbContext.Guardarropas
+            //    .Include(gr => gr.Prendas)
+            //    .FirstOrDefault(gr => gr.GuardarropaId == id);
+            return null;
         }
 
         public IEnumerable<Guardarropa> ObtenerGuardarropas()
         {
-            return _dbContext.Guardarropas.Include(gr => gr.Prendas);
+            // return _dbContext.Guardarropas.Include(gr => gr.Prendas);
+            return null;
         }
 
         public void AgregarPrenda(int idGuardarropa,Prenda prenda)

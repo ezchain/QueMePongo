@@ -11,6 +11,7 @@ namespace QueMePongo.Dominio.Interfaces
         int ObtenerSensibilidadGlobal(int capas);
         void AgregarSensibilidadLocal(IList<ISensibilidadLocal> sensibilidadLocal);
         IEnumerable<Atuendo> SensibilidadLocal(IEnumerable<Atuendo> atuendos);
+        IEnumerable<string> ObtenerSensibilidadesLocales();
 
     }
 }

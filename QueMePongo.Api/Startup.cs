@@ -36,19 +36,26 @@ namespace QueMePongo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<DbContext2>(options => options.UseSqlServer(Configuration.GetConnectionString("QueMePongo")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            if (Environment.IsDevelopment())
-                services.AddDbContext<QueMePongoDbContext>(op =>
-                    op.UseInMemoryDatabase("DevelopmentDb")
-                );
-            else
-                services.AddDbContext<QueMePongoDbContext>(op =>
-                   op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
-                );
-
+            //if (Environment.IsDevelopment())
+            //    services.AddDbContext<QueMePongoDbContext>(op =>
+            //        op.UseInMemoryDatabase("DevelopmentDb")
+            //    );
+            //else
+            //    services.AddDbContext<QueMePongoDbContext>(op =>
+            //       op.UseSqlServer(Configuration.GetConnectionString("Desarrollo"))
+            //    );
+            services.AddScoped<ISugerenciasService, SugerenciasService>();
+            services.AddScoped<IClimaService, ClimaService>();
+            services.AddScoped<IUsuarioService,UsuarioService>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IPrendaService, PrendaService>();
+            services.AddScoped<IAtuendosService, AtuendosService>();
+            services.AddScoped<IGuardarropasService, GuardarropasService>();
             services.AddScoped<IPrendasRepositorio, PrendasRepositorio>();
+
             services.AddScoped<IImagenHelper, ImagenHelper>();
         }
 
