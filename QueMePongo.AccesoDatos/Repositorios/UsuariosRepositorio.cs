@@ -28,6 +28,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
             SensibilidadLocalEntity sensibilidadEntidad = SensibilidadLocalMapper.MapEntity(Usuario.Sensibilidad);
             sensibilidadEntidad.UsuarioId = Usuario.UsuarioId;
             _dbContext.Usuarios.Add(entidad);
+            _dbContext.SensibilidadLocal.Add(sensibilidadEntidad);
             _dbContext.SaveChanges();
 
             return Usuario;
@@ -55,13 +56,21 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public void EliminarUsuario(int id)
         {
-            var Usuario = _dbContext.Usuarios.Find(id);
+            try
+            {
+                var Usuario = _dbContext.Usuarios.Find(id);
+                var sensibilidad = _dbContext.SensibilidadLocal.Find(id);
+                if (Usuario == null)
+                    throw new KeyNotFoundException();
 
-            if (Usuario == null)
-                throw new KeyNotFoundException();
-
-            _dbContext.Usuarios.Remove(Usuario);
-            _dbContext.SaveChanges();
+                _dbContext.Usuarios.Remove(Usuario);
+                _dbContext.SensibilidadLocal.Remove(sensibilidad);
+                _dbContext.SaveChanges();
+            }catch(Exception e)
+            {
+                throw e;
+            }
+            
         }
 
         public Usuario ObtenerUsuario(int usuarioId)

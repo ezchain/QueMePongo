@@ -91,61 +91,65 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
 
                 //context.Usuarios.Add(std);
                 //context.SaveChanges();
-                //GuardarropaRepositorio repo = new GuardarropaRepositorio();
-                //ICollection<Prenda> prendas = new List<Prenda>();
-                //Prenda prenda = new Prenda()
-                //{
-                //    Categoria = Categoria.Piernas,
-                //    ColorPrimario = Color.Azul,
-                //    GuardarropaId = 1,
-                //    Tela = Tela.Cuero,
-                //    PrendaId = 1,
-                //    Tipo = new TipoDePrenda()
-                //    {
-                //        Formalidad = Formalidad.Formal,
-                //        Nivel = 1,
-                //        Posicion = 2,
-                //        Temperatura = 10
-                //    }
-
-                //};
-                //prendas.Add(prenda);
-                //Guardarropa guardarropa = new Guardarropa()
-                //{
-                //    GuardarropaId = 1,
-                //    PrendasMaximas = 100,
-                //    Usuarios = { 1, 2, 3, 4, 5 },
-                //    Prendas = prendas
-                //};
-                //repo.CrearGuardarropa(guardarropa);
-                UsuarioRepositorio repo = new UsuarioRepositorio();
-
-                Usuario usuario = new Usuario()
+                GuardarropaRepositorio repo = new GuardarropaRepositorio();
+                PrendasRepositorio repoPrenda = new PrendasRepositorio();
+                ICollection<Prenda> prendas = new List<Prenda>();
+                Prenda prenda = new Prenda()
                 {
-                    UsuarioId = 4,
-                    Username = "asd",
-                    Password = "asd",
-                    Mail = "asd",
-                    TipoUsuario = new Gratuito(),
-                    Sensibilidad = new Normal()
+                    Categoria = Categoria.Piernas,
+                    ColorPrimario = Color.Azul,
+                    GuardarropaId = 1,
+                    Tela = Tela.Cuero,
+                    PrendaId = 1,
+                    Tipo = new TipoDePrenda()
+                    {
+                        Formalidad = Formalidad.Formal,
+                        Nivel = 1,
+                        Posicion = 2,
+                        Temperatura = 10
+                    }
 
                 };
-                  //  repo.CrearUsuario(usuario);
-                Usuario user2 = repo.ObtenerUsuario(4);
-                Evento evento = new Evento()
+                prendas.Add(prenda);
+                Guardarropa guardarropa = new Guardarropa()
                 {
-                    EventoId = 1,
-                    FechaInicio = DateTime.Now,
-                    Formalidad = Formalidad.Formal,
-                    Frecuencia = new Frecuencia(7),
-                    Nombre = "resistance",
-                    Ubicacion = new Ubicacion() { Latitud = "asd", Longitud = "asd" },
-                    UsuarioId = 1
+                    GuardarropaId = 1,
+                    PrendasMaximas = 100,
+                    Usuarios = { 1, 2, 3, 4, 5 },
+                    Prendas = prendas
                 };
+                repo.CrearGuardarropa(guardarropa);
+                var Prenda = repoPrenda.GetPrenda(1);
+                //UsuarioRepositorio repo = new UsuarioRepositorio();
 
-                EventosRepositorio eventos = new EventosRepositorio();
-                //eventos.CrearEvento(evento);
-                evento = eventos.GetEvento(1);
+                //Usuario usuario = new Usuario()
+                //{
+                //    UsuarioId = 5,
+                //    Username = "asd",
+                //    Password = "asd",
+                //    Mail = "asd",
+                //    TipoUsuario = new Gratuito(),
+                //    Sensibilidad = new Normal()
+
+                //};
+                //   repo.CrearUsuario(usuario);
+                //Usuario user2 = repo.ObtenerUsuario(5);
+                //repo.EliminarUsuario(5);
+                //Evento evento = new Evento()
+                //{
+                //    EventoId = 1,
+                //    FechaInicio = DateTime.Now,
+                //    Formalidad = Formalidad.Formal,
+                //    Frecuencia = new Frecuencia(7),
+                //    Nombre = "resistance",
+                //    Ubicacion = new Ubicacion() { Latitud = "asd", Longitud = "asd" },
+                //    UsuarioId = 1
+                //};
+
+               // EventosRepositorio eventos = new EventosRepositorio();
+                //eventos.CrearEvento(evento); //CREAR EVENTO
+                //evento = eventos.GetEvento(1); //OBTENER EVNTO
+                //eventos.DeleteEvento(1); //ELIMINAR EVENTO
 
 
 

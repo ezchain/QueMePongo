@@ -12,6 +12,7 @@ namespace QueMePongo.AccesoDatos.Entidades
         public int GuardarropaId { get; set; }
         [NotMapped]
         public IList<int> Usuarios { get; set; }
+        [NotMapped]
         public ICollection<PrendaEntity> Prendas { get; set; }
         public int PrendasMaximas { get; set; }
     }

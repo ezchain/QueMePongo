@@ -25,38 +25,61 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public void AddPrenda(Prenda prenda)
         {
-            dbContext.Add(prenda);
-            dbContext.SaveChanges();
+            try
+            {
+                var entidad = PrendaMapper.MapEntity(prenda);
+                dbContext.Prendas.Add(entidad);
+                dbContext.SaveChanges();
+            }catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public void DeletePrenda(int id)
         {
-            var prenda = dbContext.Prendas.Find(id);
-            if (prenda == null)
+            try
             {
-                throw new ArgumentException("La prenda no existe");
-            }
+                var prenda = dbContext.Prendas.Find(id);
+                if (prenda == null)
+                {
+                    throw new ArgumentException("La prenda no existe");
+                }
 
-            dbContext.Remove(prenda);
-            dbContext.SaveChanges();
+                dbContext.Remove(prenda);
+                dbContext.SaveChanges();
+            }catch(Exception e)
+            {
+                throw e;
+            }
+            
 
         }
 
         public Prenda GetPrenda(int id)
         {
-            //    return dbContext.Prendas.FirstOrDefault(pr => pr.PrendaId == id);
-            //}
-
-            //public IEnumerable<Prenda> GetPrendas()
-            //{
-            //    return dbContext.Prendas.ToList();
-            return null;
+            try
+            {
+               var entidad = dbContext.Prendas.Find(id);
+              return  PrendaMapper.MapModel(entidad);
+            }catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public void UpdatePrenda(Prenda prenda)
         {
-            dbContext.Update(prenda);
-            dbContext.SaveChanges();
+            try
+            {
+                var entidad = PrendaMapper.MapEntity(prenda);
+                dbContext.Prendas.Update(entidad);
+                dbContext.SaveChanges();
+            }catch(Exception e)
+            {
+                throw e;
+            }
+            
         }
         public ICollection<Prenda> GetPrendasGuardarropa(int guardarropaId)
         {
@@ -77,6 +100,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
         }
         public IEnumerable<Prenda> GetPrendas()
         {
+            //dbContext.Prendas.Select 
             return null;
         }
 

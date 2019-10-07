@@ -88,7 +88,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
             try
             {
 
-                _dbContext.Remove(_dbContext.Eventos.Find(EventoId));
+                _dbContext.Eventos.Remove(_dbContext.Eventos.Find(EventoId));
                 _dbContext.SaveChanges();
             }
             catch (Exception e)

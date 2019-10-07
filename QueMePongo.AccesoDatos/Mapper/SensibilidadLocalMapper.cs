@@ -17,11 +17,16 @@ namespace QueMePongo.AccesoDatos.Mapper
            foreach (var x in sensibilidades)
             {
                 if (x.Contains("Acalorado") && x.Contains("Cabeza")) entidad.Cabeza = "Acalorado";
-                if (x.Contains("Friolento") && x.Contains("Cabeza")) entidad.Cabeza = "Friolento";
+                else if (x.Contains("Friolento") && x.Contains("Cabeza")) entidad.Cabeza = "Friolento";
+                else entidad.Cabeza = "";
+
                 if (x.Contains("Acalorado") && x.Contains("Cuello")) entidad.Cuello = "Acalorado";
-                if (x.Contains("Friolento") && x.Contains("Cuello")) entidad.Cuello = "Friolento";
+                else if (x.Contains("Friolento") && x.Contains("Cuello")) entidad.Cuello = "Friolento";
+                else entidad.Cuello = "";
+
                 if (x.Contains("Acalorado") && x.Contains("Manos")) entidad.Manos = "Acalorado";
-                if (x.Contains("Friolento") && x.Contains("Manos")) entidad.Manos = "Friolento";
+                else if (x.Contains("Friolento") && x.Contains("Manos")) entidad.Manos = "Friolento";
+                else entidad.Manos = "";
             }
             return entidad;
         }
