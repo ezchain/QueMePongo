@@ -11,6 +11,7 @@ namespace QueMePongo.Negocio.Servicios
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
         readonly IUsuarioRepositorio _usuarioRepositorio;
 
+
         public UsuarioService(IGuardarropaRepositorio guardarropaRepositorio,
             IUsuarioRepositorio usuarioRepositorio)
         {
@@ -30,7 +31,7 @@ namespace QueMePongo.Negocio.Servicios
             }
             else
             {
-                _usuarioRepositorio.AgregarGuardarropa(idUsuario, idGuardarropa);
+                _guardarropaRepositorio.AgregarGuardarropa(idUsuario, idGuardarropa);
             }
         }
 

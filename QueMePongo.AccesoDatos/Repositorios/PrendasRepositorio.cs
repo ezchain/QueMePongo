@@ -1,4 +1,6 @@
 ﻿using QueMePongo.AccesoDatos.Data;
+using QueMePongo.AccesoDatos.Entidades;
+using QueMePongo.AccesoDatos.Mapper;
 using QueMePongo.Dominio.Interfaces.Repositorios;
 using QueMePongo.Dominio.Models;
 using System;
@@ -10,12 +12,16 @@ namespace QueMePongo.AccesoDatos.Repositorios
 {
     public class PrendasRepositorio : IPrendasRepositorio
     {
-        private readonly QueMePongoDbContext dbContext;
+        private readonly DbContext2 dbContext;
 
-        public PrendasRepositorio(QueMePongoDbContext dbContext)
+        public PrendasRepositorio()
         {
-            this.dbContext = dbContext;
+            this.dbContext = new DbContext2();
         }
+        //public PrendasRepositorio(QueMePongoDbContext dbContext)
+        //{
+        //    this.dbContext = dbContext;
+        //}
 
         public void AddPrenda(Prenda prenda)
         {
@@ -26,7 +32,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
         public void DeletePrenda(int id)
         {
             var prenda = dbContext.Prendas.Find(id);
-            if(prenda == null)
+            if (prenda == null)
             {
                 throw new ArgumentException("La prenda no existe");
             }
@@ -52,9 +58,27 @@ namespace QueMePongo.AccesoDatos.Repositorios
             dbContext.Update(prenda);
             dbContext.SaveChanges();
         }
+        public ICollection<Prenda> GetPrendasGuardarropa(int guardarropaId)
+        {
+            try
+            {
+                ICollection<PrendaEntity> entidades = dbContext.Prendas.Where(s => s.GuardarropaId == guardarropaId).ToList();
+                ICollection<Prenda> prendas = new List<Prenda>();
+                foreach (var x in entidades)
+                {
+                    prendas.Add(PrendaMapper.MapModel(x));
+                }
+                return prendas;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public IEnumerable<Prenda> GetPrendas()
         {
             return null;
         }
+
     }
 }

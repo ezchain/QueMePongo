@@ -11,5 +11,6 @@ namespace QueMePongo.Dominio.Interfaces
         void EditarGuardarropa(Guardarropa guardarropa);
         void EliminarGuardarropa(int id);
         void AgregarPrenda(int idGuardarropa, Prenda prenda);
+        void AgregarGuardarropa(int idUsuario, int idGuardarropa);
     }
 }

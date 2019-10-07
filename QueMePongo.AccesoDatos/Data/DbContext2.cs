@@ -26,18 +26,18 @@ namespace QueMePongo.AccesoDatos.Data
         public DbSet<EventoEntity> Eventos { get; set; }
         public DbSet<SugerenciaEntity> Sugerencias { get; set; }
         public DbSet<SensibilidadLocalEntity> SensibilidadLocal { get; set; }
+        public DbSet<PrendasSugerenciaEntity> PrendasSugerencia { get; set; }
+        public DbSet<GuardarropasUsuariosEntity> GuardarropasUsuarios { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UsuarioEntity>()
-              .ToTable("Usuarios");
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=QueMePongo;Trusted_Connection=True;");
 
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=QueMePongo;Trusted_Connection=True;");
 
+            }
         }
     }
 }

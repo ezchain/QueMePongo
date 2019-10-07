@@ -5,6 +5,7 @@ using QueMePongo.AccesoDatos.Entities;
 using QueMePongo.AccesoDatos.Mapper;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,11 +13,11 @@ namespace QueMePongo.AccesoDatos.Repositorios
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        readonly QueMePongoDbContext _dbContext;
+        readonly DbContext2 _dbContext;
 
-        public UsuarioRepositorio(QueMePongoDbContext dbContext)
+        public UsuarioRepositorio()
         {
-            _dbContext = dbContext;
+            _dbContext = new DbContext2();
         }
 
         #region Métodos Públicos
@@ -68,13 +69,16 @@ namespace QueMePongo.AccesoDatos.Repositorios
             //return _dbContext.Usuarios
             //    .Include(u => u.Guardarropas)
             //    .FirstOrDefault(u => u.UsuarioId == id);
-            UsuarioEntity entidad = _dbContext.Usuarios.Find(usuarioId);
+            UsuarioEntity entidad = _dbContext.Usuarios.FirstOrDefault(s => s.UsuarioId == usuarioId);
+            GuardarropaRepositorio repo = new GuardarropaRepositorio(); 
             Usuario usuario = UsuarioMapper.MapModel(entidad);
+            usuario.Guardarropas = repo.ObtenerGuardarropasUsuario(usuarioId);
             SensibilidadLocalEntity sensibilidad = _dbContext.SensibilidadLocal.Find(usuarioId);
             usuario.CambiarSensibilidadLocal(SensibilidadLocalMapper.MapModel(sensibilidad));
 
             return usuario;
         }
+
 
         public IEnumerable<Usuario> ObtenerUsuarios()
         {
@@ -82,10 +86,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
             return null;
         }
 
-        public void AgregarGuardarropa(int idUsuario, int idGuardarropa)
-        {
-
-        }
+       
 
         #endregion
     }

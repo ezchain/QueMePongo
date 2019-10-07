@@ -9,13 +9,12 @@ namespace QueMePongo.AccesoDatos.Entidades
    public class UsuarioEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UsuarioId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Mail { get; set; }
         public string TipoUsuario { get; set; }
         public string Sensibilidad { get; set; }
-        public ICollection<GuardarropaEntity> Guardarropas { get; set; }
+   
     }
 }
