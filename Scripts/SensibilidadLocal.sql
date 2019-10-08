@@ -1,7 +1,7 @@
 USE [QueMePongo]
 GO
 
-/****** Object:  Table [dbo].[SensibilidadLocal]    Script Date: 6/10/2019 12:13:00 ******/
+/****** Object:  Table [dbo].[SensibilidadLocal]    Script Date: 8/10/2019 00:07:45 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,9 +10,9 @@ GO
 
 CREATE TABLE [dbo].[SensibilidadLocal](
 	[UsuarioId] [int] NOT NULL,
-	[Cuello] [varchar](50) NOT NULL,
-	[Manos] [varchar](50) NOT NULL,
-	[Cabeza] [varchar](50) NOT NULL
+	[Cuello] [varchar](50) NULL,
+	[Manos] [varchar](50) NULL,
+	[Cabeza] [varchar](50) NULL
 ) ON [PRIMARY]
 GO
 

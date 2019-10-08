@@ -11,7 +11,7 @@ namespace QueMePongo.AccesoDatos.Entidades
         public int PrendaId { get; set; }
         public int GuardarropaId { get; set; }
         public string Categoria { get; set; }
-        public double Temperatura { get; set; }
+        public decimal Temperatura { get; set; }
         public string Formalidad { get; set; }
         public int Posicion { get; set; }
         public int Nivel { get; set; }

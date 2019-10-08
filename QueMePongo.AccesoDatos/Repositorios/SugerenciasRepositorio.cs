@@ -53,6 +53,26 @@ namespace QueMePongo.AccesoDatos.Repositorios
                 throw e;
             }
         }
+        public ICollection<Sugerencia> ObtenerSugerencias()
+        {
+            try
+            {
+                using (var context = new DbContext2())
+                {
+                  ICollection <Sugerencia> sugerencias = new List<Sugerencia>();
+                  var entidades =  context.Sugerencias.ToList();
+                    foreach(var x in entidades)
+                    {
+                        sugerencias.Add(SugerenciaMapper.MapModel(x));
+                    }
+                    return sugerencias;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
     }
 }

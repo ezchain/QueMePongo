@@ -20,7 +20,7 @@ namespace QueMePongo.AccesoDatos.Mapper
                 Formalidad = ObtenerFormalidad(prenda.Tipo.Formalidad),
                 Nivel = prenda.Tipo.Nivel,
                 Posicion = prenda.Tipo.Posicion,
-                Temperatura = prenda.Tipo.Temperatura,
+                Temperatura = Convert.ToDecimal(prenda.Tipo.Temperatura),
                 GuardarropaId = prenda.GuardarropaId,
                 Imagen = prenda.Imagen
 
@@ -34,7 +34,7 @@ namespace QueMePongo.AccesoDatos.Mapper
             {
                 Nivel = entidad.Nivel,
                 Posicion = entidad.Posicion,
-                Temperatura = entidad.Temperatura,
+                Temperatura = Convert.ToDouble(entidad.Temperatura),
                 Formalidad = ObtenerFormalidadEnum(entidad.Formalidad)
             };
 

@@ -44,8 +44,8 @@ namespace QueMePongo.Api.Controllers
                 _atuendosService.GenerarAtuendosPorUsuario(usuarioId));
         }
 
-        [HttpGet("usuario/{Evento}")]
-        public async Task<ActionResult<Sugerencia>> GenerarSugerencia(Evento evento)
+        [HttpPost("usuario/GenerarSugerencia")]
+        public async Task<ActionResult<Sugerencia>> GenerarSugerencia([FromBody]Evento evento)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace QueMePongo.Api.Controllers
             }
         }
         //ARREGLAR
-        //public ActionResult CalificarSugerencia(Sugerencia sugerencia, int idUsuario, ICalificacion calificacion)
+        //public ActionResult CalificarSugerencia([FromBody]Sugerencia sugerencia, int idUsuario, ICalificacion calificacion)
         //{
         //    if (sugerencia.Aceptada && sugerencia.UsuarioId == idUsuario)
         //    {
@@ -84,7 +84,7 @@ namespace QueMePongo.Api.Controllers
         //        {
         //            var Usuario = _usuarioService.GetUsuario(idUsuario);
         //            Usuario = calificacion.AjustarSensibilidad(Usuario);
-        //            _usuarioService.GuardarUsuario(Usuario);
+        //            _usuarioService.ModificarUsuario(Usuario);
         //            return Ok();
         //        }
         //        catch (Exception e)

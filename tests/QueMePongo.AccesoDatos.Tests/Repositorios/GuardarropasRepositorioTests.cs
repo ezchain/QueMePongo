@@ -81,16 +81,8 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
             using (var context = new DbContext2())
             {
 
-                //var std = new UsuarioEntity()
-                //{
-                //    UsuarioId = 3,
-                //    Username = "alfsredo",
 
 
-                //};
-
-                //context.Usuarios.Add(std);
-                //context.SaveChanges();
                 GuardarropaRepositorio repo = new GuardarropaRepositorio();
                 PrendasRepositorio repoPrenda = new PrendasRepositorio();
                 ICollection<Prenda> prendas = new List<Prenda>();
@@ -145,6 +137,7 @@ namespace QueMePongo.AccesoDatos.Tests.Repositorios
                 //    Ubicacion = new Ubicacion() { Latitud = "asd", Longitud = "asd" },
                 //    UsuarioId = 1
                 //};
+
 
                // EventosRepositorio eventos = new EventosRepositorio();
                 //eventos.CrearEvento(evento); //CREAR EVENTO

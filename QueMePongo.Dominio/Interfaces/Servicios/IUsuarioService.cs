@@ -7,6 +7,8 @@ namespace QueMePongo.Dominio.Interfaces.Servicios
         void AgregarGuardarropa(int idUsuario, int idGuardarropa);
         void AgregarPrenda(int idUsuario, int idGuardarropa, Prenda prenda);
         Usuario GetUsuario(int idUsuario);
-        void GuardarUsuario(Usuario usuario);
+        void CrearUsuario(Usuario usuario);
+        void EliminarUsuario(int idUsuario);
+        void ModificarUsuario(Usuario usuario);
     }
 }

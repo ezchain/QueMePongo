@@ -1,7 +1,7 @@
 USE [QueMePongo]
 GO
 
-/****** Object:  Table [dbo].[PrendasSugerencia]    Script Date: 6/10/2019 12:22:54 ******/
+/****** Object:  Table [dbo].[PrendasSugerencia]    Script Date: 8/10/2019 00:07:34 ******/
 SET ANSI_NULLS ON
 GO
 

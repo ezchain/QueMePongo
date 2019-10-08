@@ -61,20 +61,34 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         }
 
+        public void EliminarGuardarropaUsuario(int idUsuario,int idGuardarropa)
+        {
+            try
+            {
+             var entidad =   _dbContext.GuardarropasUsuarios.FirstOrDefault(s => s.UsuarioId == idUsuario && s.IDGuardarropa == idGuardarropa);
+                _dbContext.GuardarropasUsuarios.Remove(entidad);
+                _dbContext.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void EditarGuardarropa(Guardarropa guardarropa)
         {
-            _dbContext.Entry(guardarropa).State = EntityState.Modified;
-
-            var prendas = _dbContext.Prendas
-                .Where(p => p.GuardarropaId == guardarropa.GuardarropaId);
-
-            foreach (var prenda in prendas)
+            try
             {
-                if (!guardarropa.Prendas.Any(p => p.PrendaId == prenda.PrendaId))
-                    _dbContext.Entry(prenda).State = EntityState.Deleted;
-            }
+                var entidad = GuardarropaMapper.MapEntity(guardarropa);
+                _dbContext.Guardarropas.Update(entidad);
+                _dbContext.SaveChanges();
 
-            _dbContext.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+            
         }
 
         public void EliminarGuardarropa(int id)

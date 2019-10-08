@@ -1,4 +1,5 @@
-﻿using QueMePongo.Dominio.Interfaces;
+﻿using QueMePongo.AccesoDatos.Repositorios;
+using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Interfaces.Validacion;
 using QueMePongo.Dominio.Models;
@@ -13,10 +14,10 @@ namespace QueMePongo.Negocio.Servicios
         readonly IGuardarropaRepositorio _guardarropaRepositorio;
         readonly IContextoValidacion _contextoValidacion;
 
-        public GuardarropasService(IGuardarropaRepositorio guardarropaRepositorio,
+        public GuardarropasService(
             IContextoValidacion estrategiaValidacion)
         {
-            _guardarropaRepositorio = guardarropaRepositorio;
+            _guardarropaRepositorio = new GuardarropaRepositorio();
             _contextoValidacion = estrategiaValidacion;
         }
 

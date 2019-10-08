@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QueMePongo.AccesoDatos.Repositorios;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
@@ -16,6 +17,7 @@ namespace QueMePongo.Api.Controllers
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly IUsuarioService _usuarioService;
+        private readonly EventosRepositorio eventosService;
         private readonly IClimaService _climaSVC;
 
         public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
@@ -24,6 +26,7 @@ namespace QueMePongo.Api.Controllers
             _usuarioRepositorio = usuarioRepositorio;
             _usuarioService = usuarioService;
             _climaSVC = new ClimaService();
+            eventosService = new EventosRepositorio();
         }
 
         // GET: api/Usuario
@@ -49,6 +52,7 @@ namespace QueMePongo.Api.Controllers
 
         // POST: api/Usuario
         [HttpPost]
+        [Route("AgregarUsuario")]
         public ActionResult<Usuario> PostUsuarioItem([FromBody]Usuario Usuario)
         {
             _usuarioRepositorio.CrearUsuario(Usuario);
@@ -78,7 +82,7 @@ namespace QueMePongo.Api.Controllers
         {
             try
             {
-                _usuarioRepositorio.EliminarUsuario(id);
+                _usuarioService.EliminarUsuario(id);
 
                 return NoContent();
             }
@@ -103,11 +107,37 @@ namespace QueMePongo.Api.Controllers
             }
         }
 
-        [HttpGet("Clima")]
-        public IActionResult TestClima()
+        [HttpPost]
+        [Route("AgregarEvento")]
+        public IActionResult AgregarEvento([FromBody]Evento evento)
         {
-            var response = _climaSVC.ObtenerClima("");
-            return Ok(response.Result);
+            try
+            {
+                eventosService.CrearEvento(evento);
+                return Ok("Operacion Realizada correctamente");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
+
+        [HttpGet]
+        [Route("EliminarEvento/{id}")]
+        public IActionResult EliminarEvento(int id)
+        {
+            try
+            {
+                eventosService.DeleteEvento(id);
+                return Ok("Operacion Realizada correctamente");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
     }
 }

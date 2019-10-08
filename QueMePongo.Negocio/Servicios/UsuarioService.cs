@@ -1,4 +1,5 @@
-﻿using QueMePongo.Dominio.Interfaces;
+﻿using QueMePongo.AccesoDatos.Repositorios;
+using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using System;
@@ -12,11 +13,10 @@ namespace QueMePongo.Negocio.Servicios
         readonly IUsuarioRepositorio _usuarioRepositorio;
 
 
-        public UsuarioService(IGuardarropaRepositorio guardarropaRepositorio,
-            IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioService()
         {
-            _guardarropaRepositorio = guardarropaRepositorio;
-            _usuarioRepositorio = usuarioRepositorio;
+            _guardarropaRepositorio = new GuardarropaRepositorio();
+            _usuarioRepositorio = new UsuarioRepositorio();
         }
 
         #region Metodos Publicos
@@ -57,11 +57,19 @@ namespace QueMePongo.Negocio.Servicios
             return _usuarioRepositorio.ObtenerUsuario(idUsuario);
         }
 
-        public void GuardarUsuario(Usuario usuario)
+        public void CrearUsuario(Usuario usuario)
         {
-            //GUARDAR EN DB
+            _usuarioRepositorio.CrearUsuario(usuario);
+        }
+       public void EliminarUsuario(int idUsuario)
+        {
+            _usuarioRepositorio.EliminarUsuario(idUsuario);
         }
 
+        public void ModificarUsuario(Usuario usuario)
+        {
+            _usuarioRepositorio.UpdateUsuario(usuario);
+        }
         #endregion
 
         #region Metodos Privados

@@ -1,4 +1,5 @@
 ﻿using Combinatorics.Collections;
+using QueMePongo.AccesoDatos.Repositorios;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
 using QueMePongo.Dominio.Interfaces.Servicios;
@@ -18,12 +19,11 @@ namespace QueMePongo.Negocio.Servicios
         readonly IUsuarioRepositorio _usuarioRepositorio;
         readonly IContextoValidacion _contextoValidacion;
 
-        public AtuendosService(IGuardarropaRepositorio guardarropaRepositorio,
-            IUsuarioRepositorio usuarioRepositorio,
+        public AtuendosService(
             IContextoValidacion estrategiaValidacion)
         {
-            _guardarropaRepositorio = guardarropaRepositorio;
-            _usuarioRepositorio = usuarioRepositorio;
+            _guardarropaRepositorio = new GuardarropaRepositorio();
+            _usuarioRepositorio = new UsuarioRepositorio();
             _contextoValidacion = estrategiaValidacion;
         }
 
@@ -76,8 +76,10 @@ namespace QueMePongo.Negocio.Servicios
         /// <returns></returns>
         public bool ValidarSugerencia(Atuendo atuendo, int idUsuario)
         {
-            IList<Sugerencia> SugerenciasActivas = new List<Sugerencia>();//traeria las sugerencias de la base
+            SugerenciasRepositorio repo = new SugerenciasRepositorio();
+            ICollection<Sugerencia> SugerenciasActivas = repo.ObtenerSugerencias();
             return !SugerenciasActivas.Any(p => p.Atuendo.Equals(atuendo) && p.Aceptada && p.UsuarioId != idUsuario);
+
         }
 
         #region Métodos Privados

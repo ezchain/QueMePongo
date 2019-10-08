@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces.Repositorios;
 using QueMePongo.Dominio.Interfaces.Servicios;
@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using QueMePongo.Dominio.Interfaces;
+using QueMePongo.AccesoDatos.Repositorios;
+using Microsoft.AspNetCore.Http;
 
 namespace QueMePongo.Negocio.Servicios
 {
@@ -18,9 +20,9 @@ namespace QueMePongo.Negocio.Servicios
         private readonly IPrendasRepositorio prendasRepositorio;
         private readonly IImagenHelper imagenHelper;
 
-        public PrendaService(IPrendasRepositorio prendasRepositorio, IImagenHelper imagenHelper)
+        public PrendaService(IImagenHelper imagenHelper)
         {
-            this.prendasRepositorio = prendasRepositorio;
+            this.prendasRepositorio = new PrendasRepositorio();
             this.imagenHelper = imagenHelper;
         }
 
