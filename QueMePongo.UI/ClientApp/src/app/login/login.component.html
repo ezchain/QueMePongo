@@ -1,0 +1,13 @@
+<form [formGroup]="credenciales">
+  <div class="loginContainer">
+    <div class="loginCard">
+      <input type="text" placeholder="Usuario" formControlName="username">
+      <input type="password" placeholder="Contraseña" formControlName="password">
+      <div class="recordar">
+        <input type="checkbox" name="password" id="password"> Recordar contraseña
+      </div>
+      <button type="submit" (click)="Login()">INGRESAR</button>
+    </div>
+  </div>
+</form>
+

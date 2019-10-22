@@ -1,0 +1,33 @@
+<app-nav-menu></app-nav-menu>
+<br>
+
+  <div class="row m-5">
+    <div class="col-10">
+      <h3> Prendas del guardarropa {{this.id}}</h3>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-primary">Agregar prenda</button>
+    </div>
+  </div>
+
+
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th>Tela</th>
+      <th>Color primario</th>
+      <th>Color secundario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of this.guardarropa.prendas">
+      <td>{{item.categoria | Categoria}}</td>
+      <td>{{item.tela | Tela}}</td>
+      <td>{{item.colorPrimario | Color}} </td>
+      <td>{{item.colorSecundario | Color}}</td>
+    </tr>
+  </tbody>
+</table>
+

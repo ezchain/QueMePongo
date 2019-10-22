@@ -1,0 +1,113 @@
+/* Login */
+
+.loginContainer {
+  width: 100%;
+  height: 100vh;
+  background: url('../../assets/images/ropa.jpg');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loginCard {
+    width: 490px;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.2);
+
+    .recordar {
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    .olvide {
+      font-size: 12px;
+      color: #EC0000;
+    }
+
+    .logo {
+      background: url('../../assets/images/logo.svg') no-repeat;
+      width: 200px;
+      height: 38px;
+      margin-bottom: 15px;
+    }
+
+    .efecto {
+      font-size: 16px;
+      color: #EC0000;
+      font-weight: bold;
+      margin-bottom: 50px;
+    }
+
+    input[type=text], input[type=password] {
+      border: none;
+      border-bottom: 1px solid #1A1A1A;
+      padding: 5px 15px;
+      font-size: 14px;
+      min-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .check {
+      font-size: 14px;
+      margin: 25px 0;
+
+      .password {
+        width: 1px;
+        background: #EC0000;
+        height: 5px;
+      }
+    }
+
+    button {
+      background: #FFF;
+      border: 0px;
+      padding: 19px 50px;
+      color: black;
+      width: 280px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0px 3px 6px #00000029;
+      border-radius: 28px;
+      margin-top: 30px;
+
+      :hover {
+        background: #f1f1f1;
+      }
+    }
+
+    .lineaRoja {
+      width: 2px;
+      height: 20px;
+      background: #ff4040;
+      margin-left: 33px;
+      margin-bottom: -20px;
+      z-index: 9999999999;
+      align-self: flex-start;
+    }
+  }
+}
+
+input[class="red"]+span::before {
+    border: solid 1px red;
+    background: #FF9593;
+    background: -moz-radial-gradient(#FF9593, #dfdfdf);
+    background: -webkit-radial-gradient(#FF9593, #dfdfdf);
+    background: -ms-radial-gradient(#FF9593, #dfdfdf);
+    background: -o-radial-gradient(#FF9593, #dfdfdf);
+    background: radial-gradient(#FF9593, #dfdfdf);
+}
+
+input[class="red"]:checked+span::before {
+    color: darkred;
+}
+
+/* Fin Login */
