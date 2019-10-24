@@ -19,6 +19,9 @@ import { TelaPipe } from './tela-pipe';
 import { CategoriaPipe } from './categoria.pipe';
 import { AltaEventosComponent } from './alta-eventos/alta-eventos.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendarioComponent } from './calendario/calendario.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +34,15 @@ import { AltaEventosComponent } from './alta-eventos/alta-eventos.component';
     ColorPipe,
     TelaPipe,
     CategoriaPipe,
-    AltaEventosComponent
+    AltaEventosComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FullCalendarModule,
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
   providers: [ServiciosService],

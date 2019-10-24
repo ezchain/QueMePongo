@@ -112,6 +112,7 @@ namespace QueMePongo.Api.Controllers
 
         [HttpPost]
         [Route("AgregarGuardarropa")]
+        [EnableCors("AllowOrigin")]
         public IActionResult AgregarGuardarropa(int idUsuario, int idGuardarropa)
         {
             try
@@ -127,6 +128,7 @@ namespace QueMePongo.Api.Controllers
 
         [HttpPost]
         [Route("AgregarEvento")]
+        [EnableCors("AllowOrigin")]
         public IActionResult AgregarEvento([FromBody]Evento evento)
         {
             try
@@ -141,21 +143,48 @@ namespace QueMePongo.Api.Controllers
         }
 
         [HttpGet]
-        [Route("EliminarEvento/{id}")]
-        public IActionResult EliminarEvento(int id)
+        [Route("ObtenerEventos")]
+        [EnableCors("AllowOrigin")]
+        public IActionResult ObtenerEventos()
         {
-            try
+            ICollection<Evento> eventos = new List<Evento>();
+
+            Evento evento = new Evento()
             {
-                eventosService.DeleteEvento(id);
-                return Ok("Operacion Realizada correctamente");
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+                Nombre = "evento1",
+                FechaInicio = new DateTime(2019, 11, 01),
+                Frecuencia = new Frecuencia() { Nombre="Unico"}
+        };
+        Evento evento2 = new Evento()
+        {
+            Nombre = "Evento2",
+            FechaInicio = new DateTime(2019, 11, 01),
+            Frecuencia = new Frecuencia() { Nombre = "Unico" }
+        };
+            eventos.Add(evento);
+            eventos.Add(evento2);
 
-
-
+            return Ok(eventos);
     }
+
+
+
+    [HttpGet]
+    [Route("EliminarEvento/{id}")]
+    public IActionResult EliminarEvento(int id)
+    {
+        try
+        {
+            eventosService.DeleteEvento(id);
+            return Ok("Operacion Realizada correctamente");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+
+
+}
 }

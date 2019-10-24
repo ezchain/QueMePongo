@@ -26,10 +26,16 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app.routes.ts" />
+    <None Remove="ClientApp\src\app\categoria.pipe.ts" />
+    <None Remove="ClientApp\src\app\color.pipe.ts" />
+    <None Remove="ClientApp\src\app\tela-pipe.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\app.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\categoria.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\color.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\tela-pipe.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -14,13 +14,14 @@ export class PrendaComponent implements OnInit {
   guardarropa: any = {}
   id: number;
   constructor(private activatedRoute: ActivatedRoute, private servicios: ServiciosService, private router: Router) {
+
+    }
+
+  ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.ObtenerPrendas(params['id']);
       this.id = params['id'];
     }
-    }
-
-  ngOnInit() {
   }
 
   ObtenerPrendas(id: number) {

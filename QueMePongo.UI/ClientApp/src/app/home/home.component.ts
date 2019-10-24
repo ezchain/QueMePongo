@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { ServiciosService } from 'src/app/services/servicios.service';
+
 import { Router } from '@angular/router';
 
 @Component({

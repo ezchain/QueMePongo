@@ -25,4 +25,13 @@ export class ServiciosService {
     return this.http.get(`http://localhost:51368/api/Guardarropa/${id}`);
   }
 
+  AltaEvento(evento: any) {
+    console.log(evento);
+    return this.http.post('http://localhost:51368/api/Usuario/AgregarEvento',evento);
+  }
+
+  ObtenerEventos() {
+    return this.http.get('http://localhost:51368/api/Usuario/ObtenerEventos');
+  }
+
 }

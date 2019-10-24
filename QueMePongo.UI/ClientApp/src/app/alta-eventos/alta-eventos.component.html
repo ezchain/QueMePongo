@@ -2,59 +2,39 @@
 <br />
 <h3>Nuevo evento</h3>
 <br />
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Nombre</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Nombre del evento">
+<div class="container" >
+
+
+  <form [formGroup]="evento">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nombre</label>
+        <input class="form-control" placeholder="Nombre del evento" formControlName="nombre">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Ubicacion</label>
+        <input class="form-control" placeholder="Lugar del evento" formControlName="ubicacion">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Fecha </label>
+        <input type="datetime" class="form-control" placeholder="DD/MM/YYYY" formControlName="fecha">
+      </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword4">Frecuencia</label>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-        Dropdown Example
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">HTML</a></li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">JavaScript</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
+      <label>Frecuencia</label>
+      <select class="custom-select" formControlName="frecuencia">
+        <option>Seleccionar frecuencia del evento</option>
+        <option value="Unico">Evento unico</option>
+        <option value="Diario">Diario</option>
+        <option value="Semanal">Semanal</option>
+        <option value="Mensual">Mensual</option>
+        <option value="Anual">Anual</option>
       </select>
     </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+    <button type="submit" class="btn btn-primary" (click)="Alta()">Alta</button>
+  </form>
+</div>
