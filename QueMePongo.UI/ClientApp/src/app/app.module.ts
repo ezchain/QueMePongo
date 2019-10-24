@@ -21,6 +21,7 @@ import { AltaEventosComponent } from './alta-eventos/alta-eventos.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { AltaPrendaComponent } from './alta-prenda/alta-prenda.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CalendarioComponent } from './calendario/calendario.component';
     TelaPipe,
     CategoriaPipe,
     AltaEventosComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    AltaPrendaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

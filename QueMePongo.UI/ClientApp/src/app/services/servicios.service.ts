@@ -34,4 +34,10 @@ export class ServiciosService {
     return this.http.get('http://localhost:51368/api/Usuario/ObtenerEventos');
   }
 
+  AltaPrenda(prenda:any) {
+
+    console.log(prenda);
+    return this.http.post('http://localhost:51368/api/Prenda', prenda);
+  }
+
 }

@@ -26,7 +26,7 @@ export class AltaEventosComponent implements OnInit {
     let ubicacion = { Latitud: 302, Longitud: 213 };
     let frecuencia = { Nombre: this.evento.controls['frecuencia'].value };
     let fecha = new Date(this.evento.controls['fecha'].value)
-    let req = { Nombre: this.evento.controls['nombre'].value, Ubicacion: ubicacion,Fecha: fecha, Frecuencia: frecuencia };
+    let req = { Nombre: this.evento.controls['nombre'].value, Ubicacion: ubicacion,fechaInicio: fecha, Frecuencia: frecuencia };
 
     this.servicios.AltaEvento(req).subscribe((data: any) => {
       console.log(data);

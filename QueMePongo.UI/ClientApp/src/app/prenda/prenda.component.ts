@@ -21,7 +21,7 @@ export class PrendaComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.ObtenerPrendas(params['id']);
       this.id = params['id'];
-    }
+    });
   }
 
   ObtenerPrendas(id: number) {

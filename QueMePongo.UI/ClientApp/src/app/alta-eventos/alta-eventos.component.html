@@ -27,14 +27,13 @@
     <div class="form-group col-md-6">
       <label>Frecuencia</label>
       <select class="custom-select" formControlName="frecuencia">
-        <option>Seleccionar frecuencia del evento</option>
-        <option value="Unico">Evento unico</option>
+        <option value="Unico" selected>Evento unico</option>
         <option value="Diario">Diario</option>
         <option value="Semanal">Semanal</option>
         <option value="Mensual">Mensual</option>
         <option value="Anual">Anual</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="Alta()">Alta</button>
+    <button type="submit" class="btn btn-primary" (click)="Alta()" >Alta</button>
   </form>
 </div>

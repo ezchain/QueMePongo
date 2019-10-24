@@ -15,7 +15,7 @@ export class HomeComponent {
   constructor(private activatedRoute: ActivatedRoute, private servicios:ServiciosService, private router:Router) {
     this.activatedRoute.params.subscribe(params => {
       this.ObtenerUsuario(params['id']);
-    }
+    });
     }
 
   ObtenerUsuario(id: number) {
