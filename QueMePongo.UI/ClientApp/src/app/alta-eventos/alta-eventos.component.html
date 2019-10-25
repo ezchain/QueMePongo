@@ -1,0 +1,39 @@
+<app-nav-menu></app-nav-menu>
+<br />
+<h3>Nuevo evento</h3>
+<br />
+<div class="container" >
+
+
+  <form [formGroup]="evento">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nombre</label>
+        <input class="form-control" placeholder="Nombre del evento" formControlName="nombre">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Ubicacion</label>
+        <input class="form-control" placeholder="Lugar del evento" formControlName="ubicacion">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Fecha </label>
+        <input type="datetime" class="form-control" placeholder="DD/MM/YYYY" formControlName="fecha">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Frecuencia</label>
+      <select class="custom-select" formControlName="frecuencia">
+        <option value="Unico" selected>Evento unico</option>
+        <option value="Diario">Diario</option>
+        <option value="Semanal">Semanal</option>
+        <option value="Mensual">Mensual</option>
+        <option value="Anual">Anual</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="Alta()" >Alta</button>
+  </form>
+</div>

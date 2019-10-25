@@ -28,14 +28,62 @@ namespace QueMePongo.Controllers
         [HttpGet("{id}")]
         public ActionResult<Guardarropa> GetGuardarropaItem(int id)
         {
-            var guardarropa = _guardarropasService.ObtenerGuardarropaPorId(id);
-
-            if (guardarropa == null)
+            Guardarropa guardarropa = new Guardarropa();
+            Prenda prenda = new Prenda()
             {
-                return NotFound();
-            }
+                Categoria = Categoria.Piernas,
+                ColorPrimario = Color.Azul,
+                ColorSecundario = Color.Marron,
+                GuardarropaId = 1,
+                Tela = Tela.Cuero,
+                PrendaId = 1,
+                
 
-            return guardarropa;
+            };
+            Prenda prenda2 = new Prenda()
+            {
+                Categoria = Categoria.Pies,
+                ColorPrimario = Color.Azul,
+                GuardarropaId = 1,
+                Tela = Tela.Cuero,
+                PrendaId = 1,
+                Tipo = new TipoDePrenda()
+                {
+                    Formalidad = Formalidad.Formal,
+                    Nivel = 1,
+                    Posicion = 2,
+                    Temperatura = 10
+                }
+
+            };
+            Prenda prenda3 = new Prenda()
+            {
+                Categoria = Categoria.Piernas,
+                ColorPrimario = Color.Azul,
+                GuardarropaId = 1,
+                Tela = Tela.Cuero,
+                PrendaId = 1,
+                Tipo = new TipoDePrenda()
+                {
+                    Formalidad = Formalidad.Formal,
+                    Nivel = 1,
+                    Posicion = 2,
+                    Temperatura = 10
+                }
+
+            };
+            guardarropa.Prendas.Add(prenda);
+            guardarropa.Prendas.Add(prenda2);
+            guardarropa.Prendas.Add(prenda3);
+            return Ok(guardarropa);
+            //var guardarropa = _guardarropasService.ObtenerGuardarropaPorId(id);
+
+            //if (guardarropa == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return guardarropa;
         }
 
         // POST: api/guardarropa

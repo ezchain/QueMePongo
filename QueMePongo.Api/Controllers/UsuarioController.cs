@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using QueMePongo.AccesoDatos.Repositorios;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
@@ -38,16 +39,33 @@ namespace QueMePongo.Api.Controllers
 
         // GET: api/Usuario/2
         [HttpGet("{id}")]
+        [EnableCors("AllowOrigin")]
         public ActionResult<Usuario> GetUsuarioItem(int id)
         {
-            var Usuario = _usuarioRepositorio.ObtenerUsuario(id);
-
-            if (Usuario == null)
+            Usuario usuario1 = new Usuario()
             {
-                return NotFound();
-            }
+                Username = "Lucas",
+                Mail = "asd",
+                Password = "asd",
+                UsuarioId = 1,
 
-            return Usuario;
+            };
+            Guardarropa guardarropa1 = new Guardarropa()
+            {
+                GuardarropaId = 1,
+                PrendasMaximas = 100,
+
+            };
+            usuario1.Guardarropas.Add(guardarropa1);
+            return Ok(usuario1);
+            //var Usuario = _usuarioRepositorio.ObtenerUsuario(id);
+
+            //if (Usuario == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Usuario;
         }
 
         // POST: api/Usuario
@@ -94,6 +112,7 @@ namespace QueMePongo.Api.Controllers
 
         [HttpPost]
         [Route("AgregarGuardarropa")]
+        [EnableCors("AllowOrigin")]
         public IActionResult AgregarGuardarropa(int idUsuario, int idGuardarropa)
         {
             try
@@ -109,6 +128,7 @@ namespace QueMePongo.Api.Controllers
 
         [HttpPost]
         [Route("AgregarEvento")]
+        [EnableCors("AllowOrigin")]
         public IActionResult AgregarEvento([FromBody]Evento evento)
         {
             try
@@ -123,21 +143,48 @@ namespace QueMePongo.Api.Controllers
         }
 
         [HttpGet]
-        [Route("EliminarEvento/{id}")]
-        public IActionResult EliminarEvento(int id)
+        [Route("ObtenerEventos")]
+        [EnableCors("AllowOrigin")]
+        public IActionResult ObtenerEventos()
         {
-            try
+            ICollection<Evento> eventos = new List<Evento>();
+
+            Evento evento = new Evento()
             {
-                eventosService.DeleteEvento(id);
-                return Ok("Operacion Realizada correctamente");
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+                Nombre = "evento1",
+                FechaInicio = new DateTime(2019, 11, 01),
+                Frecuencia = new Frecuencia() { Nombre="Unico"}
+        };
+        Evento evento2 = new Evento()
+        {
+            Nombre = "Evento2",
+            FechaInicio = new DateTime(2019, 11, 01),
+            Frecuencia = new Frecuencia() { Nombre = "Unico" }
+        };
+            eventos.Add(evento);
+            eventos.Add(evento2);
 
-
-
+            return Ok(eventos);
     }
+
+
+
+    [HttpGet]
+    [Route("EliminarEvento/{id}")]
+    public IActionResult EliminarEvento(int id)
+    {
+        try
+        {
+            eventosService.DeleteEvento(id);
+            return Ok("Operacion Realizada correctamente");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+
+
+}
 }

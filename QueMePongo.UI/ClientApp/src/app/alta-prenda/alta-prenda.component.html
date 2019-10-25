@@ -1,0 +1,88 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="container">
+  <br />
+  <h3>Nueva prenda para el guardarropa</h3>
+  <br />
+
+  <form [formGroup]="prenda">
+
+    <div class="form-group col-md-6" *ngIf="!cambioPagina">
+      <label>Nombre</label>
+      <input class="form-control" placeholder="Prenda" formControlName="nombre">
+    </div>
+
+    <div class="form-group col-md-6" *ngIf="!cambioPagina">
+      <label>Categoria</label>
+      <select class="custom-select" formControlName="categoria">
+        <option value=0 selected>Cabeza</option>
+        <option value=1>Torso</option>
+        <option value=2>Piernas</option>
+        <option value=3>Pies</option>
+        <option value=4>Accesorio</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6" *ngIf="!cambioPagina">
+      <label>Color primario</label>
+      <select class="custom-select" formControlName="colorPrimario">
+        <option value="1" selected>Azul</option>
+        <option value="2">Rojo</option>
+        <option value="3">Negro</option>
+        <option value="4">Blanco</option>
+        <option value="5">Verde</option>
+        <option value="6">Marron</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6" *ngIf="!cambioPagina">
+      <label>Color secundario</label>
+      <select class="custom-select" formControlName="colorSecundario">
+        <option value=0 selected>Ninguno</option>
+        <option value=1>Azul</option>
+        <option value=2>Rojo</option>
+        <option value=3>Negro</option>
+        <option value=4>Blanco</option>
+        <option value=5>Verde</option>
+        <option value=6>Marron</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6" *ngIf="cambioPagina">
+      <label>Formalidad</label>
+      <select class="custom-select" formControlName="formalidad">
+        <option value=1 selected>Formal</option>
+        <option value=2>Normal</option>
+        <option value=3>Distendido</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6" *ngIf="cambioPagina">
+      <label>Temperatura</label>
+      <input class="form-control" placeholder="Temperatura" formControlName="temperatura">
+    </div>
+
+
+    <div class="form-group col-md-6" *ngIf="cambioPagina">
+      <label>Tela</label>
+      <select class="custom-select" formControlName="tela">
+        <option value=1 selected>Cuero</option>
+        <option value=2>Seda</option>
+        <option value=3>Algodon</option>
+        <option value=4>Jena</option>
+        <option value=5>Lona</option>
+
+      </select>
+    </div>
+    <div class="form-group col-md-6" *ngIf="cambioPagina">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="validatedCustomFile">
+        <label class="custom-file-label" for="validatedCustomFile">Imagen</label>
+
+      </div>
+    </div>
+    <br />
+    <div class="botones col-md-6">
+      <button type="submit" class="btn btn-primary" (click)="CambiarPagina()" *ngIf="!cambioPagina">Siguiente</button>
+      <button type="submit" class="btn btn-primary" [routerLink]="['../prenda', this.id]" (click)="AltaPrenda()" *ngIf="cambioPagina">Finalizar</button>
+    </div>
+  </form>
+</div>

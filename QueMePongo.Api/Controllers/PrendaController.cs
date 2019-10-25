@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
+using QueMePongo.AccesoDatos.Repositorios;
 using QueMePongo.Dominio.DTOs;
+using QueMePongo.Dominio.Interfaces.Repositorios;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 
@@ -15,6 +18,8 @@ namespace QueMePongo.Api.Controllers
     public class PrendaController : ControllerBase
     {
         private readonly IPrendaService prendaService;
+        private readonly PrendasRepositorio repo = new PrendasRepositorio();
+        
 
         public PrendaController(IPrendaService prendaService)
         {
@@ -36,9 +41,10 @@ namespace QueMePongo.Api.Controllers
 
         // POST: api/Prenda
         [HttpPost]
-        public IActionResult Post([FromBody] PrendaDTO prenda, IFormFile imagen)
+        public IActionResult Post([FromBody]Prenda prenda)
         {
-            prendaService.AddPrenda(prenda,imagen);
+            repo.AddPrenda(prenda);
+            
             return Ok();
         }
 

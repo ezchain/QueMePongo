@@ -39,6 +39,11 @@ namespace QueMePongo
             services.AddDbContextPool<DbContext2>(options => options.UseSqlServer(Configuration.GetConnectionString("QueMePongo")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
             //if (Environment.IsDevelopment())
             //    services.AddDbContext<QueMePongoDbContext>(op =>
             //        op.UseInMemoryDatabase("DevelopmentDb")
@@ -62,6 +67,12 @@ namespace QueMePongo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
