@@ -9,13 +9,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[GuardarropasUsuarios](
-	[RelacionId] [int] IDENTITY(1,1) NOT NULL,
-	[IDGuardarropa] [int] NOT NULL,
-	[UsuarioId] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[RelacionId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[RelacionId] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[GuardarropaId] [int] FOREIGN KEY REFERENCES [dbo].[Guardarropas] NOT NULL,
+	[UsuarioId] [int] FOREIGN KEY REFE [dbo].[Usuarios] NOT NULL,
 ) ON [PRIMARY]
 GO
 

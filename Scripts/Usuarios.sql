@@ -8,17 +8,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='[dbo].[Usuarios]' and xtype='U')
+    DROP TABLE [dbo].[Usuarios]
+GO
+
 CREATE TABLE [dbo].[Usuarios](
-	[UsuarioId] [int] NOT NULL,
+	[UsuarioId] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[Username] [varchar](50) NOT NULL,
 	[Password] [varchar](50) NULL,
 	[Mail] [varchar](50) NULL,
 	[TipoUsuario] [varchar](50) NULL,
-	[Sensibilidad] [varchar](50) NULL,
- CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
-(
-	[UsuarioId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Sensibilidad] [varchar](50) NULL
 ) ON [PRIMARY]
 GO
 

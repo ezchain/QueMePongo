@@ -8,10 +8,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='[dbo].[PrendasSugerencia]' and xtype='U')
+    DROP TABLE [dbo].[PrendasSugerencia]
+GO
+
 CREATE TABLE [dbo].[PrendasSugerencia](
-	[Indice] [int] NOT NULL,
-	[SugerenciaId] [int] NOT NULL,
-	[PrendaId] [int] NOT NULL
+	[Indice] [int]PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[SugerenciaId] [int] FOREIGN KEY REFERENCES [dbo].[Sugerencias] NOT NULL,
+	[PrendaId] [int] FOREIGN KEY REFERENCES [dbo].[Prendas] NOT NULL
 ) ON [PRIMARY]
 GO
 

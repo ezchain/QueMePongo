@@ -8,9 +8,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+IF EXISTS (SELECT * FROM sysobjects WHERE name='[dbo].[Prendas]' and xtype='U')
+   DROP TABLE [dbo].[Prendas]
+GO
+
 CREATE TABLE [dbo].[Prendas](
-	[PrendaId] [int] NOT NULL,
-	[GuardarropaId] [int] NOT NULL,
+	[PrendaId] [INT] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[GuardarropaId] [int] FOREIGN KEY REFERENCES [dbo].[Guardarropas] NOT NULL,
 	[Categoria] [varchar](50) NOT NULL,
 	[Temperatura] [decimal](18, 0) NOT NULL,
 	[Formalidad] [varchar](50) NOT NULL,
@@ -19,11 +23,7 @@ CREATE TABLE [dbo].[Prendas](
 	[Tela] [varchar](50) NOT NULL,
 	[ColorPrimario] [varchar](50) NOT NULL,
 	[ColorSecundario] [varchar](50) NULL,
-	[Imagen] [bit] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[PrendaId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Imagen] VARBINARY(max) NULL
 ) ON [PRIMARY]
 GO
 

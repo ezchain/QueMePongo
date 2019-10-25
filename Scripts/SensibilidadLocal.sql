@@ -8,8 +8,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='[dbo].[SensibilidadLocal]' and xtype='U')
+    DROP TABLE [dbo].[SensibilidadLocal]
+GO
+
 CREATE TABLE [dbo].[SensibilidadLocal](
-	[UsuarioId] [int] NOT NULL,
+	[Id] [int] PRIMARY KEY IDENTITY(1,1),
+	[UsuarioId] [int] FOREIGN KEY REFERENCES [dbo].[Usuarios] NOT NULL,
 	[Cuello] [varchar](50) NULL,
 	[Manos] [varchar](50) NULL,
 	[Cabeza] [varchar](50) NULL
