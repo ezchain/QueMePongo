@@ -151,6 +151,7 @@ namespace QueMePongo.Api.Controllers
 
             Evento evento = new Evento()
             {
+                EventoId = 3,
                 Nombre = "evento1",
                 FechaInicio = new DateTime(2019, 11, 01),
                 Frecuencia = new Frecuencia() { Nombre="Unico"}
@@ -158,6 +159,7 @@ namespace QueMePongo.Api.Controllers
         Evento evento2 = new Evento()
         {
             Nombre = "Evento2",
+            EventoId = 1,
             FechaInicio = new DateTime(2019, 11, 01),
             Frecuencia = new Frecuencia() { Nombre = "Unico" }
         };

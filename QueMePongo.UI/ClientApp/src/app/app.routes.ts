@@ -5,6 +5,7 @@ import { PrendaComponent } from './prenda/prenda.component';
 import { AltaEventosComponent } from './alta-eventos/alta-eventos.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { AltaPrendaComponent } from './alta-prenda/alta-prenda.component';
+import { SugerenciasComponent } from './sugerencias/sugerencias.component';
 
 export const ROUTES: Routes = [
   { path: 'home/:id', component: HomeComponent },
@@ -13,6 +14,7 @@ export const ROUTES: Routes = [
   { path: 'altaEventos', component: AltaEventosComponent },
   { path: 'calendario', component: CalendarioComponent },
   { path: 'AltaPrenda/:id', component: AltaPrendaComponent },
+  { path: 'sugerencia', component: SugerenciasComponent }
 
     {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];

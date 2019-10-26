@@ -9,6 +9,7 @@ namespace QueMePongo.AccesoDatos.Entidades
     {
         [Key]
         public int PrendaId { get; set; }
+        public string Nombre { get; set; }
         public int GuardarropaId { get; set; }
         public string Categoria { get; set; }
         public decimal Temperatura { get; set; }

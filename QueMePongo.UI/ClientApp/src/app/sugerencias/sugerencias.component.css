@@ -1,0 +1,7 @@
+.botones {
+  display: flex;
+  justify-content: flex-end;
+}
+.checked {
+  color: orange;
+}

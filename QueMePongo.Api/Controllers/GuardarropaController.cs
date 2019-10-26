@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.Interfaces.Servicios;
 using QueMePongo.Dominio.Models;
 using System;
@@ -26,11 +27,12 @@ namespace QueMePongo.Controllers
 
         // GET: api/guardarropa/2
         [HttpGet("{id}")]
+        [EnableCors("AllowOrigin")]
         public ActionResult<Guardarropa> GetGuardarropaItem(int id)
         {
             Guardarropa guardarropa = new Guardarropa();
             Prenda prenda = new Prenda()
-            {
+            {   Nombre = "lompa",
                 Categoria = Categoria.Piernas,
                 ColorPrimario = Color.Azul,
                 ColorSecundario = Color.Marron,
@@ -88,6 +90,7 @@ namespace QueMePongo.Controllers
 
         // POST: api/guardarropa
         [HttpPost]
+        [EnableCors("AllowOrigin")]
         public ActionResult<Guardarropa> PostGuardarropaItem([FromBody]Guardarropa guardarropa)
         {
             try

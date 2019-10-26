@@ -10,6 +10,10 @@ namespace QueMePongo.Dominio.Models
         public int UsuarioId { get; set; }
         public double CalorTotal { get; set; }
 
+        public Sugerencia()
+        {
+
+        }
         public Sugerencia(Atuendo atuendo)
         {
             Atuendo = atuendo;

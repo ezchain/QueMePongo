@@ -6,12 +6,13 @@ using System.Text;
 
 namespace QueMePongo.AccesoDatos.Mapper
 {
-  public static class PrendaMapper
+    public static class PrendaMapper
     {
         public static PrendaEntity MapEntity(Prenda prenda)
         {
             return new PrendaEntity()
             {
+                Nombre = prenda.Nombre,
                 PrendaId = prenda.PrendaId,
                 Categoria = ObtenerCategoria(prenda.Categoria),
                 ColorPrimario = ObtenerColor(prenda.ColorPrimario),
@@ -60,9 +61,9 @@ namespace QueMePongo.AccesoDatos.Mapper
             if (tela == Tela.Seda) return "Seda";
             return String.Empty;
         }
-        
+
         private static string ObtenerColor(Color? color)
-        {  
+        {
             if (color == Color.Azul) return "Azul";
             if (color == Color.Blanco) return "Blanco";
             if (color == Color.Marron) return "Marron";
@@ -97,10 +98,10 @@ namespace QueMePongo.AccesoDatos.Mapper
             if (color.Equals("Azul")) return Color.Azul;
             if (color.Equals("Blanco")) return Color.Blanco;
             if (color.Equals("Marron")) return Color.Marron;
-            if (color.Equals("Negro") ) return Color.Negro;
+            if (color.Equals("Negro")) return Color.Negro;
             if (color.Equals("Rojo")) return Color.Rojo;
-             return Color.Verde;
-           
+            return Color.Verde;
+
         }
 
         private static Color? ObtenerEnumColorSecundario(string color)
@@ -110,7 +111,7 @@ namespace QueMePongo.AccesoDatos.Mapper
             if (color.Equals("Marron")) return Color.Marron;
             if (color.Equals("Negro")) return Color.Negro;
             if (color.Equals("Rojo")) return Color.Rojo;
-            if(color.Equals("Verde")) return Color.Verde;
+            if (color.Equals("Verde")) return Color.Verde;
             return null;
 
         }
@@ -121,8 +122,8 @@ namespace QueMePongo.AccesoDatos.Mapper
             if (tela.Equals("Cuero")) return Tela.Cuero;
             if (tela.Equals("Jena")) return Tela.Jena;
             if (tela.Equals("Lona")) return Tela.Lona;
-             return Tela.Seda;
-           
+            return Tela.Seda;
+
         }
         private static string ObtenerFormalidad(Formalidad formalidad)
         {
