@@ -42,30 +42,30 @@ namespace QueMePongo.Api.Controllers
         [EnableCors("AllowOrigin")]
         public ActionResult<Usuario> GetUsuarioItem(int id)
         {
-            Usuario usuario1 = new Usuario()
-            {
-                Username = "Lucas",
-                Mail = "asd",
-                Password = "asd",
-                UsuarioId = 1,
-
-            };
-            Guardarropa guardarropa1 = new Guardarropa()
-            {
-                GuardarropaId = 1,
-                PrendasMaximas = 100,
-
-            };
-            usuario1.Guardarropas.Add(guardarropa1);
-            return Ok(usuario1);
-            //var Usuario = _usuarioRepositorio.ObtenerUsuario(id);
-
-            //if (Usuario == null)
+            //Usuario usuario1 = new Usuario()
             //{
-            //    return NotFound();
-            //}
+            //    Username = "Lucas",
+            //    Mail = "asd",
+            //    Password = "asd",
+            //    UsuarioId = 1,
 
-            //return Usuario;
+            //};
+            //Guardarropa guardarropa1 = new Guardarropa()
+            //{
+            //    GuardarropaId = 1,
+            //    PrendasMaximas = 100,
+
+            //};
+            //usuario1.Guardarropas.Add(guardarropa1);
+            //return Ok(usuario1);
+            var Usuario = _usuarioRepositorio.ObtenerUsuario(id);
+
+            if (Usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Usuario;
         }
 
         // POST: api/Usuario
@@ -147,26 +147,27 @@ namespace QueMePongo.Api.Controllers
         [EnableCors("AllowOrigin")]
         public IActionResult ObtenerEventos()
         {
-            ICollection<Evento> eventos = new List<Evento>();
+        //    ICollection<Evento> eventos = new List<Evento>();
 
-            Evento evento = new Evento()
-            {
-                EventoId = 3,
-                Nombre = "evento1",
-                FechaInicio = new DateTime(2019, 11, 01),
-                Frecuencia = new Frecuencia() { Nombre="Unico"}
-        };
-        Evento evento2 = new Evento()
-        {
-            Nombre = "Evento2",
-            EventoId = 1,
-            FechaInicio = new DateTime(2019, 11, 01),
-            Frecuencia = new Frecuencia() { Nombre = "Unico" }
-        };
-            eventos.Add(evento);
-            eventos.Add(evento2);
+        //    Evento evento = new Evento()
+        //    {
+        //        EventoId = 3,
+        //        Nombre = "evento1",
+        //        FechaInicio = new DateTime(2019, 11, 01),
+        //        Frecuencia = new Frecuencia() { Nombre="Unico"}
+        //};
+        //Evento evento2 = new Evento()
+        //{
+        //    Nombre = "Evento2",
+        //    EventoId = 1,
+        //    FechaInicio = new DateTime(2019, 11, 01),
+        //    Frecuencia = new Frecuencia() { Nombre = "Unico" }
+        //};
+        //    eventos.Add(evento);
+        //    eventos.Add(evento2);
 
-            return Ok(eventos);
+        //    return Ok(eventos);
+        return Ok(eventosService.ObtenerEventos());
     }
 
 

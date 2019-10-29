@@ -50,7 +50,7 @@ namespace QueMePongo.Api.Controllers
         {
             Prenda prenda = new Prenda()
             {
-                Nombre = "lompa",
+                Nombre = "Pantalon",
                 Categoria = Categoria.Piernas,
                 ColorPrimario = Color.Azul,
                 ColorSecundario = Color.Marron,
@@ -62,6 +62,7 @@ namespace QueMePongo.Api.Controllers
             };
             Prenda prenda2 = new Prenda()
             {
+                Nombre="Camisa",
                 Categoria = Categoria.Pies,
                 ColorPrimario = Color.Azul,
                 GuardarropaId = 1,
@@ -78,6 +79,7 @@ namespace QueMePongo.Api.Controllers
             };
             Prenda prenda3 = new Prenda()
             {
+                Nombre= "Zapatos",
                 Categoria = Categoria.Piernas,
                 ColorPrimario = Color.Azul,
                 GuardarropaId = 1,

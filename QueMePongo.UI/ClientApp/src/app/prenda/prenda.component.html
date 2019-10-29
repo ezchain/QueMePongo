@@ -15,6 +15,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Nombre</th>
       <th>Categoria</th>
       <th>Tela</th>
       <th>Color primario</th>
@@ -23,6 +24,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of this.guardarropa.prendas">
+      <td>{{item.nombre}}</td>
       <td>{{item.categoria | Categoria}}</td>
       <td>{{item.tela | Tela}}</td>
       <td>{{item.colorPrimario | Color}} </td>

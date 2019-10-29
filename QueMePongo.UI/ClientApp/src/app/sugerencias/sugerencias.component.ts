@@ -32,12 +32,12 @@ export class SugerenciasComponent implements OnInit {
 
   public ObtenerSugerencia() {
     if (this.selectedOption > 0) {
-      console.log(this.eventos);
-      console.log(this.selectedOption);
+      //console.log(this.eventos);
+      //console.log(this.selectedOption);
       let evento = this.eventos.find(x => x.eventoId == this.selectedOption);
-      console.log(evento);
-
-      this.servicios.ObtenerSugerencia(evento).subscribe((data: any) => {
+      //console.log(evento);
+      let request = { EventoId: evento.eventoId, Nombre: evento.nombre, UsuarioId: evento.usuarioId };
+      this.servicios.ObtenerSugerencia(request).subscribe((data: any) => {
         console.log(data);
         this.cambioPagina = true;
         this.sugerencia = data;

@@ -48,7 +48,8 @@ namespace QueMePongo.AccesoDatos.Mapper
                 ColorPrimario = ObtenerEnumColor(entidad.ColorPrimario),
                 ColorSecundario = ObtenerEnumColorSecundario(entidad.ColorSecundario),
                 Tela = ObtenerEnumTela(entidad.Tela),
-                Tipo = tipo
+                Tipo = tipo,
+                Nombre = entidad.Nombre
             };
         }
 

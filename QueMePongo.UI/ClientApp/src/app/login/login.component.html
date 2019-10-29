@@ -6,7 +6,7 @@
       <div class="recordar">
         <input type="checkbox" name="password" id="password"> Recordar contraseña
       </div>
-      <button type="submit" (click)="Login()">INGRESAR</button>
+      <button type="submit" (click)="Login()" [routerLink]="['/home', 1]">INGRESAR</button>
     </div>
   </div>
 </form>

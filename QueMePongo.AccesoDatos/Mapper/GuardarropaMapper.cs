@@ -28,10 +28,14 @@ namespace QueMePongo.AccesoDatos.Mapper
         public static Guardarropa MapModel(GuardarropaEntity entidad)
         {
             ICollection<Prenda> prendas = new List<Prenda>();
-            foreach(var x in entidad.Prendas)
+            if (entidad.Prendas != null)
             {
-                prendas.Add(PrendaMapper.MapModel(x));
+                foreach (var x in entidad.Prendas)
+                {
+                    prendas.Add(PrendaMapper.MapModel(x));
+                }
             }
+            
             return new Guardarropa()
             {
             GuardarropaId = entidad.GuardarropaId,

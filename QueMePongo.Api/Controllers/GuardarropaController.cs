@@ -18,74 +18,68 @@ namespace QueMePongo.Controllers
             _guardarropasService = guardarropasService;
         }
 
-        // GET: api/guardarropa
-        [HttpGet]
-        public ActionResult<IEnumerable<Guardarropa>> GetGuardarropaItems()
-        {
-            return _guardarropasService.ObtenerGuardarropas().ToList();
-        }
 
         // GET: api/guardarropa/2
         [HttpGet("{id}")]
         [EnableCors("AllowOrigin")]
         public ActionResult<Guardarropa> GetGuardarropaItem(int id)
         {
-            Guardarropa guardarropa = new Guardarropa();
-            Prenda prenda = new Prenda()
-            {   Nombre = "lompa",
-                Categoria = Categoria.Piernas,
-                ColorPrimario = Color.Azul,
-                ColorSecundario = Color.Marron,
-                GuardarropaId = 1,
-                Tela = Tela.Cuero,
-                PrendaId = 1,
+            //Guardarropa guardarropa = new Guardarropa();
+            //Prenda prenda = new Prenda()
+            //{   Nombre = "lompa",
+            //    Categoria = Categoria.Piernas,
+            //    ColorPrimario = Color.Azul,
+            //    ColorSecundario = Color.Marron,
+            //    GuardarropaId = 1,
+            //    Tela = Tela.Cuero,
+            //    PrendaId = 1,
                 
 
-            };
-            Prenda prenda2 = new Prenda()
-            {
-                Categoria = Categoria.Pies,
-                ColorPrimario = Color.Azul,
-                GuardarropaId = 1,
-                Tela = Tela.Cuero,
-                PrendaId = 1,
-                Tipo = new TipoDePrenda()
-                {
-                    Formalidad = Formalidad.Formal,
-                    Nivel = 1,
-                    Posicion = 2,
-                    Temperatura = 10
-                }
-
-            };
-            Prenda prenda3 = new Prenda()
-            {
-                Categoria = Categoria.Piernas,
-                ColorPrimario = Color.Azul,
-                GuardarropaId = 1,
-                Tela = Tela.Cuero,
-                PrendaId = 1,
-                Tipo = new TipoDePrenda()
-                {
-                    Formalidad = Formalidad.Formal,
-                    Nivel = 1,
-                    Posicion = 2,
-                    Temperatura = 10
-                }
-
-            };
-            guardarropa.Prendas.Add(prenda);
-            guardarropa.Prendas.Add(prenda2);
-            guardarropa.Prendas.Add(prenda3);
-            return Ok(guardarropa);
-            //var guardarropa = _guardarropasService.ObtenerGuardarropaPorId(id);
-
-            //if (guardarropa == null)
+            //};
+            //Prenda prenda2 = new Prenda()
             //{
-            //    return NotFound();
-            //}
+            //    Categoria = Categoria.Pies,
+            //    ColorPrimario = Color.Azul,
+            //    GuardarropaId = 1,
+            //    Tela = Tela.Cuero,
+            //    PrendaId = 1,
+            //    Tipo = new TipoDePrenda()
+            //    {
+            //        Formalidad = Formalidad.Formal,
+            //        Nivel = 1,
+            //        Posicion = 2,
+            //        Temperatura = 10
+            //    }
 
-            //return guardarropa;
+            //};
+            //Prenda prenda3 = new Prenda()
+            //{
+            //    Categoria = Categoria.Piernas,
+            //    ColorPrimario = Color.Azul,
+            //    GuardarropaId = 1,
+            //    Tela = Tela.Cuero,
+            //    PrendaId = 1,
+            //    Tipo = new TipoDePrenda()
+            //    {
+            //        Formalidad = Formalidad.Formal,
+            //        Nivel = 1,
+            //        Posicion = 2,
+            //        Temperatura = 10
+            //    }
+
+            //};
+            //guardarropa.Prendas.Add(prenda);
+            //guardarropa.Prendas.Add(prenda2);
+            //guardarropa.Prendas.Add(prenda3);
+            //return Ok(guardarropa);
+            var guardarropa = _guardarropasService.ObtenerGuardarropaPorId(id);
+
+            if (guardarropa == null)
+            {
+                return NotFound();
+            }
+
+            return guardarropa;
         }
 
         // POST: api/guardarropa

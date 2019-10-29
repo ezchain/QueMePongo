@@ -14,7 +14,7 @@ export const ROUTES: Routes = [
   { path: 'altaEventos', component: AltaEventosComponent },
   { path: 'calendario', component: CalendarioComponent },
   { path: 'AltaPrenda/:id', component: AltaPrendaComponent },
-  { path: 'sugerencia', component: SugerenciasComponent }
+  { path: 'sugerencia', component: SugerenciasComponent },
 
     {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];

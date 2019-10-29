@@ -30,6 +30,10 @@ namespace QueMePongo.AccesoDatos.Data
         public DbSet<GuardarropasUsuariosEntity> GuardarropasUsuarios { get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+          
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 

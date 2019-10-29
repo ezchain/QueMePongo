@@ -9,7 +9,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Prendas](
-	[PrendaId] [int] NOT NULL,
+	[PrendaId] [int] IDENTITY(1,1),
+	[Nombre] [varchar](50) NOT NULL,
 	[GuardarropaId] [int] NOT NULL,
 	[Categoria] [varchar](50) NOT NULL,
 	[Temperatura] [decimal](18, 0) NOT NULL,
