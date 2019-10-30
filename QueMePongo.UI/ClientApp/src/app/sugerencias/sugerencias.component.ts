@@ -13,6 +13,7 @@ export class SugerenciasComponent implements OnInit {
   selectedOption: any = {}
   prendas:any = []
   cambioPagina: boolean = false;
+  calificacion: boleean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private servicios: ServiciosService, private router: Router) {
 
@@ -49,6 +50,7 @@ export class SugerenciasComponent implements OnInit {
   }
 
   public Aceptar() {
+    this.calificacion = true;
     this.servicios.AceptarSugerencia(this.sugerencia).subscribe((data: any) => {
       console.log(data);
     });

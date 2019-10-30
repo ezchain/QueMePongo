@@ -2,14 +2,14 @@
 <br />
 <br />
 <div class="container text-center">
-  <select class="custom-select" [(ngModel)]="selectedOption" (change)="ObtenerSugerencia()" *ngIf="!cambioPagina">
+  <select class="custom-select" [(ngModel)]="selectedOption" (change)="ObtenerSugerencia()" *ngIf="!cambioPagina && !calificacion">
     <option value=-1 selected>Seleccionar un evento</option>
     <option *ngFor="let evento of eventos" [value]="evento.eventoId">{{evento.nombre}}</option>
   </select>
 
-  <form *ngIf="cambioPagina">
+  <form *ngIf="cambioPagina && !calificacion">
     <div class=" col-md-10" *ngFor="let prenda of prendas">
-      <label>{{prenda.nombre}}</label>
+      <label>{{prenda.nombre}} </label>
     </div>
 
     <div class="botones col-md-6">
@@ -17,11 +17,24 @@
       <button type="submit" class="btn btn-primary" (click)="Aceptar()">Aceptar</button>
     </div>
   </form>
+</div>
 
+<div class="container">
+  <select class="custom-select" *ngIf="calificacion">
+    <option value=-1 selected>Elegir calificacion</option>
+    <option value=1>1</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+  </select>
+  <div class="botones col-md-6" *ngIf="calificacion">
+    <button type="submit" class="btn btn-primary" [routerLink]="['/home', 1]">Calificar</button>
+  </div>
 
 </div>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
