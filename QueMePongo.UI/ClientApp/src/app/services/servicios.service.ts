@@ -40,4 +40,16 @@ export class ServiciosService {
     return this.http.post('http://localhost:51368/api/Prenda', prenda);
   }
 
+  ObtenerSugerencia(evento: any) {
+    
+
+    console.log(evento);
+    return this.http.post('http://localhost:51368/api/Atuendo/usuario/GenerarSugerencia', evento);
+  }
+
+  AceptarSugerencia(evento: any) {
+    console.log(evento);
+    return this.http.post('http://localhost:51368/api/Atuendo/usuario/AceptarSugerencia', evento);
+  }
+
 }

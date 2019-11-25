@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using QueMePongo.Dominio.DTOs;
 using QueMePongo.Dominio.Interfaces;
@@ -16,17 +17,16 @@ namespace QueMePongo.Api.Controllers
     {
         private readonly IAtuendosService _atuendosService;
         private readonly IUsuarioService _usuarioService;
-        private readonly INotificador _notificador;
+       // private readonly INotificador _notificador;
         private readonly ISugerenciasService _sugerenciasService;
 
         public AtuendoController(IAtuendosService atuendosService,
             IUsuarioService usuarioService,
-            INotificador notificador,
             ISugerenciasService sugerenciasService)
         {
             _atuendosService = atuendosService;
             _usuarioService = usuarioService;
-            _notificador = notificador;
+            
             _sugerenciasService = sugerenciasService;
         }
 
@@ -45,25 +45,80 @@ namespace QueMePongo.Api.Controllers
         }
 
         [HttpPost("usuario/GenerarSugerencia")]
-        public async Task<ActionResult<Sugerencia>> GenerarSugerencia([FromBody]Evento evento)
+        [EnableCors("AllowOrigin")]
+        public  ActionResult<Sugerencia> GenerarSugerencia([FromBody]Evento evento)
         {
-            try
+            Prenda prenda = new Prenda()
             {
-                var usuario = _usuarioService.GetUsuario(evento.UsuarioId);
-                var sugerencia = await _sugerenciasService.GenerarSugerencia(evento);
+                Nombre = "Pantalon",
+                Categoria = Categoria.Piernas,
+                ColorPrimario = Color.Azul,
+                ColorSecundario = Color.Marron,
+                GuardarropaId = 1,
+                Tela = Tela.Cuero,
+                PrendaId = 1,
 
-                _notificador.NotificarSugerencias(usuario, evento);
 
-                return Ok(sugerencia);
-            }
-            catch (Exception ex)
+            };
+            Prenda prenda2 = new Prenda()
             {
-                return BadRequest(ex.Message);
-            }
-        }
+                Nombre="Camisa",
+                Categoria = Categoria.Pies,
+                ColorPrimario = Color.Azul,
+                GuardarropaId = 1,
+                Tela = Tela.Cuero,
+                PrendaId = 1,
+                Tipo = new TipoDePrenda()
+                {
+                    Formalidad = Formalidad.Formal,
+                    Nivel = 1,
+                    Posicion = 2,
+                    Temperatura = 10
+                }
 
-        [HttpGet("usuario/{Sugerencia}")]
-        public ActionResult AceptarSugerencia(Sugerencia sugerencia)
+            };
+            Prenda prenda3 = new Prenda()
+            {
+                Nombre= "Zapatos",
+                Categoria = Categoria.Piernas,
+                ColorPrimario = Color.Azul,
+                GuardarropaId = 1,
+                Tela = Tela.Cuero,
+                PrendaId = 1,
+                Tipo = new TipoDePrenda()
+                {
+                    Formalidad = Formalidad.Formal,
+                    Nivel = 1,
+                    Posicion = 2,
+                    Temperatura = 10
+                }
+            };
+            Atuendo atuendo = new Atuendo();
+            atuendo.Prendas.Add(prenda);
+            atuendo.Prendas.Add(prenda2);
+            atuendo.Prendas.Add(prenda3);
+            Sugerencia sugerencia = new Sugerencia(atuendo);
+
+            return Ok(sugerencia);
+
+                //    try
+                //    {
+                //        var usuario = _usuarioService.GetUsuario(evento.UsuarioId);
+                //        var sugerencia = await _sugerenciasService.GenerarSugerencia(evento);
+
+                //        _notificador.NotificarSugerencias(usuario, evento);
+
+                //        return Ok(sugerencia);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        return BadRequest(ex.Message);
+                //    }
+            }
+
+        [HttpPost("usuario/AceptarSugerencia")]
+        [EnableCors("AllowOrigin")]
+        public ActionResult AceptarSugerencia([FromBody]Sugerencia sugerencia)
         {
             try
             {
@@ -76,8 +131,11 @@ namespace QueMePongo.Api.Controllers
             }
         }
         //ARREGLAR
-        //public ActionResult CalificarSugerencia([FromBody]Sugerencia sugerencia, int idUsuario, ICalificacion calificacion)
-        //{
+        [HttpGet("usuario/calificar/{sugerenciaId}/{calificacion}")]
+        [EnableCors("AllowOrigin")]
+        public ActionResult CalificarSugerencia(int sugerenciaId, int calificacion)
+        {
+            return Ok();
         //    if (sugerencia.Aceptada && sugerencia.UsuarioId == idUsuario)
         //    {
         //        try
@@ -93,7 +151,7 @@ namespace QueMePongo.Api.Controllers
         //        }
         //    }
         //    return BadRequest("La sugerencia no está aceptada por el usuario ingresado");
-        //}
+        }
 
         #region Métodos Privados
 

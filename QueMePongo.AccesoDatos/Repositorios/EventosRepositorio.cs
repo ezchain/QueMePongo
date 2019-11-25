@@ -83,6 +83,11 @@ namespace QueMePongo.AccesoDatos.Repositorios
             }
         }
 
+        public ICollection<EventoEntity> ObtenerEventos()
+        {
+            return _dbContext.Eventos.ToList();
+
+        }
         public void DeleteEvento(int EventoId)
         {
             try

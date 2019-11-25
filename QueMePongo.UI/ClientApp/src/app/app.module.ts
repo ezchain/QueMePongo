@@ -22,6 +22,7 @@ import { AltaEventosComponent } from './alta-eventos/alta-eventos.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { AltaPrendaComponent } from './alta-prenda/alta-prenda.component';
+import { SugerenciasComponent } from './sugerencias/sugerencias.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AltaPrendaComponent } from './alta-prenda/alta-prenda.component';
     CategoriaPipe,
     AltaEventosComponent,
     CalendarioComponent,
-    AltaPrendaComponent
+    AltaPrendaComponent,
+    SugerenciasComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

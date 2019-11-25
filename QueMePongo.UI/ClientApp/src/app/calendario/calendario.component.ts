@@ -31,8 +31,8 @@ export class CalendarioComponent implements OnInit {
         this.calendarEvents = this.calendarEvents.concat({ 
       { title: parametro.nombre, date: parametro.fechaInicio }
     });
-      });
-    });
+      
+    };
 
 }
 

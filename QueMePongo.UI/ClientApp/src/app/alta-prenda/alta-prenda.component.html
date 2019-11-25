@@ -82,7 +82,7 @@
     <br />
     <div class="botones col-md-6">
       <button type="submit" class="btn btn-primary" (click)="CambiarPagina()" *ngIf="!cambioPagina">Siguiente</button>
-      <button type="submit" class="btn btn-primary" [routerLink]="['../prenda', this.id]" (click)="AltaPrenda()" *ngIf="cambioPagina">Finalizar</button>
+      <button type="submit" class="btn btn-primary" [routerLink]="['/prenda', this.id]" (click)="AltaPrenda()" *ngIf="cambioPagina">Finalizar</button>
     </div>
   </form>
 </div>

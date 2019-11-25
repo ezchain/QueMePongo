@@ -1,7 +1,8 @@
 ﻿namespace QueMePongo.Dominio.Models
 {
     public class Prenda
-    {
+    {   
+        public string Nombre { get; set; }
         public int PrendaId { get; set; }
         public int GuardarropaId { get; set; }
         public Categoria Categoria { get; set; }

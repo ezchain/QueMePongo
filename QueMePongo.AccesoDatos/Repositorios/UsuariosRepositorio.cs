@@ -81,6 +81,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
             UsuarioEntity entidad = _dbContext.Usuarios.FirstOrDefault(s => s.UsuarioId == usuarioId);
             GuardarropaRepositorio repo = new GuardarropaRepositorio(); 
             Usuario usuario = UsuarioMapper.MapModel(entidad);
+            usuario.Guardarropas = new List<Guardarropa>();
             usuario.Guardarropas = repo.ObtenerGuardarropasUsuario(usuarioId);
             SensibilidadLocalEntity sensibilidad = _dbContext.SensibilidadLocal.Find(usuarioId);
             usuario.CambiarSensibilidadLocal(SensibilidadLocalMapper.MapModel(sensibilidad));
