@@ -9,7 +9,7 @@ namespace QueMePongo.AccesoDatos.Entidades
     {
         [Key]
         public int RelacionId { get; set; }
-        public int IDGuardarropa { get; set; }
+        public int GuardarropaId { get; set; }
         public int UsuarioId { get; set; }
     }
 }

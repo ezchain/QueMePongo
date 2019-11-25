@@ -33,87 +33,31 @@ namespace QueMePongo.Api.Controllers
         [HttpGet("guardarropa/{guardarropaId}")]
         public ActionResult<IEnumerable<Atuendo>> GetAtuendosPorGuardarropa(int guardarropaId)
         {
-            return ObtenerAtuendos(() =>
-                _atuendosService.GenerarAtuendosPorGuardarropa(guardarropaId));
+            return Ok(ObtenerAtuendos(() =>
+                _atuendosService.GenerarAtuendosPorGuardarropa(guardarropaId)));
         }
 
-        [HttpGet("usuario/{usuarioId}")]
+        [HttpGet("usuarioAtuendos/{usuarioId}")]
         public ActionResult<IEnumerable<Atuendo>> GetAtuendosPorUsuario(int usuarioId)
         {
-            return ObtenerAtuendos(() =>
-                _atuendosService.GenerarAtuendosPorUsuario(usuarioId));
+            return Ok(ObtenerAtuendos(() =>
+                _atuendosService.GenerarAtuendosPorUsuario(usuarioId)));
         }
 
         [HttpPost("usuario/GenerarSugerencia")]
         [EnableCors("AllowOrigin")]
         public  ActionResult<Sugerencia> GenerarSugerencia([FromBody]Evento evento)
         {
-            Prenda prenda = new Prenda()
+      
+            var sugerencias = new List<Sugerencia>();
+            var atuendos = ObtenerAtuendos(() =>
+                _atuendosService.GenerarAtuendosPorUsuario(evento.UsuarioId));
+
+            foreach(var x in atuendos)
             {
-                Nombre = "Pantalon",
-                Categoria = Categoria.Piernas,
-                ColorPrimario = Color.Azul,
-                ColorSecundario = Color.Marron,
-                GuardarropaId = 1,
-                Tela = Tela.Cuero,
-                PrendaId = 1,
-
-
-            };
-            Prenda prenda2 = new Prenda()
-            {
-                Nombre="Camisa",
-                Categoria = Categoria.Pies,
-                ColorPrimario = Color.Azul,
-                GuardarropaId = 1,
-                Tela = Tela.Cuero,
-                PrendaId = 1,
-                Tipo = new TipoDePrenda()
-                {
-                    Formalidad = Formalidad.Formal,
-                    Nivel = 1,
-                    Posicion = 2,
-                    Temperatura = 10
-                }
-
-            };
-            Prenda prenda3 = new Prenda()
-            {
-                Nombre= "Zapatos",
-                Categoria = Categoria.Piernas,
-                ColorPrimario = Color.Azul,
-                GuardarropaId = 1,
-                Tela = Tela.Cuero,
-                PrendaId = 1,
-                Tipo = new TipoDePrenda()
-                {
-                    Formalidad = Formalidad.Formal,
-                    Nivel = 1,
-                    Posicion = 2,
-                    Temperatura = 10
-                }
-            };
-            Atuendo atuendo = new Atuendo();
-            atuendo.Prendas.Add(prenda);
-            atuendo.Prendas.Add(prenda2);
-            atuendo.Prendas.Add(prenda3);
-            Sugerencia sugerencia = new Sugerencia(atuendo);
-
-            return Ok(sugerencia);
-
-                //    try
-                //    {
-                //        var usuario = _usuarioService.GetUsuario(evento.UsuarioId);
-                //        var sugerencia = await _sugerenciasService.GenerarSugerencia(evento);
-
-                //        _notificador.NotificarSugerencias(usuario, evento);
-
-                //        return Ok(sugerencia);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        return BadRequest(ex.Message);
-                //    }
+                sugerencias.Add(new Sugerencia(x)); 
+            }
+            return Ok(sugerencias);
             }
 
         [HttpPost("usuario/AceptarSugerencia")]
@@ -155,7 +99,7 @@ namespace QueMePongo.Api.Controllers
 
         #region Métodos Privados
 
-        private ActionResult<IEnumerable<Atuendo>> ObtenerAtuendos(Func<IEnumerable<Atuendo>> func)
+        private IList<Atuendo> ObtenerAtuendos(Func<IEnumerable<Atuendo>> func)
         {
             try
             {
@@ -163,14 +107,14 @@ namespace QueMePongo.Api.Controllers
 
                 if (atuendos == null)
                 {
-                    return NotFound();
+                    return null;
                 }
 
                 return atuendos.ToList();
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(ex.Message);
+                return null;
             }
         }
 

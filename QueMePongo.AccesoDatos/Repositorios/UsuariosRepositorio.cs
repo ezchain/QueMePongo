@@ -92,8 +92,13 @@ namespace QueMePongo.AccesoDatos.Repositorios
 
         public IEnumerable<Usuario> ObtenerUsuarios()
         {
-            //  return _dbContext.Usuarios.Include(u => u.Guardarropas);
-            return null;
+            var usuarios = _dbContext.Usuarios.ToList();
+            var list = new List<Usuario>();
+            foreach(var usuario in usuarios)
+            {
+                list.Add(UsuarioMapper.MapModel(usuario));
+            }
+            return list;
         }
 
        

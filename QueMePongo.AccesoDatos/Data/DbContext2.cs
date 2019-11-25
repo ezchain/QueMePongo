@@ -39,7 +39,7 @@ namespace QueMePongo.AccesoDatos.Data
 
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=QueMePongo;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Que.Me.Pongo;Trusted_Connection=True;");
 
             }
         }

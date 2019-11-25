@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace QueMePongo.AccesoDatos.Entidades
@@ -9,6 +10,7 @@ namespace QueMePongo.AccesoDatos.Entidades
     {
         [Key]
         public int PrendaId { get; set; }
+        [NotMapped]
         public string Nombre { get; set; }
         public int GuardarropaId { get; set; }
         public string Categoria { get; set; }

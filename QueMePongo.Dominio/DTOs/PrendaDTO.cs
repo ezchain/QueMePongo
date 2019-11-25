@@ -13,5 +13,5 @@ namespace QueMePongo.Dominio.DTOs
         public Color ColorPrimario { get; set; }
         public Color? ColorSecundario { get; set; }
         public IFormFile Imagen { get; set; }
-    }
+    } 
 }

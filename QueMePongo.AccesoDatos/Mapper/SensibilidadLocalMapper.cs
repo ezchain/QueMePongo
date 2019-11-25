@@ -34,6 +34,12 @@ namespace QueMePongo.AccesoDatos.Mapper
         public static IList<ISensibilidadLocal> MapModel(SensibilidadLocalEntity entidad)
         {
             IList<ISensibilidadLocal> sensibilidades = new List<ISensibilidadLocal>();
+            if (entidad == null)
+            {
+                sensibilidades.Add(new NormalLocal());
+                return sensibilidades;
+            }
+           
             if (entidad.Cabeza.Equals("Friolento")) sensibilidades.Add(new FriolentoLocal(PosicionPrenda.Cabeza));
             if (entidad.Cabeza.Equals("Acalorado")) sensibilidades.Add(new AcaloradoLocal(PosicionPrenda.Cabeza));
             if (entidad.Cuello.Equals("Friolento")) sensibilidades.Add(new FriolentoLocal(PosicionPrenda.Cuello));

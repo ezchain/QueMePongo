@@ -51,7 +51,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
         {
             try
             {
-                _dbContext.GuardarropasUsuarios.Add(new GuardarropasUsuariosEntity() { IDGuardarropa = idGuardarropa, UsuarioId = idUsuario });
+                _dbContext.GuardarropasUsuarios.Add(new GuardarropasUsuariosEntity() { GuardarropaId = idGuardarropa, UsuarioId = idUsuario });
                 _dbContext.SaveChanges();
             }
             catch (Exception e)
@@ -65,7 +65,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
         {
             try
             {
-             var entidad =   _dbContext.GuardarropasUsuarios.FirstOrDefault(s => s.UsuarioId == idUsuario && s.IDGuardarropa == idGuardarropa);
+             var entidad =   _dbContext.GuardarropasUsuarios.FirstOrDefault(s => s.UsuarioId == idUsuario && s.GuardarropaId == idGuardarropa);
                 _dbContext.GuardarropasUsuarios.Remove(entidad);
                 _dbContext.SaveChanges();
             }
@@ -138,7 +138,7 @@ namespace QueMePongo.AccesoDatos.Repositorios
                 ICollection<Guardarropa> guardarropas = new List<Guardarropa>();
                 foreach (var x in entidades)
                 {
-                    guardarropas.Add(ObtenerGuardarropaPorId(x.IDGuardarropa));
+                    guardarropas.Add(ObtenerGuardarropaPorId(x.GuardarropaId));
                 }
                 return guardarropas;
             }

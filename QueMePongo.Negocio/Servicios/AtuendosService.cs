@@ -34,8 +34,8 @@ namespace QueMePongo.Negocio.Servicios
             var combinaciones = new Combinations<Prenda>(
                     guardarropa.Prendas.ToList(),
                     CantidadCategorias());
-
-            return CrearAtuendos(combinaciones);
+            var a = CrearAtuendos(combinaciones);
+            return a;
         }
 
         public IEnumerable<Atuendo> GenerarAtuendosPorUsuario(int usuarioId)
@@ -45,9 +45,9 @@ namespace QueMePongo.Negocio.Servicios
 
             foreach (var guardarropa in usuario.Guardarropas)
             {
-                atuendos.Concat(
+                atuendos = (
                     GenerarAtuendosPorGuardarropa(
-                        guardarropa.GuardarropaId));
+                        guardarropa.GuardarropaId)).ToList();
             }
 
             return atuendos;
@@ -125,7 +125,8 @@ namespace QueMePongo.Negocio.Servicios
                     combinacionesCorrectas.Add(combinacion.ToList());
                 }
             }
-            return combinacionesCorrectas.Select(c => new Atuendo { Prendas = c });
+            var result = combinacionesCorrectas.Select(c => new Atuendo { Prendas = c });
+            return result;
         }
 
         private int CantidadCategorias()
