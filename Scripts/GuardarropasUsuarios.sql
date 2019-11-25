@@ -11,7 +11,7 @@ GO
 CREATE TABLE [dbo].[GuardarropasUsuarios](
 	[RelacionId] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[GuardarropaId] [int] FOREIGN KEY REFERENCES [dbo].[Guardarropas] NOT NULL,
-	[UsuarioId] [int] FOREIGN KEY REFE [dbo].[Usuarios] NOT NULL,
+	[UsuarioId] [int] FOREIGN KEY REFErences [dbo].[Usuarios] NOT NULL,
 ) ON [PRIMARY]
 GO
 

@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='[dbo].[SensibilidadLocal]' and xtype='U')
+IF EXISTS (SELECT * FROM sysobjects WHERE name='[dbo].[SensibilidadLocal]' and xtype='U')
     DROP TABLE [dbo].[SensibilidadLocal]
 GO
 
